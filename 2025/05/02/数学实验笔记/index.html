@@ -1,0 +1,1942 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.outdate = {"enable":true,"daysAgo":180,"message":{"en":"This article was last updated on {time}. Please note that the content may no longer be applicable.","zh-CN":"本文最后更新于 {time}，请注意文中内容可能已不适用。","zh-TW":"本文最後更新於 {time}，請注意文中內容可能已不適用。","ja":"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://QuarkPlanks.github.io';</script>
+  
+  <title>
+    数学实验笔记 |
+    
+    Welcome to my blog !
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="插值问题  插值问题的提法及思路  插值问题  已知 n 个节点 $(x_i,y_i)$ ，各个 $x_i$ 互不相同，满足 $a &#x3D; x_0 &lt; x_1 &lt; ... &lt; x_n &#x3D; b$ ，称 $[a,b]$ 为插值区间 目标： 求任意插值点 $x^* (\in [a,b] 且 \neq x_j)$ 处的函数值 $f(x^*)$ 思路： 构造一个相对简单的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学实验笔记">
+<meta property="og:url" content="https://quarkplanks.github.io/2025/05/02/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Welcome to my blog !">
+<meta property="og:description" content="插值问题  插值问题的提法及思路  插值问题  已知 n 个节点 $(x_i,y_i)$ ，各个 $x_i$ 互不相同，满足 $a &#x3D; x_0 &lt; x_1 &lt; ... &lt; x_n &#x3D; b$ ，称 $[a,b]$ 为插值区间 目标： 求任意插值点 $x^* (\in [a,b] 且 \neq x_j)$ 处的函数值 $f(x^*)$ 思路： 构造一个相对简单的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/aa90f41f2a339771704adab2aee93fe1.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/6998116cd613cd93fdfe064a6f4b83ce.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/4ec496103fc56805d06fe1e42e790f7f.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/8d89b4b69e71c3d78f3a3ad5eb5cb2b3.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/3e29fae2d8404c948cac49aa5936c457.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/580c4409b73f88e06ba766ecb88797ca.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/4dfcd208b18c55c0036283c25923b7da.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/88707f39015146fb1b7d27e9f69dc63a.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/d3b8401d19d951c5506e886024f2c653.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/6df156ca2c1df7268b5e0f78c60b35e1.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/3d1b5e4fcb4688d06d02ce66dfdfdefb.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/5b29cbd96610ce8a3e0fcea1f12cf0ef.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/fadf21e5916871d2c2ebe6cf79d9f74b.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/1e899aaa1f0a033b9d66a7e0ac6726a6.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/796350eb0df4a8cbef082cdcf61bf73e.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2025/05/02/11e6185e99efeabaa0f693d93a30e571.png">
+<meta property="article:published_time" content="2025-05-01T16:48:12.000Z">
+<meta property="article:modified_time" content="2025-05-03T17:15:01.002Z">
+<meta property="article:author" content="Guga Frog">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="数学实验">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.imagehub.cc/images/2025/05/02/aa90f41f2a339771704adab2aee93fe1.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Welcome to my blog !" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://s1.imagehub.cc/images/2025/05/05/635ec9652f1a5a3245b8839b86d87ffa.jpg" alt="数学实验笔记">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">数学实验笔记</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 插值问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E6%8F%90%E6%B3%95%E5%8F%8A%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text"> 插值问题的提法及思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text"> 误差估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 插值方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 多项式插值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lagrange-%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.2.</span> <span class="toc-text"> Lagrange 插值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 分段线性插值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%A0%B7%E6%9D%A1%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 三次样条插值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text"> 数值积分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 误差估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text"> 收敛性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6"><span class="toc-number">2.3.</span> <span class="toc-text"> 代数精度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text"> 数值积分方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%85%AC%E5%BC%8F"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 梯形公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#simpson-%E5%85%AC%E5%BC%8F"><span class="toc-number">2.4.2.</span> <span class="toc-text"> Simpson 公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gauss-%E5%85%AC%E5%BC%8F"><span class="toc-number">2.4.3.</span> <span class="toc-text"> Gauss 公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E7%9A%84-gauss-%E5%85%AC%E5%BC%8F-gauss-lobatto-%E7%A7%AF%E5%88%86"><span class="toc-number">2.4.4.</span> <span class="toc-text"> 改进的 Gauss 公式—— Gauss-Lobatto 积分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E6%95%B0%E5%80%BC%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text"> 常微分方程的数值解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7-%E5%88%9A%E6%80%A7%E4%BA%86%E8%A7%A3"><span class="toc-number">3.1.</span> <span class="toc-text"> * 收敛性、稳定性、刚性（了解）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90"><span class="toc-number">3.2.</span> <span class="toc-text"> 误差分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%AE%97%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text"> 数值算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#euler-%E6%96%B9%E6%B3%95"><span class="toc-number">3.3.1.</span> <span class="toc-text"> Euler 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E5%89%8D"><span class="toc-number">3.3.1.1.</span> <span class="toc-text"> 向前：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E5%90%8E"><span class="toc-number">3.3.1.2.</span> <span class="toc-text"> 向后：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%85%AC%E5%BC%8F-2"><span class="toc-number">3.3.1.3.</span> <span class="toc-text"> 梯形公式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B-euler-%E5%85%AC%E5%BC%8F"><span class="toc-number">3.3.1.4.</span> <span class="toc-text"> 改进 Euler 公式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#runge-kutta-%E6%96%B9%E6%B3%95"><span class="toc-number">3.3.2.</span> <span class="toc-text"> Runge-Kutta 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E5%B9%BF%E5%88%B0%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">3.3.3.</span> <span class="toc-text"> 推广到微分方程组</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text"> 线性方程的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text"> 线性方程组的数值解法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 直接方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gauss-%E6%B6%88%E5%85%83%E6%B3%95"><span class="toc-number">4.1.1.1.</span> <span class="toc-text"> Gauss 消元法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%BD%E8%B5%B6%E6%B3%95"><span class="toc-number">4.1.1.2.</span> <span class="toc-text"> 追赶法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5-lu-%E5%88%86%E8%A7%A3"><span class="toc-number">4.1.1.2.1.</span> <span class="toc-text"> 矩阵 LU 分解</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text"> 迭代法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="toc-number">4.1.2.1.</span> <span class="toc-text"> Jacobi 迭代法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gauss-seidel-%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="toc-number">4.1.2.2.</span> <span class="toc-text"> Gauss-Seidel 迭代法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E6%9D%BE%E5%BC%9Bsor%E8%BF%AD%E4%BB%A3"><span class="toc-number">4.1.2.3.</span> <span class="toc-text"> 超松弛(SOR)迭代</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95%E7%9A%84%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-number">4.2.</span> <span class="toc-text"> 迭代法的收敛性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%97%85%E6%80%81%E6%80%A7"><span class="toc-number">4.3.</span> <span class="toc-text"> 方程组的病态性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E6%95%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text"> 范数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%95%B0%E8%A1%A1%E9%87%8F%E7%97%85%E6%80%81%E6%80%A7%E7%9A%84%E6%8C%87%E6%A0%87%E4%B9%8B%E4%B8%80"><span class="toc-number">4.3.2.</span> <span class="toc-text"> 条件数——衡量病态性的指标之一</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%AE%9A%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E8%A7%A3"><span class="toc-number">4.4.</span> <span class="toc-text"> 超定线性方程组的最小二乘解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text"> 非线性方程求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text"> 数值解法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="toc-number">5.1.1.</span> <span class="toc-text"> 牛顿法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E5%88%87%E7%BA%BF%E6%B3%95"><span class="toc-number">5.1.1.1.</span> <span class="toc-text"> 牛顿切线法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E5%89%B2%E7%BA%BF%E6%B3%95"><span class="toc-number">5.1.1.2.</span> <span class="toc-text"> 牛顿割线法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%9D%E7%89%9B%E9%A1%BF%E6%B3%95%E6%8B%9F%E7%89%9B%E9%A1%BF%E6%B3%95quasi-newton"><span class="toc-number">5.1.2.</span> <span class="toc-text"> 赝牛顿法&#x2F;拟牛顿法(Quasi-Newton)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95%E7%9A%84%E6%94%B6%E6%95%9B%E6%80%A7%E4%B8%8E%E6%94%B6%E6%95%9B%E9%80%9F%E5%BA%A6"><span class="toc-number">5.2.</span> <span class="toc-text"> 迭代法的收敛性与收敛速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%B9%BF%E5%88%B0%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">5.3.</span> <span class="toc-text"> 推广到非线性方程组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%B7%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E5%88%86%E5%B2%94%E4%B8%8E%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1%E4%BA%86%E8%A7%A3"><span class="toc-number">5.4.</span> <span class="toc-text"> * 非线性差分方程的分岔与混沌现象（了解）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 无约束优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text"> 基本方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E6%B3%95"><span class="toc-number">6.1.1.</span> <span class="toc-text"> 梯度法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95-2"><span class="toc-number">6.1.2.</span> <span class="toc-text"> 牛顿法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%9F%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="toc-number">6.1.3.</span> <span class="toc-text"> 拟牛顿法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7-%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-number">6.2.</span> <span class="toc-text"> 线性、非线性最小二乘法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E7%9A%84%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 非线性最小二乘法的优化算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gauss-newton-%E7%AE%97%E6%B3%95"><span class="toc-number">6.2.1.1.</span> <span class="toc-text"> Gauss-Newton 算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#levenbery-marquardt-%E7%AE%97%E6%B3%95"><span class="toc-number">6.2.1.2.</span> <span class="toc-text"> Levenbery-Marquardt 算法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-lp"><span class="toc-number">7.</span> <span class="toc-text"> 线性规划 (LP)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95"><span class="toc-number">7.1.</span> <span class="toc-text"> 基本原理和算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">7.1.1.</span> <span class="toc-text"> 单纯形法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%AE%97%E6%B3%95%E4%BA%86%E8%A7%A3"><span class="toc-number">7.1.2.</span> <span class="toc-text"> 其他算法（了解）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E7%9A%84%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="toc-number">7.2.</span> <span class="toc-text"> 线性规划的对偶问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-nlp"><span class="toc-number">8.</span> <span class="toc-text"> 非线性规划 (NLP)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">8.1.</span> <span class="toc-text"> 基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">8.2.</span> <span class="toc-text"> 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92-qp-%E5%8F%8A%E6%9C%89%E6%95%88%E9%9B%86%E6%96%B9%E6%B3%95"><span class="toc-number">8.2.1.</span> <span class="toc-text"> 二次规划 (QP) 及有效集方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3nlp%E7%9A%84%E9%80%90%E6%AD%A5%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92%E6%B3%95-sqp"><span class="toc-number">8.2.2.</span> <span class="toc-text"> 解NLP的逐步二次规划法 (SQP)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92-ip"><span class="toc-number">9.</span> <span class="toc-text"> 整数规划 (IP)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">9.1.</span> <span class="toc-text"> 整数规划问题的一般形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%9D%E5%AE%9A%E7%95%8C%E6%B3%95%E6%B1%82%E8%A7%A3-bb"><span class="toc-number">9.2.</span> <span class="toc-text"> 分枝定界法求解 (BB)</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar2.jpg" data-sizes="auto" alt="Guga Frog" class="lazyload">
+  <div class="sidebar-author-name">Guga Frog</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:1412580863@qq.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/QuarkPlanks itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-数学实验笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-05-01T16:48:12.000Z" itemprop="datePublished">2025-05-02</time>
+    <time style="display: none;" id="post-update-time">2025-05-04</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-aos="zoom-in">学习笔记</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote id="outdate-blockquote" style="display: none;"><p></p></blockquote>
+      
+      
+        <h1 id="插值问题"><a class="markdownIt-Anchor" href="#插值问题"></a> 插值问题</h1>
+<h2 id="插值问题的提法及思路"><a class="markdownIt-Anchor" href="#插值问题的提法及思路"></a> 插值问题的提法及思路</h2>
+<ul>
+<li>插值问题
+<ul>
+<li>已知 n 个节点 $(x_i,y_i)$ ，各个 $x_i$ 互不相同，满足 $a &#x3D; x_0 &lt; x_1 &lt; ... &lt; x_n &#x3D; b$ ，称 $[a,b]$ 为插值区间</li>
+<li>目标： 求任意插值点 $x^* (\in [a,b] 且 \neq x_j)$ 处的函数值 $f(x^*)$</li>
+<li>思路： 构造一个相对简单的插值函数 $ f $ ，使之通过全部已有的节点（插值条件），并利用这个 $f$ 计算各插值点处的函数值 $f(x^*)$</li>
+</ul>
+</li>
+</ul>
+<h2 id="误差估计"><a class="markdownIt-Anchor" href="#误差估计"></a> 误差估计</h2>
+<ul>
+<li>误差： $R_n(x) &#x3D; g(x) - f(x)$ 其中 $g(x)$ 为被插函数（$(x_i,y_i)$ 的真实分布规律），$f(x)$ 为人为构建的插值函数</li>
+<li>可能的降低误差的方法： $x$ 接近 $x_j$ 、$g$平缓、n增加</li>
+</ul>
+<h2 id="插值方法"><a class="markdownIt-Anchor" href="#插值方法"></a> 插值方法</h2>
+<h3 id="多项式插值"><a class="markdownIt-Anchor" href="#多项式插值"></a> 多项式插值</h3>
+<ul>
+<li>由于维数过高，求解时系数有精度问题，一般不用</li>
+<li>思路： 对于 n+1 个节点，构造一个 n 次多项式 $a_n x^n + ... + a_1 x^1 + a^0$ ，通过这 n+1 个插值条件解系数 $a_0$ ~ $a_n$</li>
+</ul>
+<h3 id="lagrange-插值"><a class="markdownIt-Anchor" href="#lagrange-插值"></a> Lagrange 插值</h3>
+<ul>
+<li>思路：插值函数 $L_n(x) &#x3D; \sum_{i&#x3D;1}^n y_i l_i(x)$  其中 $l_i &#x3D; \frac {(x-x_1)...(x-x_{i-1})(x-x_{i+1})...(x-x_n)}{(x_i-x_1)...(x_i-x_{i-1})(x_i-x_{i+1})...(x_i-x_n)}$</li>
+<li>Runge 现象：当节点数 n ↑ 时，Lagrange 插值方法的误差 ↑，且在插值区间边界处出现显著的震荡</li>
+</ul>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/aa90f41f2a339771704adab2aee93fe1.png" alt="image" border="0" width=400>
+</div> 
+<ul>
+<li>误差： $R_n &#x3D; \frac{g^{(n+1)}(\xi)}{(n+1)!}\prod_{i&#x3D;1}^n(x-x_i)$</li>
+</ul>
+<h3 id="分段线性插值"><a class="markdownIt-Anchor" href="#分段线性插值"></a> 分段线性插值</h3>
+<ul>
+<li>可以解决 Runge 现象</li>
+<li>思路：直接用线段连接各个节点</li>
+<li>计算量与 n 无关，且 n ↑ 误差 ↓</li>
+</ul>
+<h3 id="三次样条插值"><a class="markdownIt-Anchor" href="#三次样条插值"></a> 三次样条插值</h3>
+<ul>
+<li>可以解决分段线性插值节点处不光滑的问题</li>
+<li>插值方法：
+<ul>
+<li>对于$(x_0,y_0)...(x_n,y_n)$共 n + 1 个节点要确定一个函数族 $S(x) &#x3D; {s_i(x),x \in [x_{i-1},x_i],i&#x3D;1,2,...,n}$ ，满足：
+<ul>
+<li>(1) $s_i(x) &#x3D; a_ix^3+b_ix^2+c_ix+d_i (i &#x3D; 1,...,n)$</li>
+<li>(2) $s_i(x_i) &#x3D; y_i$</li>
+<li>(3) $S(x) \in C^2[x_0,x_n]$<p>$$i.e. 
+\begin{align*}
+\begin{split} 
+\left
+\{
+\begin{array}{ll}
+    s_i(x_i) &#x3D; s_{i+1}(x_i),          &amp; i \neq 0,n\\
+    s_i&#39;(x_i) &#x3D; s_{i+1}&#39;(x_i),          &amp; i \neq 0,n\\
+    s_i&#39;&#39;(x_i) &#x3D; s_{i+1}&#39;&#39;(x_i),          &amp; i \neq 0,n
+\end{array}
+\right.
+\end{split}
+\end{align*}$$</p></li>
+<li>(4) $S&#39;&#39;(x_0) &#x3D; S&#39;&#39;(x_n) &#x3D; 0$ [自然边界条件]</li>
+</ul>
+</li>
+<li>可见 (1) 中共 4n 个未知数，而 (2)(3)(4) 共 (n+1) + 3(n-1) + 2 = 4n 个方程，恰好可解</li>
+</ul>
+</li>
+</ul>
+<h1 id="数值积分"><a class="markdownIt-Anchor" href="#数值积分"></a> 数值积分</h1>
+<h2 id="误差估计-2"><a class="markdownIt-Anchor" href="#误差估计-2"></a> 误差估计</h2>
+<p>以梯形公式为例，考虑区间等分，每段长$2h$的情况<br />
+① 计算一小段区间上的误差</p>
+<ul>
+<li>设区间为 $[a-h,a+h]$</li>
+<li>则对这一段区间上的积分和数值积分公式进行泰勒展开：</li>
+</ul>
+<p>$$\int_a^{a+h}f(x)dx &#x3D; F(a+h) - F(a)
+$$</p><p>$$&#x3D; F&#39;(a)h + \frac {F&#39;&#39;(a)}{2}h^2 + \frac {F&#39;&#39;&#39;(a)}{6}h^3 + O(h^4)
+$$</p><p>$$\int_{a-h}^{a}f(x)dx &#x3D; F(a) - F(a-h)
+$$</p><p>$$\\ &#x3D; F&#39;(a)h - \frac {F&#39;&#39;(a)}{2}h^2 + \frac {F&#39;&#39;&#39;(a)}{6}h^3 + O(h^4)
+$$</p><p>$$S &#x3D;  h(f(a-h)+f(a+h))
+$$</p><p>$$\\&#x3D; h(2f(a)+f&#39;&#39;(a)h^2)
+$$</p><p>$$\\&#x3D; 2f(a)h + f&#39;&#39;(a)h^3
+$$</p><ul>
+<li>可以发现 $|\int_{a-h}^{a+h}f(x)dx - S| &#x3D; O(h^3)$</li>
+<li>而在整个区间上，需要乘以小区间数 $\frac 1{2h}$ ，则总误差 $R(f,T_n) &#x3D; O(h^2)$ ，即梯形公式$T_n$的误差是 $h^2$ 阶的</li>
+</ul>
+<h2 id="收敛性"><a class="markdownIt-Anchor" href="#收敛性"></a> 收敛性</h2>
+<ul>
+<li>若对 $I$ 的某个数值积分 $I_n$ 有 $\lim_{n\to \infty} \frac {I-I_n}{h^p} &#x3D; c$，其中 $c$ 为非 $0$ 常数，则称 $I$ 为 $p$ 阶收敛的</li>
+</ul>
+<h2 id="代数精度"><a class="markdownIt-Anchor" href="#代数精度"></a> 代数精度</h2>
+<ul>
+<li>矩形公式、梯形公式、Simpson公式的数值积分公式都可以表达成 $I_n &#x3D; \sum_{k&#x3D;1}^nA_kf(x_k)$</li>
+<li>设 $f(x) &#x3D; x^k $利用数值积分公式  $I_n$ 计算 $I &#x3D; \int_a^bf(x)dx$ ，若对于 $k &#x3D; 0,1,...,m$ 都有 $I_n &#x3D; I$ ，而当 $k &#x3D; m+1$ 时，$I_n \neq I$，则称 $I_n$ 的代数精度为 $m$</li>
+</ul>
+<h2 id="数值积分方法"><a class="markdownIt-Anchor" href="#数值积分方法"></a> 数值积分方法</h2>
+<h3 id="梯形公式"><a class="markdownIt-Anchor" href="#梯形公式"></a> 梯形公式</h3>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/6998116cd613cd93fdfe064a6f4b83ce.png" alt="image 1" border="0">
+</div> 
+<ul>
+<li>思路：
+<ul>
+<li>将 $[a,b]$ 等分为 $n$ 份，每份宽度 $h&#x3D;\frac {b-a}{n}$</li>
+<li>对每段区间上的梯形面积$S_i &#x3D; \frac {1}{2} h(f(x_{i-1})+f(x_i))$求和，以此来逼近积分面积</li>
+</ul>
+</li>
+<li>积分公式：</li>
+</ul>
+<p>$$T_n &#x3D; \frac h2(f(x_0)+f(x_n)) + h\sum_{k&#x3D;1}^{n-1}f(x_k)
+$$</p><ul>
+<li>误差
+<ul>
+<li>$|R(f,T_n)| \leq \frac {h^3}{12}\sum_{k&#x3D;0}^{n-1}|f&#39;&#39;(\eta_k)| &#x3D; \frac{h^2}{12}M_2(b-a) &#x3D; O(h^2)$</li>
+<li>误差是 2 阶的</li>
+</ul>
+</li>
+<li>收敛性
+<ul>
+<li>2 阶收敛</li>
+</ul>
+</li>
+<li>代数精度 ：1</li>
+</ul>
+<h3 id="simpson-公式"><a class="markdownIt-Anchor" href="#simpson-公式"></a> Simpson 公式</h3>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/4ec496103fc56805d06fe1e42e790f7f.png" alt="image 2" border="0">
+</div> 
+<ul>
+<li>思路：
+<ul>
+<li>用一个分段二次插值函数S代替f(x)，每段用相邻两个小区间端点的三个函数值（这要求小区间数为偶数）计算二次函数系数</li>
+<li>可以求得，相邻两端小区间构成的大区间的面积 $\int_{x_{2k}}^{x_{2k+2}}s_k(x)dx &#x3D; \frac {h_k}3(f_{2k} + 4f_{2k+1}+f_{2k+2})$，对其求和即得总面积</li>
+</ul>
+</li>
+<li>积分公式</li>
+</ul>
+<p>$$S_m &#x3D; \sum_{k&#x3D;0}^{n-1}\int_{x_{2k}}^{x_{2k+2}}s_k(x)dx
+$$</p><p>$$\\ 当区间长度 h_0 &#x3D; ... &#x3D; h_{n-1} &#x3D; \frac {b-a}{2n} &#x3D; h时
+$$</p><p>$$\\ S_m &#x3D; \frac h3(f_0 + f_{2n} + 4\sum_{k&#x3D;0}^{n-1}f_{2k+1} + 2\sum_{k&#x3D;0}^{n-1}f_{2k})
+$$</p><ul>
+<li>误差
+<ul>
+<li>$|R(f,T_n)| \leq \frac{h^4}{180}M_4(b-a) &#x3D; O(h^4)$</li>
+<li>误差是 4 阶的</li>
+</ul>
+</li>
+<li>收敛性
+<ul>
+<li>4 阶收敛</li>
+</ul>
+</li>
+<li>代数精度：3</li>
+</ul>
+<h3 id="gauss-公式"><a class="markdownIt-Anchor" href="#gauss-公式"></a> Gauss 公式</h3>
+<ul>
+<li>思路：
+<ul>
+<li>取消对节点的限制，按照代数精度最大的原则，同时确定节点 $x_k$ 和系数 $A_k$</li>
+<li>如对于积分区间 $[a,b]$ 构建代数精度为 3 的 Gauss 公式</li>
+<li>则设 Gauss 公式为 $G_2 &#x3D; A_1f(x_1) + A_2f(x_2)$</li>
+<li>则需解线性方程组 $\int_a^bx^mdx &#x3D; A_1 x_1^m + A_2x_2^m (m &#x3D; 0,1,2,3)$</li>
+<li>四个未知数、四个方程，可以解出系数 $A_1 A_2$ 和节点横坐标 $x_1x_2$</li>
+</ul>
+</li>
+<li>常用的 Gauss 公式
+<ul>
+<li>将区间 $[a,b]$ 分小，把小区间变换为 $[-1,1]$ ，再用相应 $G_2 &#x3D; f(-\frac {1}{\sqrt{3}}) + f(\frac {1}{\sqrt{3}})$</li>
+<li>公式：$\int_a^bf(x)dx$ 的数值积分 $I_n &#x3D; \frac h2\sum_{k&#x3D;1}^m[f(z_k^{(1)}) + f(z_k^{(2)})]$</li>
+<li>其中 $z_k^{(1)} &#x3D; \frac {x_k+x_{k-1}}{2}+\frac h{2\sqrt3}，z_k^{(2)} &#x3D; \frac {x_k+x_{k-1}}{2}-\frac h{2\sqrt3},h &#x3D; \frac {b-a}{m},x_k &#x3D; a+kh, 其中 k &#x3D; 0,1,...,m$</li>
+</ul>
+</li>
+</ul>
+<h3 id="改进的-gauss-公式-gauss-lobatto-积分"><a class="markdownIt-Anchor" href="#改进的-gauss-公式-gauss-lobatto-积分"></a> 改进的 Gauss 公式—— Gauss-Lobatto 积分</h3>
+<ul>
+<li>思路：把区间的端点作为固定节点，调整剩余的 $2n-2$ 个自由度</li>
+<li>公式：$G_n &#x3D; A_1f(a) + \sum_{k&#x3D;2}^{n-1}A_kf(x_k) + A_nf(b)$</li>
+<li>不含内部节点时为梯形公式，含一个内部节点时为 Simpson 公式</li>
+<li>代数精度：$2n-3$</li>
+<li>实际计算中一般采用自适应方法确定步长 $x_{k+1}-x_k$，将函数变化较快的区间分得细一些，区间变化较慢的区间分得粗一些</li>
+</ul>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/8d89b4b69e71c3d78f3a3ad5eb5cb2b3.png" alt="image 3" border="0">
+</div> 
+<h1 id="常微分方程的数值解"><a class="markdownIt-Anchor" href="#常微分方程的数值解"></a> 常微分方程的数值解</h1>
+<h2 id="收敛性-稳定性-刚性了解"><a class="markdownIt-Anchor" href="#收敛性-稳定性-刚性了解"></a> * 收敛性、稳定性、刚性（了解）</h2>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/3e29fae2d8404c948cac49aa5936c457.png" alt="image 5" border="0" width=350>
+  <img src="https://s1.imagehub.cc/images/2025/05/02/580c4409b73f88e06ba766ecb88797ca.png" alt="image 6" border="0" width=358>
+</div> 
+<ul>
+<li>刚性现象(Stiff) ：快、慢瞬态解的特征根相差悬殊</li>
+</ul>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/4dfcd208b18c55c0036283c25923b7da.png" alt="image 4" border="0" width=350>
+</div> 
+<h2 id="误差分析"><a class="markdownIt-Anchor" href="#误差分析"></a> 误差分析</h2>
+<ul>
+<li>误差分为
+<ul>
+<li>局部截断误差
+<ul>
+<li>假定 $y_n &#x3D; y(x_n)$ 对任意 n 成立，然后估计 $y_{n+1}$ 的误差 $y(x_{n+1}) - y_{n+1}$，其中 $y_{n+1}$ 是通过数值算法得到的近似值</li>
+<li><strong>（局部截断误差主项的阶数 - 1）即为算法精度的阶数</strong></li>
+</ul>
+</li>
+<li>累积误差
+<ul>
+<li>每一步的误差不断累积后的总误差，这里不考虑</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>主要分析 <strong>局部截断误差</strong> ，一般是：
+<ul>
+<li>对真实值 $y(x_{n+1})$ 在 $\pmb{x_n}$ 处 Taylor 展开</li>
+<li>与数值计算值 $y_{n+1}$ 作差</li>
+<li>分析误差主项</li>
+</ul>
+</li>
+<li>e.g. 向前 Euler 公式的局部截断误差
+<ul>
+<li>$y(x_{n+1}) &#x3D; y(x_n) + hy&#39;(x_n) + \frac {h^2}{2}y&#39;&#39;(x_n) + O(h^3)$</li>
+<li>$y_{n+1} &#x3D; y(x_n) + hf(x_n,y(x_n)) &#x3D; y(x_n) + hy&#39;(x_n)$</li>
+<li>从而误差 $y(x_{n+1}) - y_{n+1} &#x3D; \frac {h^2}{2}y&#39;&#39;(x_n) + O(h^3)$</li>
+<li>则误差主项为 $\frac {h^2}{2}y&#39;&#39;(x_n)$，对应向前 Euler 公式的精度即为 1 阶</li>
+</ul>
+</li>
+</ul>
+<h2 id="数值算法"><a class="markdownIt-Anchor" href="#数值算法"></a> 数值算法</h2>
+<h3 id="euler-方法"><a class="markdownIt-Anchor" href="#euler-方法"></a> Euler 方法</h3>
+<h4 id="向前"><a class="markdownIt-Anchor" href="#向前"></a> 向前：</h4>
+<ul>
+<li>$y_{n+1} &#x3D; y_n + h y&#39;_n$</li>
+<li>其中 $h$ 为步长，$y_i$ 为 $x_i$ 处对应的数值微分值，$y&#39;_i$ 为 $(x_i,y_i)$ 处对应的导数，由微分方程 $\frac {dy}{dx} &#x3D; f(x,y)$ 给出</li>
+<li>局部截断误差主项：$\frac {h^2}{2}y&#39;&#39;(x_n) &#x3D; O(h^2)$</li>
+<li>精度：<strong>1阶</strong></li>
+</ul>
+<h4 id="向后"><a class="markdownIt-Anchor" href="#向后"></a> 向后：</h4>
+<ul>
+<li>$y_{n+1} &#x3D; y_n + h y&#39;_{n+1}$</li>
+<li>其中由于 $y_{n+1}$ 未知导致 $y&#39;_{n+1} &#x3D; \frac {dy}{dx}|_{x&#x3D;x_{n+1}} &#x3D; f(x_{n+1},y_{n+1})$ 未知，从而需要迭代求解：
+<ul>
+<li>初值 $y_{n+1}^{(0)} &#x3D; y_n + hf(x_n,y_n)$</li>
+<li>迭代公式 $y_{n+1}^{(k+1)} &#x3D; y_n + hf(x_{n+1},y_{n+1}^{(k)})$</li>
+<li>可以保证 $\lim_{k\to \infty}y_{n+1}^{(k)} &#x3D; y_{n+1}$</li>
+</ul>
+</li>
+<li>局部截断误差主项：$-\frac {h^2}{2}y&#39;&#39;(x_n) &#x3D; O(h^2)$</li>
+<li>精度：<strong>1阶</strong></li>
+</ul>
+<h4 id="梯形公式-2"><a class="markdownIt-Anchor" href="#梯形公式-2"></a> 梯形公式：</h4>
+<ul>
+<li>对向前和向后 Euler 公式取均值，即为 <strong>梯形公式</strong></li>
+<li>即 $y_{n+1} &#x3D; y_n + \frac h2[f(x_n,y_n) + f(x_{n+1}，y_{n+1})]$</li>
+<li>向后 Euler 公式的部分同样需要迭代求解</li>
+<li>
+<ul>
+<li>局部截断误差主项：$\frac {h^3}{12}y&#39;&#39;&#39;(x_n) &#x3D; O(h^3)$</li>
+</ul>
+</li>
+<li>精度：<strong>2阶</strong></li>
+</ul>
+<h4 id="改进-euler-公式"><a class="markdownIt-Anchor" href="#改进-euler-公式"></a> 改进 Euler 公式</h4>
+<ul>
+<li>对梯形公式做进一步改进，以简化迭代求解部分的运算复杂度</li>
+<li>向后 Euler 公式的迭代部分只取一步，即只取 $y_{n+1}^{(0)} &#x3D; y_n + hf(x_n,y_n)$</li>
+<li>令 $\overline{y}_{n+1} &#x3D; y_n + hf(x_n,y_n)$</li>
+<li>然后直接带入梯形公式进行计算，得到$y_{n+1} &#x3D; y_n + \frac h2[f(x_n,y_n) + f(x_{n+1}，\overline{y}_{n+1})]$</li>
+<li>局部截断误差主项：$O(h^3)$</li>
+<li>精度：<strong>2阶</strong></li>
+</ul>
+<h3 id="runge-kutta-方法"><a class="markdownIt-Anchor" href="#runge-kutta-方法"></a> Runge-Kutta 方法</h3>
+<ul>
+<li>基本思想：在 $[x_n,x_{n+1}]$ 中多取几个点，将它们的导数加权平均代替 $y_{n+1} &#x3D; y_n + hf(x,y(x))$ 中的 $f(x,y(x))$， 以得到精度更高的计算公式</li>
+<li>一般形式 <strong>（ L 级 ? 阶 ）</strong>
+<ul>
+<li>L 级指涉及的节点 $k_i$ 的个数为 L</li>
+<li>? 阶指公式每步误差阶数为 $O(h^?)$</li>
+</ul>
+</li>
+</ul>
+<p>$$\ \ \ 
+\begin{align*}
+\begin{split} 
+\left
+\{
+\begin{array}{ll}
+    y_{n+1} &#x3D; y_n + h\sum_{i&#x3D;1}^L\lambda_i k_i\\
+    k_1 &#x3D; f(x_n,y_n)\\
+    k_2 &#x3D; f(x_n+c_2h, y_n+c_2hk_1)\\
+    ...\\
+    k_i &#x3D; f(x_n + c_ih,y_n + c_ih\sum_{j&#x3D;1}^{i-1}a_{ij}k_j),          &amp; i &#x3D; 3,4,...,L \\
+\end{array}
+\right.
+\end{split}
+\end{align*}$$</p><ul>
+<li>其中 $\sum_{i&#x3D;1}^L\lambda_i &#x3D; 1, 0 \leq c_i \leq 1, \sum_{j&#x3D;1}^{i-1}a_{ij}$</li>
+<li>适当地选取系数可以构造出任意阶精度的 Runge-Kutta 公式，如常用的（经典） Runge-Kutta 公式 <strong>(4级4阶)</strong>：</li>
+</ul>
+<p>$$\ \ \ 
+\begin{align*}
+\begin{split} 
+\left
+\{
+\begin{array}{ll}
+    y_{n+1} &#x3D; y_n + \frac h6(k_1 + 2k_2 + 2k_3 + k_4)\\
+    k_1 &#x3D; f(x_n,y_n) \\
+    k_2 &#x3D; f(x_n+\frac h2,y_n+\frac h2 k_1) \\
+    k_3 &#x3D; f(x_n+\frac h2,y_n+\frac h2 k_2) \\
+    k_4 &#x3D; f(x_n+h,y_n+hk_3) \\
+\end{array}
+\right.
+\end{split}
+\end{align*}$$</p><ul>
+<li>理论上精度可以无限高，但收敛速度也会越来越慢</li>
+<li>对于经典 Runge-Kutta 方法：
+<ul>
+<li>局部截断误差主项：$O(h^5)$</li>
+<li>精度：<strong>4阶</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="推广到微分方程组"><a class="markdownIt-Anchor" href="#推广到微分方程组"></a> 推广到微分方程组</h3>
+<ul>
+<li>上述两个方法对一阶微分方程组可以直接推广，每步同时对方程组中的每个微分方程进行计算即可</li>
+<li>对于高阶微分方程（组），需要先将其化为一阶微分方程组再用
+<ul>
+<li>e.g. 对于 $y&#39;&#39; &#x3D; f(x,y,y&#39;)$ 要先化为</li>
+</ul>
+</li>
+</ul>
+<p>$$\ \ \ 
+\begin{align*}
+\begin{split} 
+\left
+\{
+\begin{array}{ll}
+    y&#39; &#x3D; u \\
+    u&#39; &#x3D; f(x,y,u)\\
+\end{array}
+\right.
+\end{split}
+\end{align*}$$</p><ul>
+<li>再进行求解</li>
+</ul>
+<h1 id="线性方程的数值求解方法"><a class="markdownIt-Anchor" href="#线性方程的数值求解方法"></a> 线性方程的数值求解方法</h1>
+<h2 id="线性方程组的数值解法"><a class="markdownIt-Anchor" href="#线性方程组的数值解法"></a> 线性方程组的数值解法</h2>
+<h3 id="直接方法"><a class="markdownIt-Anchor" href="#直接方法"></a> 直接方法</h3>
+<h4 id="gauss-消元法"><a class="markdownIt-Anchor" href="#gauss-消元法"></a> Gauss 消元法</h4>
+<ul>
+<li>对于 $Ax &#x3D; b$ ，直接左除$A$矩阵解得 $x &#x3D; A^{-1}b$</li>
+</ul>
+<h4 id="追赶法"><a class="markdownIt-Anchor" href="#追赶法"></a> 追赶法</h4>
+<ul>
+<li>$A$ 经 LU 分解后得到 $L$与$U$，则$Ax&#x3D;b$的求解与$Ly &#x3D; b ,Ux &#x3D; y$ 的求解一致（把 $A$ 用 $LU$ 代换易知）</li>
+</ul>
+<h5 id="矩阵-lu-分解"><a class="markdownIt-Anchor" href="#矩阵-lu-分解"></a> 矩阵 LU 分解</h5>
+<ul>
+<li>若 $A$ 可逆且顺序主子式不为 0 ，则$A$可分解为一个<strong>单位下三角阵$L$</strong> 和一个 <strong>上三角阵$U$</strong> 的乘积，即 $A &#x3D; LU$ ，且这种分解是<strong>唯一</strong>的，成为矩阵 LU 分解</li>
+<li>若 $A$ 可逆（顺序主子式不一定为 0 ），则存在<strong>交换阵P</strong> 使得 $PA &#x3D; LU$</li>
+<li>【Cholesky 分解】<strong>正定对称</strong>阵 $A$ 可以分解为<strong>对角元素为正的下三角阵 $L$</strong> 与 <strong>它的转置矩阵$L^T$</strong> 之积，即$A &#x3D; LL^T$或$A &#x3D; LDL^T$其中 $D$ 为<strong>元素为正的对角阵</strong></li>
+</ul>
+<h3 id="迭代法"><a class="markdownIt-Anchor" href="#迭代法"></a> 迭代法</h3>
+<h4 id="jacobi-迭代法"><a class="markdownIt-Anchor" href="#jacobi-迭代法"></a> Jacobi 迭代法</h4>
+<ul>
+<li>将 $Ax &#x3D; b$ 中的 A 分解为 $A &#x3D; D - L - U$，即分别把 A 的对角线、上三角、下三角分开写成三个矩阵，则有<strong>迭代公式</strong>：
+<ul>
+<li>$Dx^{(k+1)} &#x3D; Lx^{(k)} + Ux^{(k)} + b$</li>
+<li>若 D 可逆（对角元素均非0），则进一步有：</li>
+<li>$x^{(k+1)} &#x3D; D^{-1}(L+U)x^{(k)} + D^{-1}b$</li>
+</ul>
+</li>
+</ul>
+<h4 id="gauss-seidel-迭代法"><a class="markdownIt-Anchor" href="#gauss-seidel-迭代法"></a> Gauss-Seidel 迭代法</h4>
+<ul>
+<li>$Dx^{(k+1)} &#x3D; Lx^{(k+1)} + Ux^{(k)} + b$</li>
+<li>若 D 非奇异（对角元素均非0）且 （D-L）可逆，则进一步有：</li>
+<li>$x^{(k+1)} &#x3D; (D-L)^{-1}Ux^{(k)} + (D-L)^{-1}b$</li>
+</ul>
+<h4 id="超松弛sor迭代"><a class="markdownIt-Anchor" href="#超松弛sor迭代"></a> 超松弛(SOR)迭代</h4>
+<ul>
+<li>对于 G-S 迭代法进行改进，由原来的 $Dx^{(k+1)} &#x3D; Lx^{(k+1)} + Ux^{(k)} + b$,令 $\widetilde{x}^{(k+1)} &#x3D; D^{-1}(Lx^{(k+1)}+Ux^{(k)})+D^{-1}b$</li>
+<li>进而得到迭代公式：$x^{(k+1)} &#x3D; \omega \widetilde{x}^{(k+1)} + (1-\omega)x^{(k)}$
+<ul>
+<li>$\omega &gt; 1$ ：超松弛迭代</li>
+<li>$\omega &lt; 1$ ：低松弛迭代</li>
+<li>$\omega &#x3D; 1$ ：G-S迭代</li>
+</ul>
+</li>
+<li>若 A 对称正定，则其收敛的充要条件为 $0&lt;\omega&lt;2$</li>
+</ul>
+<h2 id="迭代法的收敛性"><a class="markdownIt-Anchor" href="#迭代法的收敛性"></a> 迭代法的收敛性</h2>
+<ul>
+<li>对于线性方程组 $Ax &#x3D; b$ 和迭代方法 $x^{(k+1)} &#x3D; Bx^{(k)} + f$
+<ul>
+<li>(1) 若 A 是严格对角占优矩阵（$\forall i\in \{1,2,...,n\}, |a_{ii}|&gt;\sum_{j\neq i}|a_{ij}|$），则 Jacobi 和 G-S 迭代法均收敛</li>
+<li>若 A 对称正定，则 G-S 迭代法收敛</li>
+<li>若 $||B|| &#x3D; q &lt; 1$ ，则迭代方法收敛，且 $||x^{(k+1)}-x^*|| \leq \frac {q}{1-q}||x_{k+1}-x^{(k)}||$ 【谱半径性质:$\rho(B) \leq ||B||$】</li>
+</ul>
+</li>
+</ul>
+<h2 id="方程组的病态性"><a class="markdownIt-Anchor" href="#方程组的病态性"></a> 方程组的病态性</h2>
+<ul>
+<li>若$Ax&#x3D;b$的解$x$对$b$或$A$的扰动敏感，就称方程组是病态的，也称系数矩阵 $A$ 是病态的</li>
+<li>目前对是否是病态并没有一个明确的划分标准</li>
+</ul>
+<h3 id="范数"><a class="markdownIt-Anchor" href="#范数"></a> 范数</h3>
+<ul>
+<li>向量范数：
+<ul>
+<li>1-范数：$||x||_1 &#x3D; |x_1| + ... + |x_n|$</li>
+<li>2-范数：$||x||_2 &#x3D; (x_1^2 + ... + x_n^2)^{\frac 12}$</li>
+<li>∞-范数：$||x||_{\infty} &#x3D; \max(|x_1|,...,|x_n|)$</li>
+</ul>
+</li>
+<li>矩阵范数（对于 n*n 方阵）：
+<ul>
+<li>1-范数：$||A||_1 &#x3D; \max_j \sum_{i&#x3D;1}^n|a_{ij}|$</li>
+<li>2-范数：$||A||_2 &#x3D; \sqrt{\lambda_{max}}$
+<ul>
+<li>其中 $\lambda_{max}$ 为矩阵 $A^TA$ 的最大特征值</li>
+</ul>
+</li>
+<li>∞-范数：$||A||_{\infty} &#x3D; \max_i \sum_{j&#x3D;1}^n|a_{ij}|$</li>
+</ul>
+</li>
+<li>向量范数与矩阵范数的相容性条件：$||Ax|| \leq ||A||·||x||$</li>
+</ul>
+<h3 id="条件数衡量病态性的指标之一"><a class="markdownIt-Anchor" href="#条件数衡量病态性的指标之一"></a> 条件数——衡量病态性的指标之一</h3>
+<ul>
+<li>对 A 进行扰动，得到
+<ul>
+<li>$\frac {||\delta x||}{||x||} \approx ||A^{-1}||·||A||·\frac {||\delta A||}{||A||} &#x3D; cond(A)\frac {||\delta A||}{||A||}$</li>
+</ul>
+</li>
+<li>对 b 进行扰动，得到
+<ul>
+<li>$\frac {||\delta x||}{||x||} \leq ||A^{-1}||·||A||·\frac {||\delta b||}{||b||} &#x3D; cond(A)\frac {||\delta b||}{||b||}$</li>
+</ul>
+</li>
+<li>定义 A 的条件数 $cond(A) &#x3D; ||A^{-1}||·||A||$,则可知 $cond(A)$ ↑，有 b 引起的 x 的最大可能变化 ↑ ，由 A 引起的 x 的变化大致 ↑，故而条件数大的矩阵是病态矩阵</li>
+</ul>
+<h2 id="超定线性方程组的最小二乘解"><a class="markdownIt-Anchor" href="#超定线性方程组的最小二乘解"></a> 超定线性方程组的最小二乘解</h2>
+<ul>
+<li>超定方程组：方程数 &gt; 未知数数</li>
+<li>线性最小二乘法思路
+<ul>
+<li>选定一组基函数 $\{r_1(x),...,r_m(x)\}$ <strong>要求 m &lt; n ，n为数据点个数</strong></li>
+<li>设置待拟合函数 $f(x) &#x3D; a_1r_1(x) + ... + a_m r_m(x)$</li>
+<li>定义最小二乘误差 $J(a_1,...,a_m) &#x3D; \sum_{i&#x3D;1}^n[f(x_i) - y_i]^2$</li>
+<li>求解一组 $\{a_k\}$ 满足 $\frac {\partial J}{\partial a_k} &#x3D; 0, k &#x3D; 1,2,...,m$
+<ul>
+<li>已经证明，上述方程组的解 $\pmb{a} &#x3D; [a_1,...,a_m]^T$ 满足: $(R^TR)\pmb{a}&#x3D;R^T\pmb{y}$</li>
+<li>其中 $R &#x3D; \begin{bmatrix} r_1(x_1) &amp; ... &amp; r_m(x_1) \\ ... &amp; &amp; ... \\ r_1(x_n) &amp; ... &amp; r_m(x_n) \end{bmatrix}$，$\pmb{y} &#x3D; [y_1,...,y_n]^T$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>保证系数有唯一解的条件：$\{r_1(x),...,r_m(x)\}$ 在 $x_i，i&#x3D;1,2,...,n$ 处线性无关 → $R$ 列满秩 → $R^TR$ 可逆 → 有唯一解</li>
+<li>基函数个数 m 满足 m=n / m&gt;n 的后果：
+<ul>
+<li>若 m &gt; n ，则方程数 &lt; 未知数数，$\pmb a$ 有无穷多组</li>
+<li>若 m = n ， R 可逆时 $\pmb a$ 有唯一解</li>
+</ul>
+</li>
+</ul>
+<h1 id="非线性方程求解"><a class="markdownIt-Anchor" href="#非线性方程求解"></a> 非线性方程求解</h1>
+<h2 id="数值解法"><a class="markdownIt-Anchor" href="#数值解法"></a> 数值解法</h2>
+<ul>
+<li>迭代法基本思路：将原方程 $f(x) &#x3D; 0$改写为易于迭代的形式 $x^{(k+1)} &#x3D; \phi(x^{(k)})$</li>
+</ul>
+<h3 id="牛顿法"><a class="markdownIt-Anchor" href="#牛顿法"></a> 牛顿法</h3>
+<h4 id="牛顿切线法"><a class="markdownIt-Anchor" href="#牛顿切线法"></a> 牛顿切线法</h4>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/88707f39015146fb1b7d27e9f69dc63a.png" alt="image 7" border="0" width=160>
+</div> 
+<ul>
+<li>迭代公式 $x_{k+1} &#x3D; x_{k} - \frac {f(x_k)}{f&#39;(x_k)}$</li>
+<li>一般 2 阶收敛，但若 $x^*$ 为重根 ($f(x^*) &#x3D; f&#39;(x^*) &#x3D; 0$) ，此时牛顿切线法 1 阶收敛，且重数越高，收敛越慢</li>
+</ul>
+<h4 id="牛顿割线法"><a class="markdownIt-Anchor" href="#牛顿割线法"></a> 牛顿割线法</h4>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/d3b8401d19d951c5506e886024f2c653.png" alt="image 8" border="0" width=160>
+</div> 
+<ul>
+<li>用差商 $\frac {f(x_{k})-f(x_{k-1})}{x_{k}-x_{k-1}}$ 代替 $f&#39;(x_k)$</li>
+<li>迭代公式：$x_{k+1} &#x3D; x_k - \frac {f(x_k)(x_k-x_{k-1})}{f(x_{k})-f(x_{k-1})}$</li>
+<li>$x^*$ 为单根时收敛阶数为 1.618，比切线法略慢，但在 $x^*$ 为重根时比切线法更快</li>
+</ul>
+<h3 id="赝牛顿法拟牛顿法quasi-newton"><a class="markdownIt-Anchor" href="#赝牛顿法拟牛顿法quasi-newton"></a> 赝牛顿法/拟牛顿法(Quasi-Newton)</h3>
+<p>不计算 newton 法中的 Hessian 阵，而是用其他矩阵替换，以克服 Hessian 阵病态、不正定、计算复杂等缺陷，有多种不同算法</p>
+<h2 id="迭代法的收敛性与收敛速度"><a class="markdownIt-Anchor" href="#迭代法的收敛性与收敛速度"></a> 迭代法的收敛性与收敛速度</h2>
+<ul>
+<li>【压缩不动点】设 $y &#x3D; \phi(x)$, 且$\phi \in C[a,b], y\in[a,b]$, 若$ \exists L&lt; 1, s.t. |\phi&#39;(x)|\leq L$, 则 $x &#x3D; \phi(x)$ 在 $[a,b]$ 内有唯一解 $x^*$ 且：
+<ul>
+<li>对于 $x_0\in(a,b)$，迭代公式 $x_{k+1} &#x3D; \phi(x_k)$收敛于 $x^*$</li>
+<li>$|x_{k+1}-x^*|\leq L|x_k-x^*|, |x_k-x^*|\leq \frac{L^k}{1-L}|x_1-x_0|$</li>
+</ul>
+</li>
+<li>由此得到<strong>局部收敛性</strong>判断：只要 $\phi(x)$ 在 $x^*$ 的一个邻域连续且 $|\phi&#39;(x^*)|&lt;1$，则对于该邻域内的任意初值$x_0$，序列$\{x_k\}$就收敛于$x^*$</li>
+<li><strong>收敛速度</strong>定义：记 $e_k &#x3D; x_k - x^*$，若$\lim_{k\to \infty}\frac{e_{k+1}}{e_k^p} &#x3D; c \neq 0 (p\in R^+)$，则称序列$\{x_k\}$ p 阶收敛，显然，<strong>p 越大，收敛越快</strong></li>
+</ul>
+<h2 id="推广到非线性方程组"><a class="markdownIt-Anchor" href="#推广到非线性方程组"></a> 推广到非线性方程组</h2>
+<ul>
+<li>以牛顿法为例</li>
+<li>对于 $F(x) &#x3D; [f_1(\pmb x),...,f_n(\pmb x)]^T, \pmb x &#x3D; [x_1,...,x_n]^T$ ，要求解$F(x) &#x3D; \overrightarrow{0}$</li>
+<li>设 $F&#39;(\pmb x) &#x3D; [\frac {\partial f_i}{\partial x_j}]_{n\times n}$</li>
+<li>则有迭代公式：$F(\pmb x^{(k+1)}) &#x3D; F(\pmb x^{(k)}) + F&#39;(\pmb x^{(k)})(\pmb x^{(k+1)} - \pmb x^{(k)})$，即 $\pmb x^{(k+1)} &#x3D; \pmb x^{(k)} - [F&#39;(\pmb x^{(k)})]^{-1}F(\pmb x^{(k)})$</li>
+</ul>
+<h2 id="非线性差分方程的分岔与混沌现象了解"><a class="markdownIt-Anchor" href="#非线性差分方程的分岔与混沌现象了解"></a> * 非线性差分方程的分岔与混沌现象（了解）</h2>
+<ul>
+<li>混沌现象：差分方程的迭代结果对初值极其敏感（混沌现象的一个表现）</li>
+<li>分岔现象：当系统的某个参数达到某个临界值时，系统的行为会从一种状态转变为另一种完全不同的状态</li>
+</ul>
+<h1 id="无约束优化"><a class="markdownIt-Anchor" href="#无约束优化"></a> 无约束优化</h1>
+<h2 id="基本方法"><a class="markdownIt-Anchor" href="#基本方法"></a> 基本方法</h2>
+<ul>
+<li>基本思路： 从 $\mathscr{R}^n$ 中的某一点开始，确定一个搜索方向以及沿该方向的移动步长，目标函数值更小的新的点</li>
+</ul>
+<h3 id="梯度法"><a class="markdownIt-Anchor" href="#梯度法"></a> 梯度法</h3>
+<ul>
+<li>思路：梯度是上升最快的方向，则负梯度方向为下降最快的方向</li>
+<li>迭代公式： $\pmb x^{(k+1)} &#x3D; \pmb x^{(k)} - \alpha^{(k)} \nabla f(\pmb x^{(k)})$
+<ul>
+<li>其中 $ \alpha^{(k)}$ 为第 k 次下降的步长，可能为定值也可能自适应变化，看具体算法</li>
+</ul>
+</li>
+</ul>
+<h3 id="牛顿法-2"><a class="markdownIt-Anchor" href="#牛顿法-2"></a> 牛顿法</h3>
+<ul>
+<li>将 $f(\pmb x^{(k+1)})$ 在 $\pmb x^{(k)}$ 处展开至二阶项，则有 $f(\pmb x^{(k+1)}) &#x3D; f(\pmb x^{(k)}) + [\nabla f(\pmb x^{(k)})]^T \pmb d + \frac 12 \pmb d^T H_f(\pmb x^{(k)})\pmb d$
+<ul>
+<li>其中 $H_f(\pmb x^{(k)}) &#x3D; [\frac {\partial^2 f}{\partial x_i \partial x_j}]_{n \times n}$</li>
+</ul>
+</li>
+<li>在极小值点处，右端对 d 的导数为 0 ，从而得到：$\nabla f(\pmb x^{(k)}) + H_f(\pmb x^{(k)})\pmb d &#x3D; \overrightarrow{0}$ 【牛顿方程】</li>
+<li>其解为 $\pmb d &#x3D; - [H_f(\pmb x^{(k)})]^{-1}\nabla f(\pmb x^{(k)})$ 【牛顿方向】</li>
+<li>则迭代格式为 $\pmb x^{(k+1)} &#x3D; \pmb x^{(k)} + \pmb d &#x3D; \pmb x^{(k)} - [H_f(\pmb x^{(k)})]^{-1}\nabla f(\pmb x^{(k)})$
+<ul>
+<li>形式<strong>类似</strong>于 $\nabla f(\pmb x^{(k)}) &#x3D; \pmb 0$ 的 newton 法</li>
+</ul>
+</li>
+</ul>
+<h3 id="拟牛顿法"><a class="markdownIt-Anchor" href="#拟牛顿法"></a> 拟牛顿法</h3>
+<p>不计算 newton 法中的 Hessian 阵，而是用其他矩阵替换，以克服 Hessian 阵病态、不正定、计算复杂等缺陷，有多种不同算法</p>
+<h2 id="线性-非线性最小二乘法"><a class="markdownIt-Anchor" href="#线性-非线性最小二乘法"></a> 线性、非线性最小二乘法</h2>
+<h3 id="非线性最小二乘法的优化算法"><a class="markdownIt-Anchor" href="#非线性最小二乘法的优化算法"></a> 非线性最小二乘法的优化算法</h3>
+<ul>
+<li>这里面的优化目标是使损失函数 $J(a_1,...,a_m) &#x3D; \sum_{i&#x3D;1}^n[f(x_i) - y_i]^2$ 最小化</li>
+<li>优化模型：找到参数 <strong>x</strong> ，使得$R(x) &#x3D; \frac 12 [r(x)]^Tr(x)$ 最小，其中误差 $r(x) &#x3D; [f(x,t_1)-y_1, ..., f(x,t_n)-y_n]^T$</li>
+<li>记 $r(x)$ 的 Jacobi 矩阵为 $J(x) &#x3D; \frac {\partial r}{\partial x} &#x3D; [\frac {\partial r_i}{\partial x_j}]_{n \times m}$，则$\nabla R(x) &#x3D; J(x)^Tr(x)$，$H_R(x) &#x3D;J(x)^TJ(x) + S$，其中$S &#x3D; \sum_{i&#x3D;1}^nr_i(x)H_{r_i}(x)$，$H_{r_i}(x) &#x3D; [\frac {\partial^2 r_i}{\partial x_i \partial x_j}]_{m \times m}$</li>
+<li>若要用前面的 Newton 法直接计算优化，则会涉及 $H_R(x)$ 的计算，计算量大，不易计算，需要考虑其他方法来忽略或近似矩阵 S</li>
+</ul>
+<h4 id="gauss-newton-算法"><a class="markdownIt-Anchor" href="#gauss-newton-算法"></a> Gauss-Newton 算法</h4>
+<ul>
+<li>直接忽略矩阵 S ，认为 $H_R(x) &#x3D;J(x)^TJ(x)$ 随后代入 newton 法公式计算，得到 $[J(\pmb x^{(k)})]^TJ(\pmb x^{(k)})\pmb d^{(k)} &#x3D; -J(\pmb x^{(k)})r(\pmb x^{(k)})$</li>
+<li>其收敛性依赖于 f 对 x 的线性程度（线性程度 ↑，收敛速度 ↑）以及偏差 r 的大小</li>
+</ul>
+<h4 id="levenbery-marquardt-算法"><a class="markdownIt-Anchor" href="#levenbery-marquardt-算法"></a> Levenbery-Marquardt 算法</h4>
+<p>在 G-N 算法的基础上引入修正参数 $\alpha^{(k)}$ 和修正项 $\alpha^{(k)}I$ ，此时 G-N 法的方程变为：$([J(\pmb x^{(k)})]^TJ(\pmb x^{(k)}) + \alpha^{(k)}I)\pmb d^{(k)} &#x3D; -J(\pmb x^{(k)})r(\pmb x^{(k)})$</p>
+<ul>
+<li>这样的改变是为了防止单纯的$[J(\pmb x^{(k)})]^TJ(\pmb x^{(k)})$项出现病态，解出的 $\pmb d^{(k)}$ 位于 newton 方向（$\alpha^{(k)}$很小时）和非 newton 方向（$\alpha^{(k)}$很大时）之间</li>
+</ul>
+<h1 id="线性规划-lp"><a class="markdownIt-Anchor" href="#线性规划-lp"></a> 线性规划 (LP)</h1>
+<h2 id="基本原理和算法"><a class="markdownIt-Anchor" href="#基本原理和算法"></a> 基本原理和算法</h2>
+<ul>
+<li>图解法：</li>
+</ul>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/6df156ca2c1df7268b5e0f78c60b35e1.png" alt="image 9" border="0">
+</div> 
+<ul>
+<li>在由约束条件（等式）围成的凸多边形【可行域】上平移目标函数$z &#x3D;Ax + b$得到若干条<strong>等值线</strong>，最优解对应的点将落在<strong>凸多边形的某个顶点</strong>上</li>
+<li>对于等式约束，通过引入松弛变量将不等式变为等式
+<ul>
+<li>如对于 $x_1 - x_2 \geq -2$，就可以转化为 $-x_1 + x_2 + x_3 &#x3D; 2 , \ x_1,x_2,x_3 \geq 0$ ，先求可行解（即为凸多边形所有顶点&lt;基本可行解&gt;，通过解转化后的等式方程组求得），再在这些解中找最优解（基本解解数量有限，可以求得最值）</li>
+</ul>
+</li>
+<li>特殊情况</li>
+</ul>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/3d1b5e4fcb4688d06d02ce66dfdfdefb.png" alt="image 10" border="0">
+</div> 
+<h3 id="单纯形法"><a class="markdownIt-Anchor" href="#单纯形法"></a> 单纯形法</h3>
+<ul>
+<li>LP 问题的通常解法时单纯形法</li>
+<li>基本思路：用迭代法从一个顶点转换到另一个顶点（称为一次<strong>旋转</strong>），每步变换只将一个非基变量（指一个分量）变为基变量，称为<strong>进基</strong>，同时将一个基变量变为非基变量，称为<strong>出基</strong>，每次进基出基后都要<strong>保证目标函数下降/不增加</strong></li>
+<li>检验可行解的最优性：
+<ul>
+<li>e.g. 对于转换为等式后的方程组：<br />
+<p>$$\ \ \ 
+    \begin{align*}
+    \begin{split} 
+    \left
+    \{
+    \begin{array}{ll}
+        -x_1 + x_2 + x_3 &#x3D; 2\\
+        x_1 - 2x_2 + x_4 &#x3D; 2\\
+        3x_1 + 2x_2 + x_5 &#x3D; 14\\
+    \end{array}
+    \right.
+    \end{split}
+    \end{align*}$$</p></li>
+<li>得到 Ax = b ，其中 $A &#x3D; \begin{bmatrix} -1&amp;1&amp;1&amp;0&amp;0\\1&amp;-2&amp;0&amp;1&amp;0\\3&amp;2&amp;0&amp;0&amp;1 \end{bmatrix}, \ b &#x3D; [2\ \ 2\ \ 14]^T$ 发现 A 的秩 rank(A) = 3 ，且未知数(5个)多于方程数(3个)，则基础解系中的向量数应为 (5-3) = 2 个</li>
+<li>A 可以拆为 $[A_{B_{3 \times 3}}，A_{N_{3 \times 2}}]$ 对应的解可以拆为 $x &#x3D; \begin{bmatrix} x_{B_{3\times 1}} \\ x_{N_{2\times 1}}\end{bmatrix}$ ，从而原方程写为 $Ax &#x3D; A_Bx_B + A_Nx_N &#x3D; b$其中 $A_B$为<strong>基矩阵</strong>，$x$为<strong>基本解</strong>，$x_B$为<strong>基变量</strong>，$x_N$为<strong>非基变量</strong></li>
+<li>由 $A_Bx_B &#x3D; b$ 解得 x_B 代入 x 相应位置，其余位置取 0 ，即得到一个可行解 x</li>
+<li><strong>Reduced cost (检验数)：</strong>
+<ul>
+<li>$r &#x3D; \begin{bmatrix} 0\\c_N - (A_B^{-1}A_N)^Tc_B\end{bmatrix}$</li>
+<li>其中 c 为优化目标 $z &#x3D; c^Tx$ 中的系数矩阵 c ，与 $x_B$ 对应的部分为 $c_B$，与 $x_N$ 对应的部分为 $c_N$</li>
+<li>若 $r \geq 0$，则相应的 x 最优，否则不是最优</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他算法了解"><a class="markdownIt-Anchor" href="#其他算法了解"></a> 其他算法（了解）</h3>
+<ul>
+<li>内点算法：从可行域内部逼近最优解而不是一个个顶点之间转换</li>
+<li>有效集方法：本身是二次规划的方法，但将二次项定为0即可用于线性规划</li>
+</ul>
+<h2 id="线性规划的对偶问题"><a class="markdownIt-Anchor" href="#线性规划的对偶问题"></a> 线性规划的对偶问题</h2>
+<ul>
+<li>对偶问题(D)：
+<ul>
+<li>$在满足 A^T\lambda \leq c 的情况下，求 \max b^T\lambda$</li>
+</ul>
+</li>
+<li>原始问题(P)：
+<ul>
+<li>$在满足 Ax &#x3D; b ,x\geq 0的情况下，求 \min z &#x3D; c^Tx$</li>
+</ul>
+</li>
+<li>定理
+<ul>
+<li>对偶问题的对偶问题就是原问题</li>
+<li><strong>弱对偶定理</strong>：如果 x 是原问题的可行解，而 $\lambda$ 是对偶问题的可行解，则 $b^T\lambda \leq c^Tx$
+<ul>
+<li>若 $x$ 和 $\lambda$ 还满足 $b^T\lambda &#x3D; c^Tx$ ，则分别是(P)和(D)的最优解</li>
+<li>若原问题(P)无下界，则对偶问题(D)不可行</li>
+<li>若对偶问题(D)无上界，则原问题(P)不可行</li>
+</ul>
+</li>
+<li><strong>强对偶定理</strong>：若原问题、对偶问题中任何一个有有限的最优解，则另一个亦然，且最优值相等；若两问题中任何一个无界，则另一个不可行</li>
+<li><strong>互补松弛条件</strong>：若 $x$ 和 $\lambda$ 分别为原问题和对偶问题的可行解，记 $s&#x3D;Ax-b \ ;r&#x3D;c-A^T\lambda$ 则$x$和$\lambda$分别是两问题的最优解的<strong>充要</strong>条件是：$r^Tx &#x3D; 0 &#x3D; s^T\lambda$</li>
+</ul>
+</li>
+</ul>
+<h1 id="非线性规划-nlp"><a class="markdownIt-Anchor" href="#非线性规划-nlp"></a> 非线性规划 (NLP)</h1>
+<h2 id="基本原理"><a class="markdownIt-Anchor" href="#基本原理"></a> 基本原理</h2>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/5b29cbd96610ce8a3e0fcea1f12cf0ef.png" alt="image 11" border="0" width=250>
+</div> 
+<ul>
+<li>优化目标：$\min_{x\in \mathcal{R}^n} f(x)$</li>
+<li>约束： $g_j(x) \leq 0 , j&#x3D;1,...,l$</li>
+<li>可行方向：称<strong>d</strong>为可行方向，若<strong>x</strong>沿<strong>d</strong>前进一小段距离后仍处于可行域内($x+\lambda d\in G$)</li>
+<li>下降方向：称<strong>d</strong>为下降方向，若$f(x+\lambda d)&lt;f(x)$，即$\nabla f^T d &lt; 0$</li>
+<li>对于一个 <strong>x</strong> ，若存在 <strong>d</strong> 使得 <strong>x</strong> 沿 <strong>d</strong> 方向既可行又下降，则 <strong>x</strong> 不是最优解</li>
+<li>最优解的一个<strong>必要</strong>条件（<strong>KKT条件</strong>）：若 $x$ 为最优解，且 $\nabla h_i(x) (i \in I_1)\nabla g_j(x) (j\in J_1)$ 线性无关，则存在 $\lambda_1,...,\lambda_l,\mu_1,...,\mu_m \geq 0$，满足：
+<ul>
+<li>$\nabla f(x) + \sum_{i&#x3D;1}^m \mu_i \nabla h_i(x) + \sum_{j&#x3D;1}^l \lambda_j \nabla g_j(x) &#x3D; 0$ [类似于 lagrange 乘子法]</li>
+<li>$\lambda_j g_j(x) &#x3D; 0, \ j &#x3D; 1,2,...,l$[互补性条件]</li>
+<li>其中 $h$ 为等式约束，$g$ 为不等式约束</li>
+</ul>
+</li>
+</ul>
+<h2 id="算法"><a class="markdownIt-Anchor" href="#算法"></a> 算法</h2>
+<h3 id="二次规划-qp-及有效集方法"><a class="markdownIt-Anchor" href="#二次规划-qp-及有效集方法"></a> 二次规划 (QP) 及有效集方法</h3>
+<ul>
+<li>QP 是 NLP 的特例，其优化目标为二次函数 $f(x) &#x3D; \frac 12 x^THx + c^Tx$，约束为线性约束 $Ax \leq b $</li>
+<li>当 H 为<strong>对称阵</strong>时，即为<strong>二次规划</strong>，而进一步当 H <strong>正定</strong>时，称为<strong>凸二次规划</strong>，对于凸二次规划而言，<strong>最优点和KKT点等价，局部最优解与全局最优解等价</strong></li>
+<li>利用 Lagrange 乘子法求最优解，得到 Lagrange函数 $L(x,\lambda) &#x3D; \frac 12 x^THx + c^Tx + \lambda^T(Ax-b)$ ，进而得到最优解方程：$①Hx + c + A^T\lambda &#x3D; 0 ;\ ②Ax-b &#x3D; 0$，解出的 $x$ 即为 KKT 点（最优解）</li>
+<li><strong>有效集方法</strong>：对于不等式约束的二次规划，在某可行点处将不起作用的约束去掉，将起作用约束视为等式约束，通过求解等式约束的二次规划来改进可行点。
+<ul>
+<li>记上面给出的原约束问题为 (1)，调整后的约束问题 (2) 为：
+<ul>
+<li>$\min f(x) &#x3D; \frac 12 x^THx + c^Tx$</li>
+<li>$s.t. a_jx &#x3D; b_j,j \in J_1$(其中$a_j$为 $A$ 的第 $j$ 行)</li>
+</ul>
+</li>
+<li>则有：
+<ul>
+<li>若 x 为 (1) 的最优解，则它也是 (2) 的最优解</li>
+<li>若 x 为 (1) 的可行解，又是 (2) 的 KKT 点，且 Lagrange 乘子非负，则它必是 (1) 的最优解</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="解nlp的逐步二次规划法-sqp"><a class="markdownIt-Anchor" href="#解nlp的逐步二次规划法-sqp"></a> 解NLP的逐步二次规划法 (SQP)</h3>
+<ul>
+<li>思路：用二次函数近似待优化函数的 Lagrange 函数 $L(x,\mu,\lambda)$ ，将 NLP 化为 QP ，再求解一系列 QP 子问题
+<ul>
+<li>QP子问题：</li>
+</ul>
+</li>
+</ul>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/fadf21e5916871d2c2ebe6cf79d9f74b.png" alt="image 12" border="0" width=400>
+</div> 
+<ul>
+<li>基本步骤：
+<ul>
+<li>求解 QP 子问题，得到最优解 $d_k$</li>
+<li>用线性收缩计算迭代步长 $\alpha_k$</li>
+<li>确定矩阵 $G_k$ 的迭代公式</li>
+</ul>
+</li>
+</ul>
+<h1 id="整数规划-ip"><a class="markdownIt-Anchor" href="#整数规划-ip"></a> 整数规划 (IP)</h1>
+<h2 id="整数规划问题的一般形式"><a class="markdownIt-Anchor" href="#整数规划问题的一般形式"></a> 整数规划问题的一般形式</h2>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/1e899aaa1f0a033b9d66a7e0ac6726a6.png" alt="image 13" border="0" width=300>
+</div> 
+<ul>
+<li>与其他优化问题类似，在一系列等式和不等式约束下使得目标函数 $f(x)$ 最小，但部分或全部决策变量为整数</li>
+<li><strong>分类</strong>
+<ul>
+<li><strong>按约束</strong>：
+<ul>
+<li><strong>整数线性规划(ILP)</strong>：目标和约束均为线性函数</li>
+<li><strong>整数非线性规划(INLP)</strong>：目标或约束中存在非线性函数</li>
+</ul>
+</li>
+<li><strong>按决策变量</strong>：
+<ul>
+<li><strong>纯(全)整数规划(PIP)</strong>：决策变量均为整数</li>
+<li><strong>混合整数规划(MIP)</strong>：决策变量有整数，也有实数</li>
+<li><strong>0-1规划</strong>：决策变量只取0或1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>整数规划的<strong>松弛问题</strong>（取消决策变量的整数限制）的解舍入为整数后<strong>往往不是原整数规划问题的最优解（甚至不是可行解）</strong></li>
+</ul>
+<h2 id="分枝定界法求解-bb"><a class="markdownIt-Anchor" href="#分枝定界法求解-bb"></a> 分枝定界法求解 (BB)</h2>
+<ul>
+<li>基本思想：逐次对可行域进行划分，得到若干子域，并在这些子域上分别尝试计算原问题的最优解，并逐渐筛除一些明显不可行的分支（子域），然后在其他可行的分支上进一步尝试划分，以避免完全枚举
+<ul>
+<li>实际上就是想要隐式地枚举一切可行解，但采取一定方式避免完全枚举</li>
+</ul>
+</li>
+<li>对于极小化问题，在子域上解LP，其最优值是IP<strong>限定在该子域时</strong>的下界；IP任意可行点的函数值是IP的上界（IP最优解的目标值不会高于任意一个可行点上的函数值）</li>
+<li><strong>线性规划松弛定界</strong>
+<ul>
+<li>根据松弛后（取消整数约束）求解 NLP 得到的<strong>松弛解$x_0$确定分枝定界</strong>的方法，分枝定界为 $x \geq \lfloor x_0 \rfloor + 1$ 和 $x \leq \lfloor x_0 \rfloor $ （其中 $\lfloor x_0 \rfloor$ 表示对 $x_0$ 向下取整），之后<strong>对后续各分支重复此操作继续分枝，若无可行解则放弃相应分枝</strong>，直至<strong>最终得到若干条可行的分支，且松弛解为整数</strong>，然后比较这些分支的效果，<strong>取最优</strong>的那条</li>
+<li>e.g.
+<ul>
+<li>
+<p>问题(P0)：</p>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/796350eb0df4a8cbef082cdcf61bf73e.png" alt="image 14" border="0" width=200>
+</div> 
+</li>
+<li>
+<p>分枝定界法求解过程：</p>
+<div align="center">
+  <img src="https://s1.imagehub.cc/images/2025/05/02/11e6185e99efeabaa0f693d93a30e571.png" alt="image 15" border="0" width=300>
+</div> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+        <div class="share-wrapper">
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F02%2F%25E6%2595%25B0%25E5%25AD%25A6%25E5%25AE%259E%25E9%25AA%258C%25E7%25AC%2594%25E8%25AE%25B0%2F" target="_blank" rel="noopener noreferrer" title="数学实验笔记">
+      <div class="share-icon icon icon-facebook">
+        
+      </div>
+    </a>
+  
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F02%2F%25E6%2595%25B0%25E5%25AD%25A6%25E5%25AE%259E%25E9%25AA%258C%25E7%25AC%2594%25E8%25AE%25B0%2F&amp;text=%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0&amp;via=https%3A%2F%2FQuarkPlanks.github.io" target="_blank" rel="noopener noreferrer" title="数学实验笔记">
+      <div class="share-icon icon icon-twitter">
+        
+      </div>
+    </a>
+  
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F02%2F%25E6%2595%25B0%25E5%25AD%25A6%25E5%25AE%259E%25E9%25AA%258C%25E7%25AC%2594%25E8%25AE%25B0%2F&amp;appkey=&amp;title=%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="数学实验笔记">
+      <div class="share-icon icon icon-weibo">
+        
+      </div>
+    </a>
+  
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0&amp;desc=%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0&amp;source=https%3A%2F%2FQuarkPlanks.github.io" target="_blank" rel="noopener noreferrer" title="数学实验笔记">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="数学实验笔记">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hexo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/" rel="tag">数学实验</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/cover1.jpg" data-sizes="auto" alt="机器学习笔记" class="lazyload">
+          
+        
+        <a href="/2025/05/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            机器学习笔记
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="https://s1.imagehub.cc/images/2025/05/05/7be8a360ab076f0de68d7d2b9fb65c08.jpg" data-sizes="auto" alt="Hello World" class="lazyload">
+      
+      <a href="/2025/05/02/hello-world/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          Hello World
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+        
+      
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="giscus">
+              <span>giscus</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment giscus-comment" data-aos="fade-up"
+          id="giscus-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Guga Frog
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        24.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        01:56
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 插值问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E6%8F%90%E6%B3%95%E5%8F%8A%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text"> 插值问题的提法及思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text"> 误差估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 插值方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 多项式插值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lagrange-%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.2.</span> <span class="toc-text"> Lagrange 插值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 分段线性插值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%A0%B7%E6%9D%A1%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 三次样条插值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text"> 数值积分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 误差估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text"> 收敛性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6"><span class="toc-number">2.3.</span> <span class="toc-text"> 代数精度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text"> 数值积分方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%85%AC%E5%BC%8F"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 梯形公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#simpson-%E5%85%AC%E5%BC%8F"><span class="toc-number">2.4.2.</span> <span class="toc-text"> Simpson 公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gauss-%E5%85%AC%E5%BC%8F"><span class="toc-number">2.4.3.</span> <span class="toc-text"> Gauss 公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E7%9A%84-gauss-%E5%85%AC%E5%BC%8F-gauss-lobatto-%E7%A7%AF%E5%88%86"><span class="toc-number">2.4.4.</span> <span class="toc-text"> 改进的 Gauss 公式—— Gauss-Lobatto 积分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E6%95%B0%E5%80%BC%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text"> 常微分方程的数值解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7-%E5%88%9A%E6%80%A7%E4%BA%86%E8%A7%A3"><span class="toc-number">3.1.</span> <span class="toc-text"> * 收敛性、稳定性、刚性（了解）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90"><span class="toc-number">3.2.</span> <span class="toc-text"> 误差分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%AE%97%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text"> 数值算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#euler-%E6%96%B9%E6%B3%95"><span class="toc-number">3.3.1.</span> <span class="toc-text"> Euler 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E5%89%8D"><span class="toc-number">3.3.1.1.</span> <span class="toc-text"> 向前：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E5%90%8E"><span class="toc-number">3.3.1.2.</span> <span class="toc-text"> 向后：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%85%AC%E5%BC%8F-2"><span class="toc-number">3.3.1.3.</span> <span class="toc-text"> 梯形公式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B-euler-%E5%85%AC%E5%BC%8F"><span class="toc-number">3.3.1.4.</span> <span class="toc-text"> 改进 Euler 公式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#runge-kutta-%E6%96%B9%E6%B3%95"><span class="toc-number">3.3.2.</span> <span class="toc-text"> Runge-Kutta 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E5%B9%BF%E5%88%B0%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">3.3.3.</span> <span class="toc-text"> 推广到微分方程组</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text"> 线性方程的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text"> 线性方程组的数值解法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 直接方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gauss-%E6%B6%88%E5%85%83%E6%B3%95"><span class="toc-number">4.1.1.1.</span> <span class="toc-text"> Gauss 消元法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%BD%E8%B5%B6%E6%B3%95"><span class="toc-number">4.1.1.2.</span> <span class="toc-text"> 追赶法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5-lu-%E5%88%86%E8%A7%A3"><span class="toc-number">4.1.1.2.1.</span> <span class="toc-text"> 矩阵 LU 分解</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text"> 迭代法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="toc-number">4.1.2.1.</span> <span class="toc-text"> Jacobi 迭代法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gauss-seidel-%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="toc-number">4.1.2.2.</span> <span class="toc-text"> Gauss-Seidel 迭代法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E6%9D%BE%E5%BC%9Bsor%E8%BF%AD%E4%BB%A3"><span class="toc-number">4.1.2.3.</span> <span class="toc-text"> 超松弛(SOR)迭代</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95%E7%9A%84%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-number">4.2.</span> <span class="toc-text"> 迭代法的收敛性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%97%85%E6%80%81%E6%80%A7"><span class="toc-number">4.3.</span> <span class="toc-text"> 方程组的病态性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E6%95%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text"> 范数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%95%B0%E8%A1%A1%E9%87%8F%E7%97%85%E6%80%81%E6%80%A7%E7%9A%84%E6%8C%87%E6%A0%87%E4%B9%8B%E4%B8%80"><span class="toc-number">4.3.2.</span> <span class="toc-text"> 条件数——衡量病态性的指标之一</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%AE%9A%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E8%A7%A3"><span class="toc-number">4.4.</span> <span class="toc-text"> 超定线性方程组的最小二乘解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text"> 非线性方程求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text"> 数值解法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="toc-number">5.1.1.</span> <span class="toc-text"> 牛顿法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E5%88%87%E7%BA%BF%E6%B3%95"><span class="toc-number">5.1.1.1.</span> <span class="toc-text"> 牛顿切线法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E5%89%B2%E7%BA%BF%E6%B3%95"><span class="toc-number">5.1.1.2.</span> <span class="toc-text"> 牛顿割线法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%9D%E7%89%9B%E9%A1%BF%E6%B3%95%E6%8B%9F%E7%89%9B%E9%A1%BF%E6%B3%95quasi-newton"><span class="toc-number">5.1.2.</span> <span class="toc-text"> 赝牛顿法&#x2F;拟牛顿法(Quasi-Newton)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95%E7%9A%84%E6%94%B6%E6%95%9B%E6%80%A7%E4%B8%8E%E6%94%B6%E6%95%9B%E9%80%9F%E5%BA%A6"><span class="toc-number">5.2.</span> <span class="toc-text"> 迭代法的收敛性与收敛速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%B9%BF%E5%88%B0%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">5.3.</span> <span class="toc-text"> 推广到非线性方程组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%B7%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E5%88%86%E5%B2%94%E4%B8%8E%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1%E4%BA%86%E8%A7%A3"><span class="toc-number">5.4.</span> <span class="toc-text"> * 非线性差分方程的分岔与混沌现象（了解）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 无约束优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text"> 基本方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E6%B3%95"><span class="toc-number">6.1.1.</span> <span class="toc-text"> 梯度法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95-2"><span class="toc-number">6.1.2.</span> <span class="toc-text"> 牛顿法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%9F%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="toc-number">6.1.3.</span> <span class="toc-text"> 拟牛顿法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7-%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-number">6.2.</span> <span class="toc-text"> 线性、非线性最小二乘法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E7%9A%84%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 非线性最小二乘法的优化算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gauss-newton-%E7%AE%97%E6%B3%95"><span class="toc-number">6.2.1.1.</span> <span class="toc-text"> Gauss-Newton 算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#levenbery-marquardt-%E7%AE%97%E6%B3%95"><span class="toc-number">6.2.1.2.</span> <span class="toc-text"> Levenbery-Marquardt 算法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-lp"><span class="toc-number">7.</span> <span class="toc-text"> 线性规划 (LP)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95"><span class="toc-number">7.1.</span> <span class="toc-text"> 基本原理和算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">7.1.1.</span> <span class="toc-text"> 单纯形法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%AE%97%E6%B3%95%E4%BA%86%E8%A7%A3"><span class="toc-number">7.1.2.</span> <span class="toc-text"> 其他算法（了解）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E7%9A%84%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="toc-number">7.2.</span> <span class="toc-text"> 线性规划的对偶问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-nlp"><span class="toc-number">8.</span> <span class="toc-text"> 非线性规划 (NLP)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">8.1.</span> <span class="toc-text"> 基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">8.2.</span> <span class="toc-text"> 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92-qp-%E5%8F%8A%E6%9C%89%E6%95%88%E9%9B%86%E6%96%B9%E6%B3%95"><span class="toc-number">8.2.1.</span> <span class="toc-text"> 二次规划 (QP) 及有效集方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3nlp%E7%9A%84%E9%80%90%E6%AD%A5%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92%E6%B3%95-sqp"><span class="toc-number">8.2.2.</span> <span class="toc-text"> 解NLP的逐步二次规划法 (SQP)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92-ip"><span class="toc-number">9.</span> <span class="toc-text"> 整数规划 (IP)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">9.1.</span> <span class="toc-text"> 整数规划问题的一般形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%9D%E5%AE%9A%E7%95%8C%E6%B3%95%E6%B1%82%E8%A7%A3-bb"><span class="toc-number">9.2.</span> <span class="toc-text"> 分枝定界法求解 (BB)</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar2.jpg" data-sizes="auto" alt="Guga Frog" class="lazyload">
+  <div class="sidebar-author-name">Guga Frog</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:1412580863@qq.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/QuarkPlanks itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[800,1400],"shapeOptions":{"radius":[8,16],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[800,1400],"shapeOptions":{"radius":0,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Guga Frog",
+          title: "数学实验笔记",
+          url: "https://quarkplanks.github.io/2025/05/02/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/",
+          excerpt: "",
+          description: "",
+          stripContent: " 插值问题  插值问题的提法及思路  插值问题  已知 n 个节点 $(x_i,y_i)$ ，各个 $x_i$ 互不相同，满足 $a &amp;#x3D; x_0 &amp;lt; x_1 &amp;lt; ... &amp;lt; x_n &amp;#x3D; b$ ，称 $[a,b]$ 为插值区间 目标： 求任意插值点 $x^* (\in [a,b] 且 \neq x_j)$ 处的函数值 $f(x^*)$ 思路： 构造一个相对简单的插值函数 $ f $ ，使之通过全部已有的节点（插值条件），并利用这个 $f$ 计算各插值点处的函数",
+          date: "Fri May 02 2025 00:48:12 GMT+0800",
+          updated: "Sun May 04 2025 01:15:01 GMT+0800",
+          cover: "/images/banner3.png",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+          
+<script src="https://npm.webcache.cn/html-to-image@1.11.11/dist/html-to-image.js" integrity="sha384-UbfRVKN3&#x2F;elS1r7JcK2FhmPP+KlJ4CvYwbyYD7tH+uTkbT9bNJr9eJeQ0FoFbAgz" crossorigin="anonymous" defer data-pjax></script>
+
+          
+<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+          var serverURLs = undefined;
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "jbAZ6gbEdxxes87jTW7R0Akh-MdYXbMMI",
+              appKey: "SyZiClEmH88WtGG8nV5oqGNd",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: document.documentElement.lang || 'en',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname,
+              serverURLs
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: false,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: '',
+          lang: document.documentElement.lang || 'en',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.16/dist/twikoo.all.min.js',
+          'sha384-lDHsr5aZmkMS0eKnsUu6e9RWP+dRmn7sgjRAKGOAoXfMyzbUK6Qi86zZK7R+KvRV'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.tcomment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            })
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId,
+            distractionFreeMode: false,
+            language: document.documentElement.lang || 'en',
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'QuarkPlanks/comment');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOOj7vZA');
+        giscusScript.setAttribute('data-category', 'Announcements'); 
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOOj7vZM4CpvIa');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', document.documentElement.lang || 'en');
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.8.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+<script data-pjax>
+  var updateTime = _$('#post-update-time')?.innerHTML;
+
+  if (updateTime) {
+    const update = new Date(updateTime);
+    const now = new Date();
+    const diff = now - update;
+    const days = diff / 86400000;
+    const { daysAgo, message: template } = window.REIMU_CONFIG.outdate;
+    if (days >= daysAgo) {
+      let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+      if (typeof template === 'string') {
+        message = template.replace(/{time}/, updateTime);
+      } else if (typeof template === 'object') {
+        const lang = document.documentElement.lang;
+        const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+        if (messageKey && template[messageKey]) {
+          message = template[messageKey].replace(/{time}/, updateTime);
+        }
+      }
+      const blockquote = _$('#outdate-blockquote');
+      if (blockquote) {
+        blockquote.querySelector('p').innerText = message;
+        blockquote.style.display = 'block';
+      }
+    }
+  }
+</script>
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6&#x2F;1Nxveei" crossorigin="anonymous" defer data-pjax></script>
+
+    <script data-pjax>
+      window.MathJax = {"tex":{"tags":"ams","useLabelIds":true,"inlineMath":[["$","$"],["\\\\(","\\\\)"]],"displayMath":[["$$","$$"],["\\\\[","\\\\]"]],"processEscapes":true,"processEnvironments":true,"autoload":{"color":[],"colorv2":["color"]},"packages":{"[+]":["noerrors"]}},"options":{"skipHtmlTags":["script","noscript","style","textarea","pre","code"],"ignoreHtmlClass":"tex2jax_ignore","processHtmlClass":"tex2jax_process"},"loader":{"load":["input/asciimath","[tex]/noerrors"]}};
+    </script>
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

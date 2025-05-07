@@ -1,0 +1,1772 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.outdate = {"enable":true,"daysAgo":180,"message":{"en":"This article was last updated on {time}. Please note that the content may no longer be applicable.","zh-CN":"本文最后更新于 {time}，请注意文中内容可能已不适用。","zh-TW":"本文最後更新於 {time}，請注意文中內容可能已不適用。","ja":"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://QuarkPlanks.github.io';</script>
+  
+  <title>
+    机器学习笔记 |
+    
+    Welcome to my blog !
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="Machine Learning  Supervised Learning  Regression  线性回归  最基本的形式  $$f( \pmb{x} , \pmb{w}) &#x3D; w_0 + w_1x + w_2x^2 + w_3x^3 + ... $$  思路： 通过给定的一系列 ( x_train,y_true_train ) ，求解 w 使得在指定的损失函数 (Loss Fun">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习笔记">
+<meta property="og:url" content="https://quarkplanks.github.io/2025/05/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Welcome to my blog !">
+<meta property="og:description" content="Machine Learning  Supervised Learning  Regression  线性回归  最基本的形式  $$f( \pmb{x} , \pmb{w}) &#x3D; w_0 + w_1x + w_2x^2 + w_3x^3 + ... $$  思路： 通过给定的一系列 ( x_train,y_true_train ) ，求解 w 使得在指定的损失函数 (Loss Fun">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-02T05:15:27.000Z">
+<meta property="article:modified_time" content="2025-05-03T17:14:52.978Z">
+<meta property="article:author" content="Guga Frog">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Welcome to my blog !" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://s1.imagehub.cc/images/2025/05/05/635ec9652f1a5a3245b8839b86d87ffa.jpg" alt="机器学习笔记">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">机器学习笔记</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#machine-learning"><span class="toc-number">1.</span> <span class="toc-text"> Machine Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#supervised-learning"><span class="toc-number">1.1.</span> <span class="toc-text"> Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#regression"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Regression</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-number">1.1.1.1.</span> <span class="toc-text"> 线性回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#k-%E8%BF%91%E9%82%BB-knn-%E5%9B%9E%E5%BD%92"><span class="toc-number">1.1.1.2.</span> <span class="toc-text"> K 近邻 (KNN) 回归</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#classification"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-number">1.1.2.1.</span> <span class="toc-text"> 逻辑回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#k-%E8%BF%91%E9%82%BB%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.2.2.</span> <span class="toc-text"> K 近邻分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BAsvm"><span class="toc-number">1.1.2.3.</span> <span class="toc-text"> 支持向量机（SVM）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unsupervised-learning"><span class="toc-number">1.2.</span> <span class="toc-text"> Unsupervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 聚类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#k-%E5%9D%87%E5%80%BC-k-means-clustering"><span class="toc-number">1.2.1.1.</span> <span class="toc-text"> K 均值 (K-Means Clustering)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.1.2.</span> <span class="toc-text"> 高斯混合模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%8D%E7%BB%B4"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 降维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90-pca"><span class="toc-number">1.2.2.1.</span> <span class="toc-text"> 主成分分析 （PCA）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.2.</span> <span class="toc-text"> 非线性方法—</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AD%89%E5%BA%A6%E9%87%8F%E6%98%A0%E5%B0%84-isomap"><span class="toc-number">1.2.2.2.1.</span> <span class="toc-text"> 等度量映射 (Isomap)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8-autoencoder"><span class="toc-number">1.2.2.2.2.</span> <span class="toc-text"> 自编码器 (autoencoder)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%97%E9%99%90%E7%8E%BB%E5%B0%94%E5%85%B9%E6%9B%BC%E6%9C%BA"><span class="toc-number">1.2.2.2.3.</span> <span class="toc-text"> 受限玻尔兹曼机</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reinforcement-learning"><span class="toc-number">1.3.</span> <span class="toc-text"> Reinforcement Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%87%82%E8%80%81%E8%99%8E%E6%9C%BA"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 多臂老虎机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markov-%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text"> Markov 决策过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#combining"><span class="toc-number">1.4.</span> <span class="toc-text"> Combining</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#committee"><span class="toc-number">1.4.1.</span> <span class="toc-text"> Committee</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bootstrap%E4%B8%80%E7%A7%8D%E9%87%87%E6%A0%B7%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text"> Bootstrap——一种采样方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#boosting"><span class="toc-number">1.4.3.</span> <span class="toc-text"> Boosting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 决策树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97"><span class="toc-number">1.4.5.</span> <span class="toc-text"> 随机森林</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#neural-network"><span class="toc-number">2.</span> <span class="toc-text"> Neural Network</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar2.jpg" data-sizes="auto" alt="Guga Frog" class="lazyload">
+  <div class="sidebar-author-name">Guga Frog</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:1412580863@qq.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/QuarkPlanks itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-机器学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-05-02T05:15:27.000Z" itemprop="datePublished">2025-05-02</time>
+    <time style="display: none;" id="post-update-time">2025-05-04</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-aos="zoom-in">学习笔记</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote id="outdate-blockquote" style="display: none;"><p></p></blockquote>
+      
+      
+        <h1 id="machine-learning"><a class="markdownIt-Anchor" href="#machine-learning"></a> Machine Learning</h1>
+<h2 id="supervised-learning"><a class="markdownIt-Anchor" href="#supervised-learning"></a> Supervised Learning</h2>
+<h3 id="regression"><a class="markdownIt-Anchor" href="#regression"></a> Regression</h3>
+<h4 id="线性回归"><a class="markdownIt-Anchor" href="#线性回归"></a> 线性回归</h4>
+<ul>
+<li>最基本的形式</li>
+</ul>
+<p>$$f( \pmb{x} , \pmb{w}) &#x3D; w_0 + w_1x + w_2x^2 + w_3x^3 + ...
+$$</p><ul>
+<li>
+<p>思路：</p>
+<p>通过给定的一系列 ( <strong>x_train</strong>,y_true_train ) ，求解 <strong>w</strong> 使得在指定的损失函数 (Loss Function)下，训练集中1的误差最小</p>
+</li>
+<li>
+<p>常用的误差函数：</p>
+<p>MSE Loss 均方误差（含正则化项防止过拟合）</p>
+</li>
+</ul>
+<p>$$MSE &#x3D; \sum_{i&#x3D;1}^n (f( \pmb{x} , \pmb{w})-y)^2 \ + \ \lambda||\pmb{w}||^\alpha 
+$$</p><p>其中$\alpha$的取值决定了不同的回归类型 （$\alpha &#x3D; 1$—— Lasso回归 |$\alpha &#x3D; 2$—— 岭回归）</p>
+<ul>
+<li>
+<p>求解方式：</p>
+<p>①  基本的数学方法：通过将 Loss Function 对<strong>w</strong>的各个分量求偏导为 0 解出极小值点对应的 <strong>w</strong>*</p>
+<p>②  最大似然法：设观察值 t 和 预测值 y 满足关系  $t(\pmb{x}) &#x3D; y(\pmb{x},\pmb{w}) + \epsilon$ ，其中  $\epsilon \sim N(0,\beta^2)$ ，通过极大化似然概率  $\ p(y+\epsilon &#x3D; t)$ 求解  $\arg\max_{\pmb{w}} \ p$ 以获取最佳的参数$\pmb{w*}$</p>
+<p>③ Bayes 方法：</p>
+<p>基于$p(w|D) &#x3D; \frac {p(D|w)p(w)}{p(D)}$其中 D 为观测的数据，p(D) 是归一化常数，往往不重要，p(D|w) 为 <strong>似然概率</strong> , p(w|D) 为 <strong>后验概率</strong> ， p(w) 为 <strong>先验概率</strong></p>
+<p>(1) 最大化后验概率：使在已知数据 D 的情况下选取概率最高的一组参数 w ，认为这组参数即为最好的 w*</p>
+<p>(2) Bayes 曲线拟合：对于输入的数据 x , 不是给出准确的一条曲线预测结果，而是给出曲线预测结果的分布，随 x 的增多，这一分布会逐渐集中并趋近于真实的曲线</p>
+</li>
+<li>
+<p>循序学习：</p>
+<p>除基本的数学推导外，<strong>随机梯度下降</strong>也是一个比较常用的方式，基本的函数为：</p>
+<p>$$w^{(t+1)} &#x3D; w^{(t)} - \eta \nabla_w E(w)
+$$</p><p>其中$E(w)$为在当前数据点$w^{(t)}$处，利用 <strong>全部</strong> 数据点计算的损失函数</p>
+<p>数据太多时，可使用 <strong>随机梯度下降</strong> 迭代时每次只用一个数据点，即：</p>
+<p>$$w^{(t+1)} &#x3D; w^{(t)} - \eta \nabla_w E_n(w)
+$$</p><p>其中$\eta$称为 学习率 ，可以根据训练进度 t 不断调整 ，$E_n$为根据第 n 个数据和参数$x_n$得出的损失函数，并往往只采用部分分量</p>
+<p>也存在其他更高级的方法如 <strong>共轭梯度法</strong> 、 <strong>赝牛顿法</strong> 等</p>
+</li>
+<li>
+<p>普适化——基函数的使用：</p>
+<p>先前的$f( \pmb{x} , \pmb{w}) &#x3D; w_0 + w_1x + w_2x^2 + w_3x^3 + ...$中用到了最简单的基函数$\phi_j(x) &#x3D; w_jx^j$，其余的基函数还有如 Gauss 基函数$\phi_j(x) &#x3D; e^{-\frac {(x-\mu_j)^2}{2s^2} }$各有不同的特点</p>
+</li>
+</ul>
+<h4 id="k-近邻-knn-回归"><a class="markdownIt-Anchor" href="#k-近邻-knn-回归"></a> K 近邻 (KNN) 回归</h4>
+<ul>
+<li>
+<p>思路：</p>
+<p>通过定义一个 <strong>核函数</strong> ， 给出不同数据点之间的距离 ， 对于一个待预测的数据点，选择离他最近的 K 个 <strong>训练集</strong> 中的点，以这些点的 <strong>y_true</strong> 计算待预测点的 <strong>y_pred</strong> （如通过直接取均值计算）</p>
+</li>
+<li>
+<p>核函数与基函数：</p>
+<p>可以定义一个基函数$\phi(\pmb{x})$，并基于此基函数重新定义两个点之间的距离 ， 其信息由核函数$k(x,x&#39;) &#x3D; \phi(x)^T\phi(x&#39;)$给出，而核函数或基函数的定义，可以根据相关领域的专家知识</p>
+</li>
+</ul>
+<h3 id="classification"><a class="markdownIt-Anchor" href="#classification"></a> Classification</h3>
+<h4 id="逻辑回归"><a class="markdownIt-Anchor" href="#逻辑回归"></a> 逻辑回归</h4>
+<ul>
+<li>
+<p>思路：</p>
+<p>在线性回归拟合的基础上，引入 <strong>激活函数</strong> 实现分类，同时为更好地计算分类，还引入了新的 <strong>误差函数</strong></p>
+</li>
+<li>
+<p>常用的激活函数：</p>
+</li>
+</ul>
+<p>$$\sigma(x) &#x3D; \frac {1}{1-e^-x} （sigmoid函数）
+$$</p><p>$$RELU(x) &#x3D; max(0,x) 
+$$</p><p>$$Softmax(x_j) &#x3D; \frac {e^{x_j}}{\sum_{i&#x3D;1}^{n} e^{x_i}} 
+$$</p><p>$$f(x) &#x3D; arctan(x) 
+$$</p><p>$$f(x) &#x3D; tanh(x)
+$$</p><ul>
+<li>
+<p>常用的损失函数：</p>
+<p>交叉熵损失函数</p>
+<p>$$E(w) &#x3D; -ln[p(t|w)] &#x3D; -ln[\prod_{i&#x3D;1}^n y_i^{t_i}(1-y_i)^{1-t_i}] &#x3D; -\sum_{i&#x3D;1}^n(t_ilny_i+(1-t_i)ln(1-y_i))
+$$</p><p>其中$y_i &#x3D; \sigma(w^Tx)$，是预测的属于第一类（$t_i&#x3D;1$) 的概率，则$1-y_i$为预测为第二类($t_i &#x3D; 0$)的概率，为了极大化似然概率$ln[p(t|w)]$，则需要极小化交叉熵损失函数$E(w)$， 数学上可证明$E(w）$一定是凸函数，即可以保证求出最小值</p>
+</li>
+<li>
+<p>多分类方法：</p>
+<p>① one-vs-rest</p>
+<p>若要把原数据分为 C 类，则转化为 C 个二分类问题，训练 C 个分类器，第 i 个分类器$y_i(x|w_i)$负责分辨 x 是否属于第 i 类，对于一个待预测的数据点，选取最大的$y_d$，认为 x 属于第 d 类，即认为 x 属于可能性最大的那类</p>
+<p>② softmax</p>
+<p>对于每个类别 i ，定义$z_i(x) &#x3D; w_i^T x$，再利用 softmax 函数计算 x 属于类别 i 的概率$y_i(x) &#x3D; \frac {e^{z_i(x)}}{\sum_{j&#x3D;1}^n e^{z_j(x)}}$，相比①应用更广泛</p>
+</li>
+</ul>
+<h4 id="k-近邻分类"><a class="markdownIt-Anchor" href="#k-近邻分类"></a> K 近邻分类</h4>
+<ul>
+<li>
+<p>思路：</p>
+<p>与 K 近邻回归类似，但最终实现分类是取最近的 K 个数据点里出现频率最高的类型的类别</p>
+</li>
+</ul>
+<h4 id="支持向量机svm"><a class="markdownIt-Anchor" href="#支持向量机svm"></a> 支持向量机（SVM）</h4>
+<ul>
+<li>
+<p>思路：</p>
+<p>使类间隔最大化</p>
+<p>对于决策面$y(\pmb{x}) &#x3D; w^T\phi(x) + w_0$，某一数据点$\pmb{x_i}$到该决策面的距离可以写成$\frac {t_iy(\pmb{x_i})}{||\pmb{w}||}$而所有数据点到该决策面的最小距离则为$\min\limits_{i} \frac {t_iy(\pmb{x_i})}{||\pmb{w}||}$优化的目标则是求得参数$w$，使得这一最小距离最大化，即求$\mathop{\arg\max}\limits_{\pmb{w},w_0}(\min\limits_{i} \frac {t_iy(\pmb{x_i})}{||\pmb{w}||})$</p>
+<p>在推导的过程中，发现这一求解目标可以转化为求解$\mathop{\arg\max}\limits_{\pmb{w}} (\frac{1}{||\pmb{w}||^2})$，且只有间隔边缘的数据点才对这一求解过程有贡献，称这些边缘数据点为 <strong>支持向量</strong></p>
+</li>
+<li>
+<p>软间隔的引入：</p>
+<p>有时为了防止过拟合（间隔边界的宽度过小），会引入参数$\xi$，限制$t_ny(x_n) \geq 1-\xi$而非$t_ny(x_n) \geq 1$，即允许数据点落在分类间隔向内一点的地方</p>
+</li>
+<li>
+<p>与逻辑回归的比较/选择</p>
+<p>SVM更适用于样本数较少而特征数较多的情况，样本数过多(如&gt;50000)训练会很慢，通常是需要增加更多特征</p>
+<p>逻辑回归适用于样本数较多而特征数较少的情况 ，样本数过少可能会欠拟合等</p>
+</li>
+</ul>
+<h2 id="unsupervised-learning"><a class="markdownIt-Anchor" href="#unsupervised-learning"></a> Unsupervised Learning</h2>
+<h3 id="聚类"><a class="markdownIt-Anchor" href="#聚类"></a> 聚类</h3>
+<h4 id="k-均值-k-means-clustering"><a class="markdownIt-Anchor" href="#k-均值-k-means-clustering"></a> K 均值 (K-Means Clustering)</h4>
+<ul>
+<li>
+<p>思路：<br />
+欲把数据点分为 K 组 （K是人为给定的） ，其中第 i 组 组内点到相应<strong>聚类中心</strong>  $\pmb{\mu_i}$的距离小于到其他聚类中心的距离</p>
+<p>即定义一个 <strong>畸变函数</strong> ：</p>
+<p>$$J(\{r_{nk}\},\{\pmb{\mu_k}\}) &#x3D; \sum_{n&#x3D;1}^N\sum_{k&#x3D;1}^Kr_{nk}||\pmb{x_n}-\pmb{\pmb{\mu_k}}||^2
+$$</p><p>用于描述各个数据点$\pmb{x_n}$(共 N 个) 到自己所属组聚类中心$\pmb{\mu_k}$的距离</p>
+<p>其中$r_{nk}$是第 n 个数据点分类结果的独热编码，若$\pmb{x_n}$属于第 k 类，则$r_{nk} &#x3D; 1$，否则为 1</p>
+<p>而描述数据点到聚类中心的距离也不一定要用二范数$||·||^2$，也可以结合专业知识定义其他距离$\nu(\pmb{x_1},\pmb{x_2})$</p>
+</li>
+<li>
+<p>求解方法：</p>
+<p>（1） 随机选取 k 个聚类中心$\pmb{\mu_i}$</p>
+<p>（2）把每个$\pmb{x_i}$划分到距离它最近的聚类中心对应的类别</p>
+<p>（3）在每个类别中分别重新划定聚类中心$\pmb{\mu_i^{&#39;} &#x3D; \frac {\sum_{n&#x3D;1}^Nr_{ni}\pmb{x_n}}{\sum_{n&#x3D;1}^{N}r_{ni}}}$</p>
+<p>之后不断重复步骤（2）（3），可以证明，各个$\mu_i$会逐渐收敛到一个稳定的值，$J$可收敛到一个局部极小值，为了保证收敛到最小可以用不同的初值求解</p>
+</li>
+<li>
+<p>K 的选取与效果评估</p>
+<p>效果评估：定义<strong>平均轮廓系数</strong> ：</p>
+<p>$$S(i) &#x3D; \frac{b(i)-a(i)}{max\{a(i),b(i)\}}
+$$</p><p>其中$a(i)$为第 i 类的<strong>类内平均距离</strong> ，$b(i)$为第 i 类与最近类的 <strong>类间平均距离</strong></p>
+<p>可知$S(i) \in [-1,1]$，而优化的目标就是使得$S(i)$尽可能大，同时要保证类总数 K 不过大</p>
+<p>另一种方法是根据迭代到最后的损失函数$J_{min}(K)$，一般来说会随着 K 增大而逐渐减小，往往会选择曲线斜率开始明显放缓的区域，既保证有较低的损失函数，也保证 K 不过大 （<strong>肘部法则</strong>）</p>
+</li>
+</ul>
+<h4 id="高斯混合模型"><a class="markdownIt-Anchor" href="#高斯混合模型"></a> 高斯混合模型</h4>
+<ul>
+<li>
+<p>思路：</p>
+<p>假设 <strong>x</strong> 的分布是由多个高斯分布混合而成：</p>
+<p>$$p(\pmb(x)) &#x3D; \sum_{k&#x3D;1}^K\pi_kN(\pmb{x}|\pmb{\mu_k},\pmb{\Sigma_k})
+$$</p><p>也就相当于是 K 个 Gauss 分布的加权平均，其中$\pi_k &#x3D; p(z_k &#x3D; 1)$，$p(x|z_k &#x3D; 1) &#x3D; N (\pmb{x}|\pmb\mu_k,\pmb\Sigma_k)$</p>
+<p>$\pmb\mu_k \pmb\Sigma_k \pi_k$的求解 —— <strong>E-M（期望—最大化） 算法</strong> ：</p>
+<p>目标：</p>
+<p>极大化似然函数</p>
+<p>$$p(\pmb{X}|\pmb\pi,\pmb\mu,\pmb\Sigma) &#x3D; \prod_{n&#x3D;1}^Np(\pmb{x_n}) &#x3D; \prod_{n&#x3D;1}^N(\sum_{k&#x3D;1}^K\pi_kN(\pmb{x_n}|\pmb{\mu_k},\pmb{\Sigma_k}))
+$$</p><p>也就是极大化</p>
+<p>$$ln(p(\pmb{X}|\pmb\pi,\pmb\mu,\pmb\Sigma)) &#x3D; \sum_{n&#x3D;1}^Nln[\sum_{k&#x3D;1}^K\pi_kN(\pmb{x_n}|\pmb{\mu_k},\pmb{\Sigma_k})]
+$$</p><p>求解：</p>
+<p>分别对$\pmb\pi,\pmb\mu,\pmb\Sigma$求导，得：</p>
+<p>$$\pi_k &#x3D; \frac {N_k}{N}\\ \pmb\Sigma_k &#x3D; \frac 1{N_k} \sum_{n&#x3D;1}^N\gamma(z_{nk})(\pmb{x_n}-\pmb\mu_k)(\pmb{x_n}-\pmb\mu_k)^T\\\pmb\mu_k &#x3D; \frac 1{N_k}\sum_{n&#x3D;1}^N \gamma(z_{nk})\pmb{x_n}\\
+$$</p><p>其中：</p>
+<p>$$\gamma(z_{nk}) \equiv p(z_k &#x3D; 1 | \pmb{x_n}) &#x3D; \frac {\pi_k N(\pmb{x_n}|\pmb\mu_k,\pmb\Sigma_k)}{\sum_{i&#x3D;1}^N\pi_i N(\pmb{x_n}|\pmb\mu_i,\pmb\Sigma_i)}（第n个数据点属于第k类的概率）\\ N_k &#x3D; \sum_{i&#x3D;1}^N \gamma(z_{nk})
+$$</p><p>步骤：</p>
+<ul>
+<li>（1）初始化$\{ \pmb\mu_k \} \{ \pmb\Sigma_k \} \{ \pi_k \}$</li>
+<li>（2） <strong>E</strong>：计算$\gamma(z_{nk})$</li>
+<li>（3） <strong>M</strong>：用上述公式更新$\{ \pmb\mu_k \} \{ \pmb\Sigma_k \} \{ \pi_k \}$</li>
+<li>（4） 重复 <strong>E</strong> 和 <strong>M</strong> 直至收敛</li>
+</ul>
+</li>
+<li>
+<p>一般隐藏变量下的 E-M 算法   <strong>(？)</strong></p>
+<p>求解目标：</p>
+<p>假设 x 为可观测的变量 ， z 是不可观测的变量，其在参数 θ 下的联合分布概率密度函数为$p(\pmb{x},\pmb{z}|\theta)$，期望能找到一种方法，不必观测 z ，只通过观测 x 即可求出 θ</p>
+<p>求解方法：</p>
+<p>要极大化似然函数$p(\pmb{x}|\theta) &#x3D; \prod_{i&#x3D;1}^Np(\pmb{x_i}|\theta)$，即要极大化$ln(p(\pmb{x}|\theta)) &#x3D; \sum_{i&#x3D;1}^N ln(p(\pmb{x_i}|\theta)) &#x3D; \sum_{i&#x3D;1}^N \int_{-\infty}^{+\infty}ln(p(\pmb{x_i,z_i}|\theta))dz_i$， 即要求$\frac{\partial ln(p(\pmb{x}|\theta))}{\partial \theta} &#x3D; \sum_{i&#x3D;1}^N \int_{-\infty}^{+\infty}[p(z_n|x_n,\theta)\frac{\partial lnp(x_n,z_n|\theta)}{\partial \theta}]dz_n &#x3D; 0$</p>
+<p>总体的 E-M 算法：</p>
+<ul>
+<li>
+<p>（1）E：$\theta \to \theta_0$， 计算$p(z_n|x_n,\theta_0)$</p>
+</li>
+<li>
+<p>（2）M：利用上面的极值点处方程求解$\theta$</p>
+</li>
+<li>
+<p>（3）循环上述步骤，直至收敛【E-M算法可以保证收敛到一个稳定点，但不能保证收敛到<strong>全局</strong>的似然函数最大值点】</p>
+</li>
+</ul>
+</li>
+<li>
+<p>与 K-means 的联系：</p>
+<p>若在 Gauss Mixture Model 中，假设$\Sigma &#x3D; \epsilon \pmb{I}$，则$\gamma(z_{nk}) \equiv p(z_k &#x3D; 1 | \pmb{x_n}) &#x3D; \frac{\pi_k exp\{ -\frac1{2\epsilon} ||\pmb{x_n}-\pmb{\mu_k}||^2\}}{\sum_{i&#x3D;1}^N\pi_i exp\{ -\frac1{2\epsilon} ||\pmb{x_n}-\pmb{\mu_i}||^2\}}$， 其中，当$\epsilon \to 0$时，距离$x_n$最近的$\mu_k$对应的$\gamma(z_{nk}) &#x3D; 1$，其余为0，而之后 M 步骤中对$\pmb\mu$的求解会与 K-means 中的相同</p>
+<ul>
+<li>K_means 可以看作是一种硬边界的Gauss Mixture Model ，是高斯混合模型的一种特殊情况</li>
+</ul>
+</li>
+</ul>
+<h3 id="降维"><a class="markdownIt-Anchor" href="#降维"></a> 降维</h3>
+<h4 id="主成分分析-pca"><a class="markdownIt-Anchor" href="#主成分分析-pca"></a> 主成分分析 （PCA）</h4>
+<ul>
+<li>
+<p>思路：</p>
+<p>① 将数据投影到线性子空间上，使投影结果的方差（变化范围）最大</p>
+<p>② 将数据投影到线性子空间上，使投影结果与原数据的差距最小</p>
+</li>
+<li>
+<p>方法：</p>
+<p>两类思路最终可归结到同一方程的求解</p>
+<p>① 最大化方差</p>
+<p>对于数据点$\pmb{x_n}$，投影方向$\pmb{u}$，则投影后的数据点为$\pmb{u^Tx_n}$，则投影数据的方差$var &#x3D; \frac{1}{N}\sum_{i&#x3D;1}^N(\pmb{u^Tx_i-u^T\overline{x}})^2 &#x3D; \pmb{u^TSu}$其中 S 为协方差矩阵，限制$u$的模为 1 ，即$\pmb{u^Tu &#x3D; 1}$，此时利用 Lagrange 乘子法，得到优化目标$\pmb{u^TSu} - \lambda(\pmb{u^Tu - 1})$对$\pmb{u}$求导 = 0，转化为求解 S 的本征方程$\pmb{Su} &#x3D; \lambda\pmb{u}$</p>
+<p>要投影到 k 维子空间，就选线性不相关的本征值最大的前 k 个$\pmb{u_i}$求解 k 个$\pmb{Su_i} &#x3D; \lambda\pmb{u_i}$</p>
+<p>② 最小化差别</p>
+<p>在一组标准正交基下，原数据点$\pmb{x_n} &#x3D; \sum_{i&#x3D;1}^D \alpha_{ni}\pmb{u_i}$投影到 M 维空间的数据点$\widetilde{x}_n &#x3D; \sum_{i&#x3D;1}^M z_{ni}\pmb{u_i} + \sum_{i&#x3D;M+1}^D b_i\pmb{u_i}$，定义差别$J &#x3D; \frac 1{N}\sum_{i&#x3D;1}^N||\pmb{x_n-\widetilde{x}_n}||^2$先将 J 对$z_{ni}$和$b_i$求极值，解得$z_{ni} &#x3D; \alpha_{ni} &#x3D; \pmb{u_i^Tx_n} \ ;\ b_j &#x3D; \pmb{u_j^T\overline{x}}$，回代得$\pmb{x_n - \widetilde{x}_n} &#x3D; \sum_{j &#x3D; M+1}^D[(\pmb{x_n - \widetilde{x}_n})^T\pmb{u_j}]\pmb{u_j}$，再回代得$J &#x3D; \sum_{j &#x3D; M+1}^D\pmb{u_j^TSu_j}$与前类似，在 M 个$\pmb{u_j^Tu_j} &#x3D; 1$约束下利用 Lagrange 乘子法得到 M 个本征方程$\pmb{Su_i} &#x3D; \lambda\pmb{u_i}$最终的求解目标与 ① 一样</p>
+<ul>
+<li>剩下的较小的本征值对应的方向向量给出偏差$J &#x3D; \sum_{j &#x3D; M+1}^D\lambda_j$</li>
+</ul>
+</li>
+</ul>
+<h4 id="非线性方法"><a class="markdownIt-Anchor" href="#非线性方法"></a> 非线性方法—</h4>
+<h5 id="等度量映射-isomap"><a class="markdownIt-Anchor" href="#等度量映射-isomap"></a> 等度量映射 (Isomap)</h5>
+<ul>
+<li>
+<p>思路：利用类似 PCA 的算法，将数据映射到低维空间，使数据点间的距离尽量保持不变。其中，将任意两点之间的测地线距离$d_G(\pmb{x_i,x_j})$定义为图上最近路径的总距离。</p>
+<p>低维空间的选取：计算近邻（以近邻数或截止距离为判据），连上线，形成一个图，这个图就是待数据映射低维空间</p>
+</li>
+</ul>
+<h5 id="自编码器-autoencoder"><a class="markdownIt-Anchor" href="#自编码器-autoencoder"></a> 自编码器 (autoencoder)</h5>
+<ul>
+<li>思路：属于神经网络的算法，一种方法是限制隐藏层的维度比输入数据 <strong>x</strong> 小，以获取有用特征，这种自编码器称为欠完备(undercomplete)</li>
+</ul>
+<h5 id="受限玻尔兹曼机"><a class="markdownIt-Anchor" href="#受限玻尔兹曼机"></a> 受限玻尔兹曼机</h5>
+<h2 id="reinforcement-learning"><a class="markdownIt-Anchor" href="#reinforcement-learning"></a> Reinforcement Learning</h2>
+<ul>
+<li>
+<p>与监督学习区别：没有（现成的）数据集</p>
+</li>
+<li>
+<p>与无监督学习的区别：通过极大化目标，而非像聚类、降维那样寻找潜在的结构</p>
+</li>
+<li>
+<p>关键概念：感知(Sensation) 行动(action) 目标(goal)</p>
+</li>
+<li>
+<p>四要素：</p>
+<ul>
+<li>
+<p>策略(policy) ：从（感知到的）状态(state)到（采取的）行动(action)的映射</p>
+</li>
+<li>
+<p>回报信号(reward signal) ：行动后收到的即时回报</p>
+</li>
+<li>
+<p>价值函数(value function) ：状态在未来的总体（长期）回报，即对最终目标的贡献（e.g.走迷宫中某一位置距离终点的距离）</p>
+</li>
+<li>
+<p>环境模型 ： 模拟/描述环境的行为</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="多臂老虎机"><a class="markdownIt-Anchor" href="#多臂老虎机"></a> 多臂老虎机</h3>
+<ul>
+<li>
+<p>思路 ： 每次面临有 k 个选择的选项（k台出货率不同的老虎机），当选择了一个选项&lt;行动 a &gt;后（选择拉下第 i 台老虎机），得到回报 R （吐出一定数量的钱），R的静态分布取决于 a ，即只与选择的老虎机有关，尝试逐步选择 N 个行动$A_t (t &#x3D; 1,2,...,N)$，使获得的总回报$\sum_{i&#x3D;1}^N R_t$最大</p>
+<ul>
+<li>实际上是 探索—利用 的平衡：探索多了，更容易选到最好的那台老虎机，但能使用最好的那台的次数会少，利用多了，最终利用到最好老虎机的概率就不高</li>
+</ul>
+</li>
+<li>
+<p>价值(value) ： 行动 a 的价值定义为：$q_*(a) &#x3D; E(R_t|A_t &#x3D; a)$，也就是第 a 台老虎机平均能吐出的钱数，而$q_*(a)$实际上是未知的，在第 t 步做选择时只能根据前  t-1 步的结果计算$Q_t(a)$</p>
+</li>
+<li>
+<p>计算方法：</p>
+<ul>
+<li>
+<p>行动-价值方法：估计行动 a 的价值，并据此采取行动 e.g.$Q_t(a) &#x3D; \frac{\sum_{i&#x3D;1}^{t-1}R_iI(A_i &#x3D; a)}{\sum_{i&#x3D;1}^{t-1}I(A_i &#x3D; a)}$，其中$I(A_i &#x3D; a)$是第 i 步是否采取 a 策略的示性函数</p>
+<p>此外，也可以采用 Bayes 方法，如通过假定 a 的价值$Q_0(a)$初始分布是 Beta 分布$B(\alpha,\beta)$，并随后续产出的 reward 不断更新分布的参数，并最终得到 a 的价值的分布，并计算均值得到$q_*(a)$</p>
+</li>
+</ul>
+<p>*$Q_t$更新的在线学习算法：</p>
+<p>假设某个行动 a 被采纳了 n 次，则其价值函数的新估计值$Q_{n+1} &#x3D; \frac 1{n}\sum_{i&#x3D;1}^nR_i &#x3D; \frac 1{n}(R_n + (n-1)Q_n) &#x3D; Q_n + \eta(R_n - Q_n)$，其中$\eta &#x3D; \frac 1{n}$，也可设为其他值</p>
+<p>对于非静态的分布（即若$p(R|a)$随时间变化），合理的做法是给更近的样本赋予更大的权重，这可以通过设置$\eta$实现</p>
+<p>如将$\eta$设置为常数而不随 n 变化，可以通过递归运算得到$Q_{n+1} &#x3D; (1-\eta)^nQ_1 + \sum_{i&#x3D;1}^n\eta(1-\eta)^{n-i}R_i$，就得到了指数近因加权平均</p>
+<p>在得到 t  时刻各种行动的价值函数后，有一些用于选取策略的方法：</p>
+<ul>
+<li>
+<p>贪婪算法：</p>
+<p>t 时刻选取的行动$A_t &#x3D; \mathop{\arg\max}\limits_{a} Q_t(a)$，即每次都选当前价值最大的行动</p>
+<p>常常收敛不到最好的行动</p>
+</li>
+</ul>
+<p>*$\epsilon$- 贪心算法</p>
+<p>在贪心算法基础上，每次有小概率$\epsilon$随机选择各种行动</p>
+<p>LLN可以证明，无限长时间会收敛到最好的那台老虎机</p>
+<ul>
+<li>
+<p>置信区间上界算法（不计算）</p>
+<p>$Q_t(a)$是对$q_*(a)$的估计，可以证明对 a 的采样样本越多，估计就越准确，变化范围（误差）与$\sqrt{\frac 1{N_t(a)}}$成正比，其中$N_t(a)$即为 t 时刻对 a 行动的采样数，对应的表达式为$\mu &#x3D; \overline{x} + \frac 1{\sqrt{n}}\sqrt{s^2}$其中 μ 为数学期望，$\overline{x}$与$s^2$分别为样本均值和方差</p>
+<p>UCB 算法基于面对不确定性时的乐观原则，以期望值的置信区间的上界为选择行动的标准，其中一种 UCB 方法为$A_t &#x3D; \mathop{\arg\max}\limits_{a}[Q_t(a) + c\sigma_t(a)\sqrt{\frac{lnt}{N_t(a)}}]$，数学上可证，只要训练次数 n 足够多，UCB算法 a.s. 找到最好的一台老虎机</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="markov-决策过程"><a class="markdownIt-Anchor" href="#markov-决策过程"></a> Markov 决策过程</h3>
+<ul>
+<li>
+<p>状态转移矩阵：</p>
+<p>$$\begin{bmatrix}
+P_{11} &amp; P_{12} &amp; ... &amp; P_{1n}\\ 
+P_{21} &amp; P_{22} &amp; ... &amp; P_{2n}\\
+... &amp; ... &amp; &amp; ...\\
+P_{n1} &amp; P_{n2} &amp; ... &amp; P_{nn}\\
+\end{bmatrix}$$</p><p>其中$P_{ij}$为从状态 i 转移到状态 j 的概率</p>
+<p>Markov 过程 t+1 时刻某事件的概率，只取决于 t 时刻的状态</p>
+</li>
+<li>
+<p>有限马尔科夫决策过程：</p>
+<ul>
+<li>
+<p>思路：</p>
+<p>与多臂老虎机只考虑行动 a 的价值不同，马尔科夫决策过程(MDP)同时考虑当前状态 s 和采取的行动 a ，得到价值函数$q_*(s,a)$，由此得到三个量：</p>
+<p>状态转移概率  $p(s&#39;|s,a) &#x3D; \sum_{r\in R}p(s&#39;,r|s,a)$  [全概率公式]</p>
+<p>状态-行动的回报期望值$r(s,a) &#x3D; \sum_{s&#39; \in S}r[\sum_{s&#39; in S}p(s&#39;,r|s,a)] &#x3D;\sum_{r \in R , s&#39; \in S} rp(s&#39;,r|s,a)$</p>
+<p>状态-行动-后继状态的回报期望值$r(s,a,s&#39;) &#x3D; \sum_{r \in R}rp(r|s,a,s&#39;) &#x3D; \sum_{r \in R}r\frac {p(s&#39;,r|s,a)}{p(s&#39;|s,a)}$</p>
+<p>MDP 框架把目标导向行为的强化学习概括为智能体与环境之间来回传递的三种信号：做出的行动(a)，做出行动时所处的状态(s)，智能体的目标（回报 r）</p>
+<ul>
+<li>
+<p>目标函数：</p>
+<p>最简单的情况下，定义t时刻的目标函数$G_t &#x3D; R_{t+1} + R_{t+2} + ... + R_{T}$，其中T为终止时刻，在 t 时刻的优化目标就是使$G_t$最大化</p>
+<p>对于没有终止时刻 T 的涉及无穷长时间的任务，此时一般引入贬值的观点，定义$G_t&#39; &#x3D; R_{t+1} + \gamma R_{t+2} + \gamma^2R_{t+3} + ...$此时得到的$G_t&#39;$往往是收敛的，满足递推关系$G_t&#39; &#x3D; R_{t+1}+\gamma G_{t+1}&#39;$</p>
+</li>
+<li>
+<p>策略函数：</p>
+<p>给出了当状态为 s 时采取行动 a 的概率$\pi(a|s)$</p>
+</li>
+<li>
+<p>价值函数：</p>
+<p>状态价值函数：</p>
+<p>状态 s 在策略 π 下的价值函数是其最后达到目标的期望值，即：$v_{\pi}(s) &#x3D; E_{\pi}[G_t|S_t &#x3D; s]$</p>
+<p>行动价值函数：</p>
+<p>在策略 π 下，对状态 s 采取行动 a 的价值函数为：  $q_{\pi}(s,a) &#x3D; E_{\pi}[G_t|S_t &#x3D; s , A_t &#x3D; a]$</p>
+<p>容易看出，$v_{\pi}(s) &#x3D; \sum_{a}q_{\pi}(s,a)\pi(a|s)$[全期望公式]</p>
+</li>
+</ul>
+<p>*$v_{\pi}(s)$的求解——Bellman 方程：</p>
+<p>利用带$\gamma$的$G_t$的递推关系，结合上述$v_{\pi}(s) &#x3D; \sum_{a}q_{\pi}(s,a)\pi(a|s)$</p>
+<p>$v_{\pi}(s) &#x3D; E_\pi[G_t|S_t &#x3D; s] \\ \hspace{2.5em} &#x3D; E_{\pi}[R_{t+1} + \gamma G_{t+1}|S_t &#x3D; s] \\ \hspace{2.5em} &#x3D; \sum_{a}\{ \pi(a|s)\sum_{s&#39;,r}E_\pi[r+\gamma G_{t+1}|S_{t+1} &#x3D; s&#39;,r &#x3D; r]p(s&#39;,r|s,a)\} \\ \hspace{2.5em} &#x3D; \sum_a \{\pi(a|s)\sum_{s&#39;,r}[r+\gamma E_{\pi}[G_{t+1}|S_{t+1} &#x3D; s&#39;]]p(s&#39;,r|s,a)\} \\ \hspace{2.5em} &#x3D; \sum_a \{\pi(a|s)\sum_{s&#39;,r}[r+\gamma v_{\pi}(s&#39;)]p(s&#39;,r|s,a)\} \\ \hspace{2.5em} &#x3D; E_\pi[R_{t+1}+\gamma v_\pi(S_{t+1})|S_t &#x3D; s]$</p>
+<p>利用这一方程组（多个 s） ,可以基于$p(s&#39;,r|s,a)$与$\pi(a|s)$求出$v_{\pi}(s)$，构成了很多策略学习算法的理论基础</p>
+<ul>
+<li>
+<p><strong>Bellman 最优方程 ：</strong></p>
+<p>状态价值函数的 Bellman 最优方程：</p>
+<p>可知$v_*(s) &#x3D; \max\limits_{a}q_{\pi_*}(s,a) \hspace{2em}当前状态下采取最优行动 \\ \hspace{4.2em} &#x3D; \max\limits_{a} E_{\pi_*}[G_t|S_t &#x3D; s , A_t &#x3D; a] \\ \hspace{4.2em} &#x3D; \max\limits_{a}\sum_{s&#39;,r}p(s&#39;,r|s,a)[r+\gamma v_*(s&#39;)]$</p>
+<p>行动价值函数的 Bellman 最优方程：</p>
+<p>$q_*(s,a) &#x3D; \max \sum_{s&#39;,r}[r+\gamma v_{\pi}(s&#39;)]p(s&#39;,r|s,a) \\ \hspace{3.4em} &#x3D; \sum_{s&#39;,r}[r+\gamma v_{*}(s&#39;)]p(s&#39;,r|s,a) \\ \hspace{3.4em}&#x3D; \sum_{s&#39;,r}[r+\gamma \max\limits_{a&#39;}q_*(s&#39;,a&#39;)]p(s&#39;,r|s,a)$</p>
+<p>原则上可以基于 Bellman 最优方程求解 v_<em>(s) 与 q_</em>(s,a) ，二者包含了长期回报的信息，在求得二者的基础上，如果要求某状态下下一步的最佳行动，只需要求出$\mathop{\arg\max}\limits_{a} E_{\pi_*}[G_t|S_t &#x3D; s , A_t &#x3D; a]$， 或者求$\mathop{\arg\max}\limits_{a} q_*(s,a)$</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Markov 决策过程的解法</p>
+<ul>
+<li>
+<p>动态规划 (Dynamic Programming)</p>
+<p>可用于模型完全已知的 Markov 决策过程的求解</p>
+<ul>
+<li>
+<p>思路：</p>
+<ul>
+<li>
+<p>策略评估方式：</p>
+<p>对于某一策略 π，按照$v_{\pi}(s) &#x3D; \sum_a \{\pi(a|s)\sum_{s&#39;,r}[r+\gamma v_{\pi}(s&#39;)]p(s&#39;,r|s,a)\}$评估，要求得各个状态下最大的$v_{\pi}(s)$，可以作为线性方程组尝试直接求解，也可以通过迭代法，求$v_{k+1}(s) &#x3D; \sum_a \{\pi(a|s)\sum_{s&#39;,r}[r+\gamma v_{k}(s&#39;)]p(s&#39;,r|s,a)\}$不断迭代，可以证明，只要$v_{\pi}$存在，则$v_k$在$k \to +\infty$时收敛于$v_{\pi}$，其中 s’ 为所有经过一次迭代（如迷宫中走一步）能达到状态 s 的状态</p>
+</li>
+<li>
+<p>策略改进思路：</p>
+<p>如，在某一策略 π 的执行过程中，突然有一次选择在状态 s 时执行一次行动 a ，可以求出此时的行动价值函数$q_{\pi}(s,a) &#x3D; \sum_{s&#39;,r}[r+\gamma v_{\pi}(s&#39;)]p(s&#39;,r|s,a)$， 如果发现此时改变后的$q_{\pi}(s,a) &gt;$改进前按π策略走的$v_\pi(s)$，则说明在 s 状态下进行 a 确实是比原策略更优的选择，后续在状态s下采取行动 a 而不沿用原策略 π，这样就完成了一步改进</p>
+<ul>
+<li>
+<p>策略改进定理：</p>
+<p>对于确定性的策略 π 和 π’ ，如果对任意状态 s 有$q_\pi(s,\pi&#39;(s)) \geq v_\pi(s)$，则 π’ 比 π 好，至少二者一样好，也就是$v_{\pi&#39;}(s) \geq v_\pi(s) ,\forall s \in S$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>一种改进策略：贪心策略</p>
+<p>对于 π 在 s 状态下的操作进行单步搜索改进，得到 π’ ，其在 s 状态之外执行与 π 相同的操作，但在 s 状态执行$\pi&#39;(s) &#x3D; \mathop{\arg\max}\limits_aq_\pi(s,a) &#x3D; \mathop{\arg\max}\limits_{a}\sum_{s&#39;,r}[r+\gamma v_\pi(s)]p(s&#39;,r|s,a)$，这可以保证改进后的 π’ 与 π 一样或更优，如果迭代到无法再改进，此时π’与π均是最佳策略</p>
+</li>
+<li>
+<p>改进的迭代方法</p>
+<ul>
+<li>
+<p>策略迭代</p>
+<p>[1] 策略评估（E）：计算策略 $\pi_k$ 的价值函数 $v_{\pi_k}(s)$</p>
+<p>[2] 策略改进（I）：根据 $\pi_k$应用贪心算法改进得到改进后的策略 $\pi_{k+1}$</p>
+<p>[3] 重复迭代[1][2] ，直到发现没法进一步改进，收敛到最优策略 π</p>
+</li>
+<li>
+<p>价值迭代（改变了策略迭代的评估步骤）</p>
+<p>精确计算 $v_{\pi_k}(s)$ 需要多次迭代，而由于$\pi_k$本身就需要多次迭代，精确计算每个$\pi_k$的价值函数并无必要，如果只迭代一次计算$v_{\pi_k}(s)$，就得到价值迭代算法：$v_{k+1}(s) &#x3D; \max\limits_a\sum_{s&#39;,r}[r+\gamma v_k(s&#39;)]p(s&#39;,r|s,a)$，可看成 Bellman最优方程的直接迭代算法</p>
+</li>
+<li>
+<p>广义策略迭代</p>
+<p>前面的策略迭代可以进行更多改动：</p>
+<ul>
+<li>
+<p>如状态价值 v 的更新可以异步进行</p>
+</li>
+<li>
+<p>又如只有部分状态的价值与策略进行更新</p>
+</li>
+<li>
+<p>…</p>
+</li>
+</ul>
+<p>但核心策略依然是策略评估（E）和策略改进（I）不断交替</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>动态规划的效率：</p>
+<p>计算复杂度优于在策略空间直接搜索的算法</p>
+<p>能处理百万级别的状态数</p>
+<p>但在维度灾难时（如状态数 $10^{20}$ 过大时）时直接应用会有困难</p>
+</li>
+</ul>
+</li>
+<li>
+<p>蒙特卡罗方法 (Monte Carlo methods)</p>
+<p>不需要关于环境的完整信息，从经验中（即来自真实或模拟的环境交互中采样得到的状态、行动、回报的序列）</p>
+<ul>
+<li>
+<p>想法：</p>
+<p>用采样序列性质的平均值来估计（代替）其理论期望值（Khinchin LLN）</p>
+<p>e.g. 状态价值函数 $v_\pi(s) &#x3D; E_\pi[G_t|S_t &#x3D; s]$ 为了估计这个状态价值函数，也就是这个期望值，可以通过在状态 s 下取多条实现目标 G_t 的轨道 ， 得到 $G_t &#x3D; R_{t+1} + R_{t+2} + ... + R_{T}$ ，对若干 $G_t$ 求均值即可得到估计</p>
+</li>
+<li>
+<p>首次访问型 MC （评估策略 π）</p>
+<ul>
+<li>
+<p>输入：待评估的策略 π</p>
+</li>
+<li>
+<p>初始化：对所有状态 s ， 用某种缺省值初始化 $V_\pi(s)$，对每一个  s 都创建一个相应的空列表 Returns(s)</p>
+</li>
+<li>
+<p>无限循环（对每幕）：</p>
+<p>根据策略 π 生成一幕序列：$S_0 A_0 R_1 S_1 A_1 R_2 ... S_{T-1} A_{t-1} R_{T}$（在状态$S_0$下执行操作$A_0$，得到回报$R_1$，到达状态$S_1$并不断循环，直至达成目标如走到终点）</p>
+<ul>
+<li>
+<p>对每一步进行循环，循环次序：$t &#x3D; T-1 , T-2 , ... , 1,0$，循环步骤：</p>
+<p>若 $S_t$ 是在 $S_0 ... S_t$ 中第一次出现，则：</p>
+<p>将 $\gamma G_{t+1} + R_{t+1}$ 赋值给 G , 并将 G 加入 $Returns(S_t)$ 列表中</p>
+<p>若不是前 t+1 个里第一次出现，则不进行赋值操作</p>
+</li>
+</ul>
+<p>这样对多个幕序列进行操作，就可以得到每个 $S_t$ 的 $Returns(S_t)$ 列表，此时可以通过求 $\overline{Returns(S_t)}$ 来估算 $v_\pi(S_t)$ 的值</p>
+</li>
+</ul>
+</li>
+<li>
+<p>与动态规划相比，Monte Carlo 考虑各个状态的多步转移（生成多个幕序列），每步只需要考虑（产生）一个状态（一条轨道），且对每个状态的估计是独立的，而动态规划只考虑一步转移，且各个状态间 $v_\pi(s)$ 相互影响</p>
+</li>
+<li>
+<p>策略改进：</p>
+<p>可以利用同样的原理来计算 $q_\pi(s,a)$ ，并进一步利用 贪心算法/$\epsilon$-贪心算法 对已有策略 π 进行改进。</p>
+<p>采用<strong>试探性开始</strong>（ES），即以一定概率把要求解的非策略π的 s,a 作为初态 $S_0,A_0$，后续按策略 π 进行 MC 模拟，对每个 $(S_t,A_t)$ 创建列表 $Returns（S_t,A_t）$并以此列表的均值代替$q_\pi(S_t,A_t)$，并利用先前的原理改进策略π，即$\pi&#39;(S_t) &#x3D; \mathop{\arg\max}\limits_{a}q_\pi(S_t,a)$[贪心算法]</p>
+</li>
+<li>
+<p>采样方式：</p>
+<p>前面的 MC 模拟方法的采样策略称为 <strong>同轨策略</strong> ，即生成采样数据序列的策略 b 与用于实际评估的策略 π 是相同的</p>
+<p>此外，b与π也可以不同，此时的采样策略称为 <strong>离轨策略</strong> ， 比如不同策略下在状态 s 向其他状态转移的概率分布不同，生成的序列平均下来也会有差距。有时为了搜索所有的动作，以保证找到最优动作，往往需要采取非最优的行动，可以通过考虑额外的<strong>校正因子</strong>从一个策略的结果来推断另一策略的结果。</p>
+<p>比如，从$S_t$出发，轨迹$S_t,A_t,S_{t+1},A_{t+1},...,A_{T-1},S_{T}$在策略π下发生的概率：$p_\pi &#x3D; \prod_{i&#x3D;t}^{T-1}\pi(A_i|S_i)p(S_{i+1}|S_i,A_i)$ ，可知 $\rho &#x3D; \frac{p_\pi}{p_b} &#x3D; \frac{\prod_{i&#x3D;t}^{T-1}\pi(A_i|S_i)}{\prod_{i&#x3D;t}^{T-1}b(A_i|S_i)}$ ，只与选取的策略π，b有关，而与环境的响应机制</p>
+<p>所以基于前面 MC 模拟的方法，在最后对 Rturns(s) 序列求均值时，差别也只是不同轨道在不同策略下选取的概率，而这一概率之比即为$\frac{p_\pi}{p_b}$，故而在 b 策略下选取轨道对 π 策略的价值函数进行估算时，有 $v_\pi(s) &#x3D; E_b[\frac{p_\pi}{p_b}G_t|S_t &#x3D; s]$ 【法1】</p>
+<p>另外，基于选取各种轨道的概率之和为1，有$\sum_{A_t,S_{t+1},A_{t+1}...,S_T}\rho P_b(A_t,S_{t+1},A_{t+1}...,S_T|S_t,b) &#x3D; E_b[\rho|S_t &#x3D; s] &#x3D; 1$，故也可以用 $v_\pi(s) &#x3D; \frac {E_b[\frac{p_\pi}{p_b}G_t|S_t &#x3D; s]}{E_b[\rho|S_t &#x3D; s]}$ 进行估计【法2】</p>
+<p>【法1】无偏但方差较大，【法2】有偏但方差较小，实际应用时往往【法2】效果较好</p>
+</li>
+</ul>
+</li>
+<li>
+<p>时序差分算法(Temporal-Difference)</p>
+<ul>
+<li>
+<p>想法：</p>
+<p>结合了动态规划和 MC 方法的想法</p>
+<p>$$v_\pi(s) &#x3D; E_\pi[G_t|S_t &#x3D;s] ---------①
+$$</p><p>$$\hspace{3em} &#x3D; E_\pi[R_{t+1}+\gamma G_{t+1}|S_t &#x3D; s] -----②
+$$</p><p>$$\hspace{3em} &#x3D; E_\pi[R_{t+1}+\gamma v_\pi(S_t+1)|S_t&#x3D;s]---③
+$$</p><p>其中 MC 方法利用了式 ①，进行轨迹抽样来估算式①，而动态规划利用了式③，利用概率分布信息能严格处理期望值（要求模型完全已知），但用 $V(S_{t+1})$ 作为 $v_\pi(S_t+1)$ 的估计</p>
+<p>时序差分算法用抽样的方式估计期望值，同时用$V(S_{t+1})$ 作为 $v_\pi(S_t+1)$ 的估计</p>
+<p>通过在线学习，基于式③，利用 $V(S_t) + \eta[R_{t+1}+\gamma V(S_{t+1}) - V(S_t)]$来更新$V(S_t)$而不同于 MC 方法的在线学习中用 $V(S_t) + \eta[G_t - V(S_t)]$ 更新，这种新的估计方式（$V(S_t) + \eta \delta$）中的 $\delta$ 描述了 $V(S_t)$ 与更好的估计 $R_{t+1}+\gamma V(S_{t+1})$ 之间的误差，称为 <strong>TD 误差</strong></p>
+</li>
+<li>
+<p>优势：</p>
+<p>与动态规划相比，不需要模型完全已知，即不需要知道显式的 $p(s&#39;,r|s,a)$</p>
+<p>与 MC 方法相比，不需要等到一条轨迹完全走完就能更新 $V(S_t)$</p>
+</li>
+<li>
+<p>批量更新与最优性</p>
+<p>在数据有限时，通常是反复利用这些数据进行训练，直至迭代收敛。此时，只要 $\eta$ 足够小，就能确定地收敛到与 $\eta$ 无关的唯一结果</p>
+</li>
+<li>
+<p>时序差分算法的 同轨\离轨 策略：</p>
+<p>*同轨（Sarsa）：</p>
+<p>利用了五元组$(S_t,A_t,R_{t+1},S_{t+1},A_{t+1})$</p>
+<p>用 $Q(S_t,A_t) + \eta[R_{t+1} + \gamma Q(S_{t+1},A_{t+1}) - Q(S_t,A_t)]$ 来更新 $Q(S_t,A_t)$</p>
+<ul>
+<li>
+<p>离轨 (Q-学习)：</p>
+<p>根据 Bellman 最优方程：$q_*(s,a) &#x3D; \sum_{s&#39;,r}[r+\gamma \max\limits_{a&#39;}q_*(s&#39;,a&#39;)]p(s&#39;,r|s,a)$</p>
+<p>利用 $Q(S_t,A_t) + \eta[R_{t+1} + \gamma \max\limits_{a}Q(S_{t+1},a) - Q(S_t,A_t)]$ 来更新 $Q(S_t,A_t)$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>求解最优策略：</p>
+<p>一般的求解最优策略的过程中，往往包含最大化操作，如求最大的行动价值函数$q(s,a)$，这往往通过估计$Q(s,a)$进行，这通常导致正直偏差，称为最大化偏差。</p>
+<p>解决方法：最大化选择与 Q 估值使用分开的独立数据，如 <strong>双Q-学习</strong>：利用 $Q_1(S_t,A_t) + \eta[R_{t+1} + \gamma Q_2(S_{t+1},\mathop{\arg\max}\limits_{a}Q_1(S_{t+1},a)) - Q_1(S_t,A_t)]$ 来更新 $Q_1(S_t,A_t)$</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="combining"><a class="markdownIt-Anchor" href="#combining"></a> Combining</h2>
+<h3 id="committee"><a class="markdownIt-Anchor" href="#committee"></a> Committee</h3>
+<p>训练多个不同模型，取其均值作为最终预测——减小均方误差</p>
+<p>e.g. $X$ ~ $N(\mu,\sigma^2)$ ——&gt; $\overline{X}$ ~ $N(\mu,\frac 1{n} \sigma^2)$</p>
+<h3 id="bootstrap一种采样方法"><a class="markdownIt-Anchor" href="#bootstrap一种采样方法"></a> Bootstrap——一种采样方法</h3>
+<p>基于同一原始数据集，进行 M 次重采样（从同一数据集采样，但采的样可能重合，也不完全相同），训练 M 个模型</p>
+<p>可与 Committee 或 随机森林 等结合</p>
+<h3 id="boosting"><a class="markdownIt-Anchor" href="#boosting"></a> Boosting</h3>
+<p>考虑数据点的权重，训练完一个分类器后，对于预测错误的点在下次训练时增加权重，正确的减少权重</p>
+<p>e.g. AdaBoost</p>
+<h3 id="决策树"><a class="markdownIt-Anchor" href="#决策树"></a> 决策树</h3>
+<p>按照数据的某些分量将空间划分为不同区域，每个区域采用不同的分类器</p>
+<p>不需要对特征进行归一化</p>
+<p>树的结构用贪心策略构建，从根开始，每层划分时，将各部分空间划分为两部分，划分方案根据残差最小的标准选取</p>
+<p>方法：可以不断增加节点，直至残差小于某一阈值；也可以先构建一棵最大的树（每个叶子只有一个节点数据），之后再剪枝</p>
+<p>优点：直观，可解释性好</p>
+<p>缺点：对训练数据比较敏感；每个节点对输入空间的划分都是根据某个分量来进行的；是硬分类</p>
+<h3 id="随机森林"><a class="markdownIt-Anchor" href="#随机森林"></a> 随机森林</h3>
+<p>多棵决策树 + Committee 求平均</p>
+<h1 id="neural-network"><a class="markdownIt-Anchor" href="#neural-network"></a> Neural Network</h1>
+<p>神经网络相当于多层逻辑回归</p>
+<p>输入某高维数据 $(x_0(恒为1),x_1,x_2,...)$，经过多层卷积、池化、全连接等，得到输出</p>
+<ul>
+<li>
+<p>全连接层： （第k+1层）</p>
+<p>$z_i^{(k+1)} &#x3D; \sum_{j&#x3D;0}w_{ij}^{(k)}a_j^{(k)}$ 其中 $w_{ij}^{(k)}$ 为从第 k 层第 j 个变量，到第 k+1 层第 i 个变量的参数</p>
+<p>$a_i^{(k+1)} &#x3D; h(z_i^{(k+1)})$ 其中 h 为激活函数</p>
+</li>
+<li>
+<p>反向传播计算导数：</p>
+<p>设 $E_n$ 为损失函数，要求 $E_n$ 对参数 $w_{ij}^{(k)}$ 的偏导：</p>
+<p>$$\frac {\partial E_n}{\partial w_{ij}^{(k)}} &#x3D; \frac {\partial E_n}{\partial z_i^{(k+1)}} \frac {\partial z_i^{(k+1)}}{\partial w_{ij}^{(k)}} &#x3D; \frac {\partial E_n}{\partial z_i^{(k+1)}} a_j^{(k)}
+$$</p><p>$$记 \delta_j^{(k)} &#x3D; \frac {\partial E_n}{\partial z_i^{(k)}}
+$$</p><p>$$可知 \delta_j^{(k)} &#x3D; \frac {\partial E_n}{\partial [z_1^{(k+1)},z_2^{(k+1)},...]}\frac {\partial [z_1^{(k+1)},z_2^{(k+1)},...]}{\partial a_j^{(k)}} \frac {\partial a_j^{(k)}}{\partial z_i^{(k)}} 
+$$</p><p>$$\hspace{-5.2em} &#x3D; h&#39;(z_j^{(k)})\sum_i\delta_i^{(k+1)}w_{ij}^{(k)} 
+$$</p><p>正向计算传播，反向计算导数</p>
+</li>
+<li>
+<p>深度神经网络的训练方法：</p>
+<ul>
+<li>
+<p>Adam ：</p>
+<p>在梯度下降中引入力和动量的概念，调整下降速率，但不足的是在平坦处下降很慢</p>
+</li>
+<li>
+<p>小批量算法 ：</p>
+<p>因为大批量的标准差 $\sigma &#x2F; \sqrt{n}$ 使用更多样本来准确估计梯度的回报低于线性，且批次样本过多会造成训练集的冗余</p>
+<p>小批量e.g. 每次只使用单个样本，称为随机梯度下降或在线学习法</p>
+</li>
+<li>
+<p>两种防止梯度消失的方法：</p>
+<p>梯度消失：由于各参数 w 的初值一般为随机的较小值，反向计算导数时多级 w 相乘，会导致梯度极小，下降极慢甚至梯度消失（同样，若 w 给了较大的初值会导致梯度爆炸）</p>
+<ul>
+<li>
+<p>解决消失的方法：</p>
+<p>① 批量归一化</p>
+<p>对各层 $z_i^{(k)}$ 进行归一化，防止其在前面各层的影响下过大 / 过小</p>
+<p>② 残差网络</p>
+<p>跳层连接，在 k+1 层计算时，不只接受 k 层的 $a^{(k)}$ ，还接受 k-1 层的 $a^{(k-1)}$ 防止其过小</p>
+</li>
+</ul>
+</li>
+<li>
+<p>两种防止过拟合的方法：</p>
+<p>① 提前终止</p>
+<p>② 丢弃法：每个训练批次中，忽略50%的隐藏层节点，多批次训练，在预测时，考虑所有节点，但各自权重减半</p>
+</li>
+</ul>
+</li>
+<li>
+<p>三种生成式模型</p>
+<ul>
+<li>
+<p>GAN (Generative Adversarial Nets)</p>
+<p>生成器生成，判别器判断是否真，反馈给生成器，不断对抗优化，最后收敛于稳定解</p>
+</li>
+<li>
+<p>cGAN</p>
+<p>在 GAN 的基础上增加条件信息（标签、图片等），标签为条件时，生成器 G 输出图片，图像为条件时, G 输出标签</p>
+</li>
+<li>
+<p>cycle GAN</p>
+<p>用于画面风格转化</p>
+<p>两套 GAN ， G和F，G根据 X 输出 Y 风格的图像，F根据 Y 输出 X 风格的图像，这样，二者之间可以互相补充数据集，如 G根据 X 生成了 Y ,F再根据 Y 生成X’，这样 G 就多了一个数据</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+        <div class="share-wrapper">
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F02%2F%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2F" target="_blank" rel="noopener noreferrer" title="机器学习笔记">
+      <div class="share-icon icon icon-facebook">
+        
+      </div>
+    </a>
+  
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F02%2F%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2F&amp;text=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&amp;via=https%3A%2F%2FQuarkPlanks.github.io" target="_blank" rel="noopener noreferrer" title="机器学习笔记">
+      <div class="share-icon icon icon-twitter">
+        
+      </div>
+    </a>
+  
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F02%2F%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2F&amp;appkey=&amp;title=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="机器学习笔记">
+      <div class="share-icon icon icon-weibo">
+        
+      </div>
+    </a>
+  
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&amp;desc=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&amp;source=https%3A%2F%2FQuarkPlanks.github.io" target="_blank" rel="noopener noreferrer" title="机器学习笔记">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="机器学习笔记">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hexo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/cover2.jpg" data-sizes="auto" alt="数学实验代码" class="lazyload">
+          
+        
+        <a href="/2025/05/02/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            数学实验代码
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/cover2.jpg" data-sizes="auto" alt="数学实验笔记" class="lazyload">
+        
+      
+      <a href="/2025/05/02/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          数学实验笔记
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+        
+      
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="giscus">
+              <span>giscus</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment giscus-comment" data-aos="fade-up"
+          id="giscus-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Guga Frog
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        24.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        01:56
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#machine-learning"><span class="toc-number">1.</span> <span class="toc-text"> Machine Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#supervised-learning"><span class="toc-number">1.1.</span> <span class="toc-text"> Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#regression"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Regression</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-number">1.1.1.1.</span> <span class="toc-text"> 线性回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#k-%E8%BF%91%E9%82%BB-knn-%E5%9B%9E%E5%BD%92"><span class="toc-number">1.1.1.2.</span> <span class="toc-text"> K 近邻 (KNN) 回归</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#classification"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-number">1.1.2.1.</span> <span class="toc-text"> 逻辑回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#k-%E8%BF%91%E9%82%BB%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.2.2.</span> <span class="toc-text"> K 近邻分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BAsvm"><span class="toc-number">1.1.2.3.</span> <span class="toc-text"> 支持向量机（SVM）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unsupervised-learning"><span class="toc-number">1.2.</span> <span class="toc-text"> Unsupervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 聚类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#k-%E5%9D%87%E5%80%BC-k-means-clustering"><span class="toc-number">1.2.1.1.</span> <span class="toc-text"> K 均值 (K-Means Clustering)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.1.2.</span> <span class="toc-text"> 高斯混合模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%8D%E7%BB%B4"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 降维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90-pca"><span class="toc-number">1.2.2.1.</span> <span class="toc-text"> 主成分分析 （PCA）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.2.</span> <span class="toc-text"> 非线性方法—</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AD%89%E5%BA%A6%E9%87%8F%E6%98%A0%E5%B0%84-isomap"><span class="toc-number">1.2.2.2.1.</span> <span class="toc-text"> 等度量映射 (Isomap)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8-autoencoder"><span class="toc-number">1.2.2.2.2.</span> <span class="toc-text"> 自编码器 (autoencoder)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%97%E9%99%90%E7%8E%BB%E5%B0%94%E5%85%B9%E6%9B%BC%E6%9C%BA"><span class="toc-number">1.2.2.2.3.</span> <span class="toc-text"> 受限玻尔兹曼机</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reinforcement-learning"><span class="toc-number">1.3.</span> <span class="toc-text"> Reinforcement Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%87%82%E8%80%81%E8%99%8E%E6%9C%BA"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 多臂老虎机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markov-%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text"> Markov 决策过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#combining"><span class="toc-number">1.4.</span> <span class="toc-text"> Combining</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#committee"><span class="toc-number">1.4.1.</span> <span class="toc-text"> Committee</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bootstrap%E4%B8%80%E7%A7%8D%E9%87%87%E6%A0%B7%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text"> Bootstrap——一种采样方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#boosting"><span class="toc-number">1.4.3.</span> <span class="toc-text"> Boosting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 决策树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97"><span class="toc-number">1.4.5.</span> <span class="toc-text"> 随机森林</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#neural-network"><span class="toc-number">2.</span> <span class="toc-text"> Neural Network</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar2.jpg" data-sizes="auto" alt="Guga Frog" class="lazyload">
+  <div class="sidebar-author-name">Guga Frog</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:1412580863@qq.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/QuarkPlanks itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[800,1400],"shapeOptions":{"radius":[8,16],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[800,1400],"shapeOptions":{"radius":0,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Guga Frog",
+          title: "机器学习笔记",
+          url: "https://quarkplanks.github.io/2025/05/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
+          excerpt: "",
+          description: "",
+          stripContent: " Machine Learning  Supervised Learning  Regression  线性回归  最基本的形式  $$f( \pmb{x} , \pmb{w}) &amp;#x3D; w_0 + w_1x + w_2x^2 + w_3x^3 + ... $$  思路： 通过给定的一系列 ( x_train,y_true_train ) ，求解 w 使得在指定的损失函数 (Loss Function)下，训练集中1的误差最小   常用的误差函数： MSE Loss 均方误差（含正则化项防",
+          date: "Fri May 02 2025 13:15:27 GMT+0800",
+          updated: "Sun May 04 2025 01:14:52 GMT+0800",
+          cover: "/images/banner3.png",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+          
+<script src="https://npm.webcache.cn/html-to-image@1.11.11/dist/html-to-image.js" integrity="sha384-UbfRVKN3&#x2F;elS1r7JcK2FhmPP+KlJ4CvYwbyYD7tH+uTkbT9bNJr9eJeQ0FoFbAgz" crossorigin="anonymous" defer data-pjax></script>
+
+          
+<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+          var serverURLs = undefined;
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "jbAZ6gbEdxxes87jTW7R0Akh-MdYXbMMI",
+              appKey: "SyZiClEmH88WtGG8nV5oqGNd",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: document.documentElement.lang || 'en',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname,
+              serverURLs
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: false,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: '',
+          lang: document.documentElement.lang || 'en',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.16/dist/twikoo.all.min.js',
+          'sha384-lDHsr5aZmkMS0eKnsUu6e9RWP+dRmn7sgjRAKGOAoXfMyzbUK6Qi86zZK7R+KvRV'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.tcomment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            })
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId,
+            distractionFreeMode: false,
+            language: document.documentElement.lang || 'en',
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'QuarkPlanks/comment');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOOj7vZA');
+        giscusScript.setAttribute('data-category', 'Announcements'); 
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOOj7vZM4CpvIa');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', document.documentElement.lang || 'en');
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.8.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+<script data-pjax>
+  var updateTime = _$('#post-update-time')?.innerHTML;
+
+  if (updateTime) {
+    const update = new Date(updateTime);
+    const now = new Date();
+    const diff = now - update;
+    const days = diff / 86400000;
+    const { daysAgo, message: template } = window.REIMU_CONFIG.outdate;
+    if (days >= daysAgo) {
+      let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+      if (typeof template === 'string') {
+        message = template.replace(/{time}/, updateTime);
+      } else if (typeof template === 'object') {
+        const lang = document.documentElement.lang;
+        const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+        if (messageKey && template[messageKey]) {
+          message = template[messageKey].replace(/{time}/, updateTime);
+        }
+      }
+      const blockquote = _$('#outdate-blockquote');
+      if (blockquote) {
+        blockquote.querySelector('p').innerText = message;
+        blockquote.style.display = 'block';
+      }
+    }
+  }
+</script>
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6&#x2F;1Nxveei" crossorigin="anonymous" defer data-pjax></script>
+
+    <script data-pjax>
+      window.MathJax = {"tex":{"tags":"ams","useLabelIds":true,"inlineMath":[["$","$"],["\\\\(","\\\\)"]],"displayMath":[["$$","$$"],["\\\\[","\\\\]"]],"processEscapes":true,"processEnvironments":true,"autoload":{"color":[],"colorv2":["color"]},"packages":{"[+]":["noerrors"]}},"options":{"skipHtmlTags":["script","noscript","style","textarea","pre","code"],"ignoreHtmlClass":"tex2jax_ignore","processHtmlClass":"tex2jax_process"},"loader":{"load":["input/asciimath","[tex]/noerrors"]}};
+    </script>
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

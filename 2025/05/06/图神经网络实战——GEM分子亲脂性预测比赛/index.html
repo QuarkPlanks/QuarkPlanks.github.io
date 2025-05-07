@@ -1,0 +1,1197 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.outdate = {"enable":true,"daysAgo":180,"message":{"en":"This article was last updated on {time}. Please note that the content may no longer be applicable.","zh-CN":"本文最后更新于 {time}，请注意文中内容可能已不适用。","zh-TW":"本文最後更新於 {time}，請注意文中內容可能已不適用。","ja":"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://QuarkPlanks.github.io';</script>
+  
+  <title>
+    图神经网络实战——GEM分子亲脂性预测比赛 |
+    
+    Welcome to my blog !
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="库安装 1234567!pip install --upgrade pip!pip install rdkit!pip install scikit-learn&#x3D;&#x3D;1.0.2!pip install scipy&#x3D;&#x3D;1.7.3!pip install seaborn&#x3D;&#x3D;0.12.2!pip install pgl&#x3D;&#x3D;2.2.3!pip install numpy&#x3D;&#x3D;1.21.6  数据预处理  导">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图神经网络实战——GEM分子亲脂性预测比赛">
+<meta property="og:url" content="https://quarkplanks.github.io/2025/05/06/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94GEM%E5%88%86%E5%AD%90%E4%BA%B2%E8%84%82%E6%80%A7%E9%A2%84%E6%B5%8B%E6%AF%94%E8%B5%9B/index.html">
+<meta property="og:site_name" content="Welcome to my blog !">
+<meta property="og:description" content="库安装 1234567!pip install --upgrade pip!pip install rdkit!pip install scikit-learn&#x3D;&#x3D;1.0.2!pip install scipy&#x3D;&#x3D;1.7.3!pip install seaborn&#x3D;&#x3D;0.12.2!pip install pgl&#x3D;&#x3D;2.2.3!pip install numpy&#x3D;&#x3D;1.21.6  数据预处理  导">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-06T01:26:30.000Z">
+<meta property="article:modified_time" content="2025-05-06T05:18:52.447Z">
+<meta property="article:author" content="Guga Frog">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="图神经网络">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Welcome to my blog !" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://s1.imagehub.cc/images/2025/05/05/635ec9652f1a5a3245b8839b86d87ffa.jpg" alt="图神经网络实战——GEM分子亲脂性预测比赛">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">图神经网络实战——GEM分子亲脂性预测比赛</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%93%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text"> 库安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text"> 数据预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">2.1.</span> <span class="toc-text"> 导入数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#smiles-%E6%A0%87%E5%87%86%E5%8C%96"><span class="toc-number">2.2.</span> <span class="toc-text"> smiles 标准化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E9%87%8D"><span class="toc-number">2.3.</span> <span class="toc-text"> 去重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E5%88%86%E5%AD%90%E9%87%8F%E5%88%A0%E7%A6%BB%E7%BE%A4%E7%82%B9"><span class="toc-number">2.4.</span> <span class="toc-text"> 根据分子量删离群点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%90%AB%E7%BD%95%E8%A7%81%E5%85%83%E7%B4%A0%E7%9A%84%E7%82%B9"><span class="toc-number">2.5.</span> <span class="toc-text"> 删除含罕见元素的点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E5%88%86%E5%AD%90%E6%8C%87%E7%BA%B9%E5%88%A0%E7%A6%BB%E7%BE%A4%E7%82%B9"><span class="toc-number">2.6.</span> <span class="toc-text"> 根据分子指纹删离群点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%A4%84%E7%90%86%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">2.7.</span> <span class="toc-text"> 保存处理后的数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86-smiles-%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%9B%BE%E6%95%B0%E6%8D%AE"><span class="toc-number">3.</span> <span class="toc-text"> 将 smiles 转化为图数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-dataloader"><span class="toc-number">4.</span> <span class="toc-text"> 定义 DataLoader</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-model"><span class="toc-number">5.</span> <span class="toc-text"> 定义 Model</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E8%AE%AD%E7%BB%83%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text"> 定义训练函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.</span> <span class="toc-text"> 训练模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">8.</span> <span class="toc-text"> 可视化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="toc-number">9.</span> <span class="toc-text"> 模型评估</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar2.jpg" data-sizes="auto" alt="Guga Frog" class="lazyload">
+  <div class="sidebar-author-name">Guga Frog</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:1412580863@qq.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/QuarkPlanks itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-图神经网络实战——GEM分子亲脂性预测比赛" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-05-06T01:26:30.000Z" itemprop="datePublished">2025-05-06</time>
+    <time style="display: none;" id="post-update-time">2025-05-06</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81/" data-aos="zoom-in">代码</a><a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-aos="zoom-in">学习笔记</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote id="outdate-blockquote" style="display: none;"><p></p></blockquote>
+      
+      
+        <h1 id="库安装"><a class="markdownIt-Anchor" href="#库安装"></a> 库安装</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">!pip install --upgrade pip</span><br><span class="line">!pip install rdkit</span><br><span class="line">!pip install scikit-learn==<span class="number">1.0</span><span class="number">.2</span></span><br><span class="line">!pip install scipy==<span class="number">1.7</span><span class="number">.3</span></span><br><span class="line">!pip install seaborn==<span class="number">0.12</span><span class="number">.2</span></span><br><span class="line">!pip install pgl==<span class="number">2.2</span><span class="number">.3</span></span><br><span class="line">!pip install numpy==<span class="number">1.21</span><span class="number">.6</span></span><br></pre></td></tr></table></figure>
+<h1 id="数据预处理"><a class="markdownIt-Anchor" href="#数据预处理"></a> 数据预处理</h1>
+<h2 id="导入数据集"><a class="markdownIt-Anchor" href="#导入数据集"></a> 导入数据集</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据预处理</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">train_df = pd.read_csv(<span class="string">&#x27;mydata/raw/train.csv&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(train_df))</span><br><span class="line"><span class="built_in">print</span>(train_df.head())</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">sns.<span class="built_in">set</span>()</span><br><span class="line">sns.histplot(train_df[<span class="string">&#x27;label&#x27;</span>],kde=<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="smiles-标准化"><a class="markdownIt-Anchor" href="#smiles-标准化"></a> smiles 标准化</h2>
+<ul>
+<li>使每个 smiles 只含一个字符串最长的分子式</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Smiles 标准化</span></span><br><span class="line"><span class="comment"># 对含多个分子的，只保留字符串最长的</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> train_df.iterrows():</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;.&#x27;</span> <span class="keyword">in</span> row[<span class="string">&#x27;smiles&#x27;</span>]:</span><br><span class="line">        smiles_list = row[<span class="string">&#x27;smiles&#x27;</span>].split(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">        new_smiles = smiles_list[np.argmax(<span class="built_in">map</span>(<span class="built_in">len</span>,smiles_list))]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(train_df[train_df[<span class="string">&#x27;smiles&#x27;</span>] == new_smiles]):</span><br><span class="line">            train_df.drop(index, inplace=<span class="literal">True</span>) <span class="comment"># 若在 df 中已存在，则删除该行</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            train_df.loc[index, <span class="string">&#x27;smiles&#x27;</span>] = new_smiles</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(train_df))</span><br><span class="line"><span class="comment"># 标准化</span></span><br><span class="line"><span class="keyword">from</span> rdkit <span class="keyword">import</span> Chem</span><br><span class="line"><span class="keyword">from</span> rdkit <span class="keyword">import</span> RDLogger</span><br><span class="line">RDLogger.DisableLog(<span class="string">&#x27;rdApp.*&#x27;</span>) <span class="comment"># 关闭警告</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> train_df.iterrows():</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        mol = Chem.MolFromSmiles(row[<span class="string">&#x27;smiles&#x27;</span>])</span><br><span class="line">        new_smiles = Chem.MolToSmiles(mol)</span><br><span class="line">        train_df.loc[index, <span class="string">&#x27;smiles&#x27;</span>] = new_smiles</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        train_df.drop(index, inplace=<span class="literal">True</span>) <span class="comment"># 删除无法转换的行</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(train_df))</span><br></pre></td></tr></table></figure>
+<h2 id="去重"><a class="markdownIt-Anchor" href="#去重"></a> 去重</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">duplicate_df = train_df[train_df.duplicated(<span class="string">&#x27;smiles&#x27;</span>, keep=<span class="literal">False</span>)] <span class="comment"># ?</span></span><br><span class="line">duplicate_df.sort_values(<span class="string">&#x27;smiles&#x27;</span>)</span><br><span class="line"><span class="comment"># 观察发现无重复数据，不必去重</span></span><br></pre></td></tr></table></figure>
+<h2 id="根据分子量删离群点"><a class="markdownIt-Anchor" href="#根据分子量删离群点"></a> 根据分子量删离群点</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 处理离群点</span></span><br><span class="line"><span class="keyword">from</span> rdkit.Chem <span class="keyword">import</span> Descriptors</span><br><span class="line"></span><br><span class="line">mw = []</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> train_df.iterrows():</span><br><span class="line">    mol = Chem.MolFromSmiles(row[<span class="string">&#x27;smiles&#x27;</span>])</span><br><span class="line">    mw.append(Descriptors.MolWt(mol))</span><br><span class="line"></span><br><span class="line">train_df[<span class="string">&#x27;mw&#x27;</span>] = mw</span><br><span class="line"><span class="built_in">print</span>(train_df.head())</span><br><span class="line">sns.histplot(train_df[<span class="string">&#x27;mw&#x27;</span>], kde=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 删分子量过小/过大的点</span></span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> train_df.iterrows():</span><br><span class="line">    <span class="keyword">if</span> row[<span class="string">&#x27;mw&#x27;</span>] &lt; <span class="number">100</span> <span class="keyword">or</span> row[<span class="string">&#x27;mw&#x27;</span>] &gt; <span class="number">700</span>:</span><br><span class="line">        train_df.drop(index, inplace=<span class="literal">True</span>) <span class="comment"># 删除分子量过小/过大的行</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(train_df))</span><br></pre></td></tr></table></figure>
+<h2 id="删除含罕见元素的点"><a class="markdownIt-Anchor" href="#删除含罕见元素的点"></a> 删除含罕见元素的点</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除含罕见元素的化合物</span></span><br><span class="line">atom_count = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> smiles <span class="keyword">in</span> train_df[<span class="string">&#x27;smiles&#x27;</span>]:</span><br><span class="line">    mol = Chem.MolFromSmiles(smiles)</span><br><span class="line">    <span class="keyword">for</span> atom <span class="keyword">in</span> mol.GetAtoms():</span><br><span class="line">        atom_symbol = atom.GetSymbol() <span class="comment"># ?</span></span><br><span class="line">        <span class="keyword">if</span> atom_symbol <span class="keyword">not</span> <span class="keyword">in</span> atom_count:</span><br><span class="line">            atom_count[atom_symbol] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            atom_count[atom_symbol] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(atom_count)</span><br><span class="line"><span class="comment"># 删除出现次数小于 10 的元素对应的化合物</span></span><br><span class="line">atom_delete_list = [key <span class="keyword">for</span> key <span class="keyword">in</span> atom_count.keys() <span class="keyword">if</span> atom_count[key] &lt; <span class="number">10</span>]</span><br><span class="line"><span class="built_in">print</span>(atom_delete_list)</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> train_df.iterrows():</span><br><span class="line">    mol = Chem.MolFromSmiles(row[<span class="string">&#x27;smiles&#x27;</span>])</span><br><span class="line">    <span class="keyword">for</span> atom <span class="keyword">in</span> mol.GetAtoms():</span><br><span class="line">        atom_symbol = atom.GetSymbol()</span><br><span class="line">        <span class="keyword">if</span> atom_symbol <span class="keyword">in</span> atom_delete_list:</span><br><span class="line">            train_df.drop(index, inplace=<span class="literal">True</span>) <span class="comment"># 删除含罕见元素的行</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(train_df))</span><br></pre></td></tr></table></figure>
+<h2 id="根据分子指纹删离群点"><a class="markdownIt-Anchor" href="#根据分子指纹删离群点"></a> 根据分子指纹删离群点</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据分子指纹去除离群点</span></span><br><span class="line"><span class="keyword">from</span> rdkit.Chem <span class="keyword">import</span> Draw</span><br><span class="line"><span class="keyword">from</span> rdkit.Chem <span class="keyword">import</span> PandasTools, AllChem</span><br><span class="line"><span class="keyword">from</span> sklearn.manifold <span class="keyword">import</span> TSNE</span><br><span class="line"><span class="keyword">from</span> scipy.spatial.distance <span class="keyword">import</span> cdist</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"></span><br><span class="line">PandasTools.AddMoleculeColumnToFrame(train_df, smilesCol=<span class="string">&#x27;smiles&#x27;</span>) <span class="comment"># ?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    fps = np.array([AllChem.GetMorganFingerprintAsBitVect(mol, <span class="number">2</span>, nBits=<span class="number">1024</span>) <span class="keyword">for</span> mol <span class="keyword">in</span> train_df[<span class="string">&#x27;ROMol&#x27;</span>]])</span><br><span class="line"></span><br><span class="line">    tsne = TSNE(n_components=<span class="number">3</span>, random_state=<span class="number">42</span>, learning_rate=<span class="string">&#x27;auto&#x27;</span>, init=<span class="string">&#x27;random&#x27;</span>, metric=<span class="string">&#x27;jaccard&#x27;</span>) <span class="comment"># ?</span></span><br><span class="line">    embedded = tsne.fit_transform(fps)</span><br><span class="line">    mean = np.mean(embedded, axis=<span class="number">0</span>)</span><br><span class="line">    distance = cdist(embedded, [mean])</span><br><span class="line">    threshold = distance.mean() + <span class="number">3</span> * distance.std() <span class="comment"># 距质心大于 3 sigma 的点为离群点</span></span><br><span class="line">    outliers = np.where(distance &gt; threshold)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    train_df.reset_index(drop=<span class="literal">True</span>, inplace=<span class="literal">True</span>) <span class="comment"># 重置索引</span></span><br><span class="line">    train_df.outlier = <span class="number">0</span></span><br><span class="line">    train_df.loc[outliers, <span class="string">&#x27;outlier&#x27;</span>] = <span class="number">1</span> <span class="comment"># 标记离群点</span></span><br><span class="line"></span><br><span class="line">    outlier_smiles = train_df.loc[train_df[<span class="string">&#x27;outlier&#x27;</span>] == <span class="number">1</span>, <span class="string">&#x27;smiles&#x27;</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(outlier_smiles) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">break</span> <span class="comment"># 无离群点，退出循环</span></span><br><span class="line">    train_df.drop(train_df[train_df[<span class="string">&#x27;outlier&#x27;</span>] == <span class="number">1</span>].index, inplace=<span class="literal">True</span>) <span class="comment"># 删除离群点</span></span><br><span class="line"></span><br><span class="line">train_df = train_df[[<span class="string">&#x27;smiles&#x27;</span>, <span class="string">&#x27;label&#x27;</span>]] <span class="comment"># 只保留 smiles 和 label 列</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(train_df))</span><br></pre></td></tr></table></figure>
+<h2 id="保存处理后的数据"><a class="markdownIt-Anchor" href="#保存处理后的数据"></a> 保存处理后的数据</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.to_csv(<span class="string">&#x27;processed_train.csv&#x27;</span>, index=<span class="number">0</span>) <span class="comment"># 保存处理后的数据</span></span><br></pre></td></tr></table></figure>
+<h1 id="将-smiles-转化为图数据"><a class="markdownIt-Anchor" href="#将-smiles-转化为图数据"></a> 将 smiles 转化为图数据</h1>
+<div class="warning custom-block"><p class="custom-block-title">WARNING</p>
+<p>预计运行时间 1~2 小时</p>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 转化为图数据</span></span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread, Lock</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">from</span> pahelix.utils.compound_tools <span class="keyword">import</span> mol_to_geognn_graph_data_MMFF3d</span><br><span class="line"></span><br><span class="line">mutex = Lock()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_3D_structure_</span>(<span class="params">smiles_list</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(smiles_list)</span><br><span class="line">    <span class="keyword">global</span> p</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        mutex.acquire()</span><br><span class="line">        <span class="keyword">if</span> p &gt;= n:</span><br><span class="line">            mutex.release()</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        index = p</span><br><span class="line"></span><br><span class="line">        smiles = smiles_list[index]</span><br><span class="line">        <span class="keyword">if</span> index % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(index,<span class="string">&quot;:&quot;</span>,<span class="built_in">round</span>(index/n*<span class="number">100</span>, <span class="number">2</span>),<span class="string">&quot;%&quot;</span>,smiles)</span><br><span class="line">        p += <span class="number">1</span></span><br><span class="line">        mutex.release()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            molecule = AllChem.MolFromSmiles(smiles)</span><br><span class="line">            molecule_graph = mol_to_geognn_graph_data_MMFF3d(molecule)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Invalid SMILES:&#x27;</span>, smiles)</span><br><span class="line">            mutex.acquire()</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;invalid_smiles.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(<span class="built_in">str</span>(smiles) + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">            mutex.release()</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">global</span> smiles_to_graph_dict</span><br><span class="line">        mutex.acquire()</span><br><span class="line">        smiles_to_graph_dict[smiles] = molecule_graph</span><br><span class="line">        mutex.release()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transfer_smiles_to_graph</span>(<span class="params">smiles,num_worker</span>):</span><br><span class="line">    <span class="keyword">global</span> smiles_to_graph_dict</span><br><span class="line">    smiles_to_graph_dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">global</span> p</span><br><span class="line">    p = <span class="number">0</span></span><br><span class="line">    thread_count = num_worker</span><br><span class="line">    threads = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(thread_count):</span><br><span class="line">        thread = Thread(target=calculate_3D_structure_, args=(smiles,))</span><br><span class="line">        threads.append(thread)</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">        t.start()</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">        t.join()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> smiles_to_graph_dict</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_gem_data</span>(<span class="params">csv_path, output_path, label_name=<span class="literal">None</span>, num_worker=<span class="number">4</span></span>):</span><br><span class="line">    df = pd.read_csv(csv_path)</span><br><span class="line">    smiles = df.[<span class="string">&#x27;smiles&#x27;</span>].values</span><br><span class="line">    <span class="keyword">if</span> label_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        label = df[label_name].values</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        label = np.zeros(<span class="built_in">len</span>(df))</span><br><span class="line"></span><br><span class="line">    smiles_to_graph_dict = transfer_smiles_to_graph(smiles, num_worker)</span><br><span class="line">    data_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(smiles)):</span><br><span class="line">        data_item = &#123;&#125;</span><br><span class="line">        data_item[<span class="string">&#x27;smiles&#x27;</span>] = smiles[i]</span><br><span class="line">        data_item[<span class="string">&#x27;graph&#x27;</span>] = smiles_to_graph_dict[smiles[i]]</span><br><span class="line">        data_item[<span class="string">&#x27;label&#x27;</span>] = label[i]</span><br><span class="line">        data_list.append(data_item)</span><br><span class="line"></span><br><span class="line">    pickle.dump(data_list, <span class="built_in">open</span>(output_path, <span class="string">&#x27;wb&#x27;</span>))</span><br><span class="line"></span><br><span class="line">process_gem_data(<span class="string">&#x27;processed_train.csv&#x27;</span>, <span class="string">&#x27;mydata/intermediate/train_data_list.pkl&#x27;</span>, label_name=<span class="string">&#x27;label&#x27;</span>, num_worker=<span class="number">4</span>) <span class="comment"># 转化为图数据</span></span><br><span class="line">process_gem_data(<span class="string">&#x27;mydata/raw/test.csv&#x27;</span>, <span class="string">&#x27;mydata/intermediate/test_data_list.pkl&#x27;</span>, label_name=<span class="literal">None</span>, num_worker=<span class="number">4</span>) <span class="comment"># 转化为图数据</span></span><br></pre></td></tr></table></figure>
+<h1 id="定义-dataloader"><a class="markdownIt-Anchor" href="#定义-dataloader"></a> 定义 DataLoader</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义 Dataloader</span></span><br><span class="line"><span class="keyword">from</span> pahelix.datasets.inmemory_dataset <span class="keyword">import</span> InMemoryDataset</span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> collate_fn</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_data_loader</span>(<span class="params">mode, batch_size</span>):</span><br><span class="line">    <span class="keyword">if</span> mode == <span class="string">&#x27;train&#x27;</span>:</span><br><span class="line">        data_list = pickle.load(<span class="built_in">open</span>(<span class="string">f&#x27;mydata/intermediate/train_data_list.pkl&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>))</span><br><span class="line">        train_data, val_data = train_test_split(data_list, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;train data size: <span class="subst">&#123;<span class="built_in">len</span>(train_data)&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;val data size: <span class="subst">&#123;<span class="built_in">len</span>(val_data)&#125;</span>&#x27;</span>)</span><br><span class="line">        train_dataset = InMemoryDataset(train_data)</span><br><span class="line">        val_dataset = InMemoryDataset(val_data)</span><br><span class="line">        train_data_loader = train_dataset.get_data_loader(batch_size=batch_size, num_workers=<span class="number">1</span>, shuffle=<span class="literal">True</span>, collate_fn=collate_fn)</span><br><span class="line">        val_data_loader = val_dataset.get_data_loader(batch_size=batch_size, num_workers=<span class="number">1</span>, shuffle=<span class="literal">False</span>, collate_fn=collate_fn)</span><br><span class="line">        <span class="keyword">return</span> train_data_loader, val_data_loader</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">elif</span> mode == <span class="string">&#x27;test&#x27;</span>:</span><br><span class="line">        data_list = pickle.load(<span class="built_in">open</span>(<span class="string">f&#x27;mydata/intermediate/test_data_list.pkl&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>))</span><br><span class="line">        dataset = InMemoryDataset(data_list)</span><br><span class="line">        test_data_loader = dataset.get_data_loader(batch_size=batch_size, num_workers=<span class="number">1</span>, shuffle=<span class="literal">False</span>, collate_fn=collate_fn)</span><br><span class="line">        <span class="keyword">return</span> test_data_loader</span><br></pre></td></tr></table></figure>
+<h1 id="定义-model"><a class="markdownIt-Anchor" href="#定义-model"></a> 定义 Model</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义 Model</span></span><br><span class="line"><span class="keyword">import</span> paddle <span class="keyword">as</span> pdl</span><br><span class="line"><span class="keyword">import</span> paddle.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> pahelix.model_zoo.gem_model <span class="keyword">import</span> GeoGNNModel</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyModel</span>(nn.Layer):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(MyModel, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="comment"># 导入 GEM 初始化参数</span></span><br><span class="line">        compound_encoder_config = json.load(<span class="built_in">open</span>(<span class="string">r&#x27;apps/pretrained_compound/ChemRL/GEM/model_configs/geognn_l8.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>))</span><br><span class="line">        <span class="variable language_">self</span>.encoder = GeoGNNModel(compound_encoder_config)</span><br><span class="line">        <span class="comment"># 导入预训练权重</span></span><br><span class="line">        <span class="variable language_">self</span>.encoder.set_state_dict(pdl.load(<span class="string">r&#x27;apps/pretrained_compound/ChemRL/GEM/weight/regr.pdparams&#x27;</span>))</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.mlp = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">32</span>,<span class="number">32</span>,weight_attr=nn.initializer.KaimingUniform()),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(<span class="number">32</span>,<span class="number">1</span>,weight_attr=nn.initializer.KaimingUniform()),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, atom_bond_graph, bond_angle_graph</span>):</span><br><span class="line">        node_repr, edge_repr, graph_repr = <span class="variable language_">self</span>.encoder(atom_bond_graph.tensor(), bond_angle_graph.tensor())</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.mlp(graph_repr)</span><br></pre></td></tr></table></figure>
+<h1 id="定义训练函数"><a class="markdownIt-Anchor" href="#定义训练函数"></a> 定义训练函数</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义训练函数</span></span><br><span class="line"><span class="keyword">from</span> paddle <span class="keyword">import</span> optimizer</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error, mean_absolute_error, r2_score</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">evaluate</span>(<span class="params">model, data_loader</span>):</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    label_true = pdl.to_tensor([], dtype=pdl.float32, place=pdl.CUDAPlace(<span class="number">0</span>))</span><br><span class="line">    label_pred = pdl.to_tensor([], dtype=pdl.float32, place=pdl.CUDAPlace(<span class="number">0</span>))</span><br><span class="line">    <span class="keyword">for</span> (atom_bond_graph, bond_angle_graph, label_true_batch) <span class="keyword">in</span> data_loader:</span><br><span class="line">        label_pred_batch = model(atom_bond_graph, bond_angle_graph)</span><br><span class="line">        label_true_batch = pdl.to_tensor(label_true_batch, dtype=pdl.float32, place=pdl.CUDAPlace(<span class="number">0</span>)).unsqueeze(<span class="number">1</span>) <span class="comment"># ?</span></span><br><span class="line">        label_true = pdl.concat((label_true, label_true_batch.detach()), axis=<span class="number">0</span>)</span><br><span class="line">        label_pred = pdl.concat((label_pred, label_pred_batch.detach()), axis=<span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line">    label_pred = label_pred.cpu().numpy()</span><br><span class="line">    label_true = label_true.cpu().numpy()</span><br><span class="line">    rmse = <span class="built_in">round</span>(np.sqrt(mean_squared_error(label_true, label_pred)), <span class="number">4</span>)</span><br><span class="line">    mae = <span class="built_in">round</span>(mean_absolute_error(label_true, label_pred), <span class="number">4</span>)</span><br><span class="line">    r2 = <span class="built_in">round</span>(r2_score(label_true, label_pred), <span class="number">4</span>)</span><br><span class="line">    metric = &#123;</span><br><span class="line">        <span class="string">&#x27;rmse&#x27;</span>: rmse,</span><br><span class="line">        <span class="string">&#x27;mae&#x27;</span>: mae,</span><br><span class="line">        <span class="string">&#x27;r2&#x27;</span>: r2</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> metric</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">trial</span>(<span class="params">model_version, model, batch_size, criterion, scheduler, opt</span>):</span><br><span class="line">    train_data_loader,valid_data_loader = get_data_loader(mode=<span class="string">&#x27;train&#x27;</span>, batch_size=batch_size)</span><br><span class="line"></span><br><span class="line">    current_best_metric = <span class="number">1e10</span></span><br><span class="line">    max_bearable_epoch = <span class="number">50</span> <span class="comment"># 50轮没提升就停</span></span><br><span class="line">    current_best_epoch = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    train_metric_list = []</span><br><span class="line">    valid_metric_list = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">800</span>): <span class="comment"># MAX_EPOCH=800</span></span><br><span class="line">        model.train()</span><br><span class="line">        <span class="keyword">for</span> (atom_bond_graph, bond_angle_graph, label_true_batch) <span class="keyword">in</span> train_data_loader:</span><br><span class="line">            label_pred_batch = model(atom_bond_graph, bond_angle_graph)</span><br><span class="line">            label_true_batch = pdl.to_tensor(label_true_batch, dtype=pdl.float32, place=pdl.CUDAPlace(<span class="number">0</span>)).unsqueeze(<span class="number">1</span>) <span class="comment"># ?</span></span><br><span class="line">            loss = criterion(label_pred_batch, label_true_batch)</span><br><span class="line">            loss.backward()</span><br><span class="line">            opt.step()</span><br><span class="line">            opt.clear_grad()</span><br><span class="line">        scheduler.step() <span class="comment"># 更新学习率</span></span><br><span class="line"></span><br><span class="line">        metric_train = evaluate(model, train_data_loader)</span><br><span class="line">        metric_valid = evaluate(model, valid_data_loader)</span><br><span class="line"></span><br><span class="line">        train_metric_list.append(metric_train)</span><br><span class="line">        valid_metric_list.append(metric_valid)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> metric_valid[<span class="string">&#x27;rmse&#x27;</span>] &lt; current_best_metric:</span><br><span class="line">            current_best_metric = metric_valid[<span class="string">&#x27;rmse&#x27;</span>]</span><br><span class="line">            current_best_epoch = epoch</span><br><span class="line">            pdl.save(model.state_dict(), <span class="string">f&#x27;weight/<span class="subst">&#123;model_version&#125;</span>.pkl&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;=============================&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Epoch: &#x27;</span>,epoch)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Train: &#x27;</span>,metric_train)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Valid: &#x27;</span>,metric_valid)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;current_best_epoch: &#x27;</span>,current_best_epoch)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;current_best_metric: &#x27;</span>,current_best_metric)</span><br><span class="line">        <span class="keyword">if</span> epoch &gt; current_best_epoch + max_bearable_epoch:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> train_metric_list, valid_metric_list</span><br></pre></td></tr></table></figure>
+<h1 id="训练模型"><a class="markdownIt-Anchor" href="#训练模型"></a> 训练模型</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练模型</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"></span><br><span class="line">SEED = <span class="number">42</span></span><br><span class="line">pdl.seed(SEED)</span><br><span class="line">np.random.seed(SEED)</span><br><span class="line">random.seed(SEED)</span><br><span class="line"></span><br><span class="line">model = MyModel()</span><br><span class="line">batch_size = <span class="number">1024</span></span><br><span class="line">criterion = nn.MSELoss()</span><br><span class="line">scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=<span class="number">1e-3</span>, T_max=<span class="number">15</span>)</span><br><span class="line">opt = optimizer.AdamW(learning_rate=scheduler, parameters=model.parameters(), weight_decay=<span class="number">1e-5</span>) <span class="comment"># AdamW 优化器</span></span><br><span class="line"></span><br><span class="line">metric_train_list, metric_valid_list = trial(model_version=<span class="string">&#x27;1&#x27;</span>, model=model, batch_size=batch_size, criterion=criterion, scheduler=scheduler, opt=opt)</span><br></pre></td></tr></table></figure>
+<h1 id="可视化"><a class="markdownIt-Anchor" href="#可视化"></a> 可视化</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可视化</span></span><br><span class="line">metric_train = pd.DataFrame(metric_train_list)</span><br><span class="line">metric_valid = pd.DataFrame(metric_valid_list)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot</span>(<span class="params">train, valid, metric</span>):</span><br><span class="line">    epochs = np.arange(<span class="number">1</span>, <span class="built_in">len</span>(train) + <span class="number">1</span>)</span><br><span class="line">    plt.plot(epochs, train, color=<span class="string">&#x27;blue&#x27;</span>, label=<span class="string">f&#x27;Train <span class="subst">&#123;metric&#125;</span>&#x27;</span>)</span><br><span class="line">    plt.plot(epochs, valid, color=<span class="string">&#x27;orange&#x27;</span>, label=<span class="string">f&#x27;Valid <span class="subst">&#123;metric&#125;</span>&#x27;</span>)</span><br><span class="line">    plt.title(<span class="string">f&#x27;Train and Valid <span class="subst">&#123;metric&#125;</span>&#x27;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;Epochs&#x27;</span>)</span><br><span class="line">    plt.ylabel(metric)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">plot(metric_train[<span class="string">&#x27;rmse&#x27;</span>], metric_valid[<span class="string">&#x27;rmse&#x27;</span>], <span class="string">&#x27;RMSE&#x27;</span>)</span><br><span class="line">plot(metric_train[<span class="string">&#x27;mae&#x27;</span>], metric_valid[<span class="string">&#x27;mae&#x27;</span>], <span class="string">&#x27;MAE&#x27;</span>)</span><br><span class="line">plot(metric_train[<span class="string">&#x27;r2&#x27;</span>], metric_valid[<span class="string">&#x27;r2&#x27;</span>], <span class="string">&#x27;R2&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="模型评估"><a class="markdownIt-Anchor" href="#模型评估"></a> 模型评估</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模型评估</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>(<span class="params">model_version</span>):</span><br><span class="line">    test_data_loader = get_data_loader(mode=<span class="string">&#x27;test&#x27;</span>, batch_size=<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">    model = MyModel()</span><br><span class="line">    model.set_state_dict(pdl.load(<span class="string">f&#x27;weight/<span class="subst">&#123;model_version&#125;</span>.pkl&#x27;</span>)) <span class="comment"># 导入微调后的模型参数</span></span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">    all_result = []</span><br><span class="line">    <span class="keyword">for</span> (atom_bond_graph, bond_angle_graph, label_true_batch) <span class="keyword">in</span> test_data_loader:</span><br><span class="line">        label_pred_batch = model(atom_bond_graph, bond_angle_graph)</span><br><span class="line">        result = label_pred_batch.cpu().numpy().reshape(-<span class="number">1</span>).tolist()</span><br><span class="line">        all_result.extend(result)</span><br><span class="line"></span><br><span class="line">    df = pd.read_csv(<span class="string">&#x27;mydata/raw/test.csv&#x27;</span>)</span><br><span class="line">    df[<span class="string">f&#x27;label&#x27;</span>] = all_result</span><br><span class="line">    df.to_csv(<span class="string">&#x27;mresult.csv&#x27;</span>, index=<span class="literal">False</span>) <span class="comment"># 保存预测结果</span></span><br><span class="line"></span><br><span class="line">test(model_version=<span class="string">&#x27;1&#x27;</span>) <span class="comment"># 测试模型</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+        <div class="share-wrapper">
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F06%2F%25E5%259B%25BE%25E7%25A5%259E%25E7%25BB%258F%25E7%25BD%2591%25E7%25BB%259C%25E5%25AE%259E%25E6%2588%2598%25E2%2580%2594%25E2%2580%2594GEM%25E5%2588%2586%25E5%25AD%2590%25E4%25BA%25B2%25E8%2584%2582%25E6%2580%25A7%25E9%25A2%2584%25E6%25B5%258B%25E6%25AF%2594%25E8%25B5%259B%2F" target="_blank" rel="noopener noreferrer" title="图神经网络实战——GEM分子亲脂性预测比赛">
+      <div class="share-icon icon icon-facebook">
+        
+      </div>
+    </a>
+  
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F06%2F%25E5%259B%25BE%25E7%25A5%259E%25E7%25BB%258F%25E7%25BD%2591%25E7%25BB%259C%25E5%25AE%259E%25E6%2588%2598%25E2%2580%2594%25E2%2580%2594GEM%25E5%2588%2586%25E5%25AD%2590%25E4%25BA%25B2%25E8%2584%2582%25E6%2580%25A7%25E9%25A2%2584%25E6%25B5%258B%25E6%25AF%2594%25E8%25B5%259B%2F&amp;text=%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94GEM%E5%88%86%E5%AD%90%E4%BA%B2%E8%84%82%E6%80%A7%E9%A2%84%E6%B5%8B%E6%AF%94%E8%B5%9B&amp;via=https%3A%2F%2FQuarkPlanks.github.io" target="_blank" rel="noopener noreferrer" title="图神经网络实战——GEM分子亲脂性预测比赛">
+      <div class="share-icon icon icon-twitter">
+        
+      </div>
+    </a>
+  
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F06%2F%25E5%259B%25BE%25E7%25A5%259E%25E7%25BB%258F%25E7%25BD%2591%25E7%25BB%259C%25E5%25AE%259E%25E6%2588%2598%25E2%2580%2594%25E2%2580%2594GEM%25E5%2588%2586%25E5%25AD%2590%25E4%25BA%25B2%25E8%2584%2582%25E6%2580%25A7%25E9%25A2%2584%25E6%25B5%258B%25E6%25AF%2594%25E8%25B5%259B%2F&amp;appkey=&amp;title=%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94GEM%E5%88%86%E5%AD%90%E4%BA%B2%E8%84%82%E6%80%A7%E9%A2%84%E6%B5%8B%E6%AF%94%E8%B5%9B&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="图神经网络实战——GEM分子亲脂性预测比赛">
+      <div class="share-icon icon icon-weibo">
+        
+      </div>
+    </a>
+  
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94GEM%E5%88%86%E5%AD%90%E4%BA%B2%E8%84%82%E6%80%A7%E9%A2%84%E6%B5%8B%E6%AF%94%E8%B5%9B&amp;desc=%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94GEM%E5%88%86%E5%AD%90%E4%BA%B2%E8%84%82%E6%80%A7%E9%A2%84%E6%B5%8B%E6%AF%94%E8%B5%9B&amp;source=https%3A%2F%2FQuarkPlanks.github.io" target="_blank" rel="noopener noreferrer" title="图神经网络实战——GEM分子亲脂性预测比赛">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="图神经网络实战——GEM分子亲脂性预测比赛">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hexo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">图神经网络</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/cover3.jpg" data-sizes="auto" alt="图神经网络实战——KarateClub数据库分类问题" class="lazyload">
+          
+        
+        <a href="/2025/05/07/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94KarateClub%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            图神经网络实战——KarateClub数据库分类问题
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/cover2.jpg" data-sizes="auto" alt="图神经网络学习笔记" class="lazyload">
+        
+      
+      <a href="/2025/05/06/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          图神经网络学习笔记
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+        
+      
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="giscus">
+              <span>giscus</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment giscus-comment" data-aos="fade-up"
+          id="giscus-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Guga Frog
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        24.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        01:56
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%93%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text"> 库安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text"> 数据预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">2.1.</span> <span class="toc-text"> 导入数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#smiles-%E6%A0%87%E5%87%86%E5%8C%96"><span class="toc-number">2.2.</span> <span class="toc-text"> smiles 标准化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E9%87%8D"><span class="toc-number">2.3.</span> <span class="toc-text"> 去重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E5%88%86%E5%AD%90%E9%87%8F%E5%88%A0%E7%A6%BB%E7%BE%A4%E7%82%B9"><span class="toc-number">2.4.</span> <span class="toc-text"> 根据分子量删离群点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%90%AB%E7%BD%95%E8%A7%81%E5%85%83%E7%B4%A0%E7%9A%84%E7%82%B9"><span class="toc-number">2.5.</span> <span class="toc-text"> 删除含罕见元素的点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E5%88%86%E5%AD%90%E6%8C%87%E7%BA%B9%E5%88%A0%E7%A6%BB%E7%BE%A4%E7%82%B9"><span class="toc-number">2.6.</span> <span class="toc-text"> 根据分子指纹删离群点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%A4%84%E7%90%86%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">2.7.</span> <span class="toc-text"> 保存处理后的数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86-smiles-%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%9B%BE%E6%95%B0%E6%8D%AE"><span class="toc-number">3.</span> <span class="toc-text"> 将 smiles 转化为图数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-dataloader"><span class="toc-number">4.</span> <span class="toc-text"> 定义 DataLoader</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-model"><span class="toc-number">5.</span> <span class="toc-text"> 定义 Model</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E8%AE%AD%E7%BB%83%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text"> 定义训练函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.</span> <span class="toc-text"> 训练模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">8.</span> <span class="toc-text"> 可视化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="toc-number">9.</span> <span class="toc-text"> 模型评估</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar2.jpg" data-sizes="auto" alt="Guga Frog" class="lazyload">
+  <div class="sidebar-author-name">Guga Frog</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:1412580863@qq.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/QuarkPlanks itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[800,1400],"shapeOptions":{"radius":[8,16],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[800,1400],"shapeOptions":{"radius":0,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Guga Frog",
+          title: "图神经网络实战——GEM分子亲脂性预测比赛",
+          url: "https://quarkplanks.github.io/2025/05/06/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94GEM%E5%88%86%E5%AD%90%E4%BA%B2%E8%84%82%E6%80%A7%E9%A2%84%E6%B5%8B%E6%AF%94%E8%B5%9B/",
+          excerpt: "",
+          description: "",
+          stripContent: " 库安装 1234567!pip install --upgrade pip!pip install rdkit!pip install scikit-learn==1.0.2!pip install scipy==1.7.3!pip install seaborn==0.12.2!pip install pgl==2.2.3!pip install numpy==1.21.6  数据预处理  导入数据集 123456789101112# 数据预处理import pandas as pdtrai",
+          date: "Tue May 06 2025 09:26:30 GMT+0800",
+          updated: "Tue May 06 2025 13:18:52 GMT+0800",
+          cover: "/images/banner3.png",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+          
+<script src="https://npm.webcache.cn/html-to-image@1.11.11/dist/html-to-image.js" integrity="sha384-UbfRVKN3&#x2F;elS1r7JcK2FhmPP+KlJ4CvYwbyYD7tH+uTkbT9bNJr9eJeQ0FoFbAgz" crossorigin="anonymous" defer data-pjax></script>
+
+          
+<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+          var serverURLs = undefined;
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "jbAZ6gbEdxxes87jTW7R0Akh-MdYXbMMI",
+              appKey: "SyZiClEmH88WtGG8nV5oqGNd",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: document.documentElement.lang || 'en',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname,
+              serverURLs
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: false,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: '',
+          lang: document.documentElement.lang || 'en',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.16/dist/twikoo.all.min.js',
+          'sha384-lDHsr5aZmkMS0eKnsUu6e9RWP+dRmn7sgjRAKGOAoXfMyzbUK6Qi86zZK7R+KvRV'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.tcomment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            })
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId,
+            distractionFreeMode: false,
+            language: document.documentElement.lang || 'en',
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'QuarkPlanks/comment');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOOj7vZA');
+        giscusScript.setAttribute('data-category', 'Announcements'); 
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOOj7vZM4CpvIa');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', document.documentElement.lang || 'en');
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.8.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+<script data-pjax>
+  var updateTime = _$('#post-update-time')?.innerHTML;
+
+  if (updateTime) {
+    const update = new Date(updateTime);
+    const now = new Date();
+    const diff = now - update;
+    const days = diff / 86400000;
+    const { daysAgo, message: template } = window.REIMU_CONFIG.outdate;
+    if (days >= daysAgo) {
+      let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+      if (typeof template === 'string') {
+        message = template.replace(/{time}/, updateTime);
+      } else if (typeof template === 'object') {
+        const lang = document.documentElement.lang;
+        const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+        if (messageKey && template[messageKey]) {
+          message = template[messageKey].replace(/{time}/, updateTime);
+        }
+      }
+      const blockquote = _$('#outdate-blockquote');
+      if (blockquote) {
+        blockquote.querySelector('p').innerText = message;
+        blockquote.style.display = 'block';
+      }
+    }
+  }
+</script>
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6&#x2F;1Nxveei" crossorigin="anonymous" defer data-pjax></script>
+
+    <script data-pjax>
+      window.MathJax = {"tex":{"tags":"ams","useLabelIds":true,"inlineMath":[["$","$"],["\\\\(","\\\\)"]],"displayMath":[["$$","$$"],["\\\\[","\\\\]"]],"processEscapes":true,"processEnvironments":true,"autoload":{"color":[],"colorv2":["color"]},"packages":{"[+]":["noerrors"]}},"options":{"skipHtmlTags":["script","noscript","style","textarea","pre","code"],"ignoreHtmlClass":"tex2jax_ignore","processHtmlClass":"tex2jax_process"},"loader":{"load":["input/asciimath","[tex]/noerrors"]}};
+    </script>
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

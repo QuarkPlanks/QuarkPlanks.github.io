@@ -1,0 +1,1283 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.outdate = {"enable":true,"daysAgo":180,"message":{"en":"This article was last updated on {time}. Please note that the content may no longer be applicable.","zh-CN":"本文最后更新于 {time}，请注意文中内容可能已不适用。","zh-TW":"本文最後更新於 {time}，請注意文中內容可能已不適用。","ja":"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://QuarkPlanks.github.io';</script>
+  
+  <title>
+    数学实验代码 |
+    
+    Welcome to my blog !
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="插值  Lagrange 插值函数（自编） 123456789101112131415% 传入插值点的坐标 x0 y0，返回 Lagrange 插值后的匿名函数function F &#x3D; lagrange(x0,y0)    syms x    L &#x3D; 0;    for i &#x3D; 1:length(x0)        temp &#x3D; 1;        for j &#x3D; 1:length(x0)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学实验代码">
+<meta property="og:url" content="https://quarkplanks.github.io/2025/05/02/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81/index.html">
+<meta property="og:site_name" content="Welcome to my blog !">
+<meta property="og:description" content="插值  Lagrange 插值函数（自编） 123456789101112131415% 传入插值点的坐标 x0 y0，返回 Lagrange 插值后的匿名函数function F &#x3D; lagrange(x0,y0)    syms x    L &#x3D; 0;    for i &#x3D; 1:length(x0)        temp &#x3D; 1;        for j &#x3D; 1:length(x0)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-02T05:38:36.000Z">
+<meta property="article:modified_time" content="2025-05-04T19:26:27.154Z">
+<meta property="article:author" content="Guga Frog">
+<meta property="article:tag" content="MATLAB">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="数学实验">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Welcome to my blog !" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img style="position: absolute;top: 0;left: 0;width: 100%;height: 150%;z-index: -2;display: block;background: rgb(109, 199, 255);mask: linear-gradient(to top, transparent, #fff 50%);"></img>
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">数学实验代码</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%92%E5%80%BC"><span class="toc-number">1.</span> <span class="toc-text"> 插值</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#lagrange-%E6%8F%92%E5%80%BC%E5%87%BD%E6%95%B0%E8%87%AA%E7%BC%96"><span class="toc-number">1.1.</span> <span class="toc-text"> Lagrange 插值函数（自编）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC"><span class="toc-number">1.2.</span> <span class="toc-text"> 分段线性插值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%A0%B7%E6%9D%A1%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.</span> <span class="toc-text"> 三次样条插值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text"> 数值积分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E5%BD%A2%E5%85%AC%E5%BC%8F%E8%87%AA%E7%BC%96"><span class="toc-number">2.1.</span> <span class="toc-text"> 矩形公式（自编）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%85%AC%E5%BC%8F%E8%87%AA%E7%BC%96"><span class="toc-number">2.2.</span> <span class="toc-text"> 梯形公式（自编）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#simpson-%E7%A7%AF%E5%88%86"><span class="toc-number">2.3.</span> <span class="toc-text"> Simpson 积分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E5%85%A5%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E7%A7%AF%E5%88%86%E5%86%85%E7%BD%AE"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 传入函数进行积分（内置）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E7%82%B9%E8%AE%A1%E7%AE%97%E7%A7%AF%E5%88%86%E8%87%AA%E7%BC%96"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 输入数据点计算积分（自编）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E8%AF%BE%E4%B8%8A%E6%B2%A1%E8%AE%B2"><span class="toc-number">2.4.</span> <span class="toc-text"> 其他方法（课上没讲）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text"> 微分方程（组）求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#euler-%E6%96%B9%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">3.1.</span> <span class="toc-text"> Euler 方法（自编）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#runge-kutta-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text"> Runge-Kutta 方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text"> 线性方程组求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%B1%82%E8%A7%A3"><span class="toc-number">4.1.</span> <span class="toc-text"> 直接求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95%E6%B1%82%E6%95%B0%E5%80%BC%E8%A7%A3"><span class="toc-number">4.2.</span> <span class="toc-text"> 迭代法求数值解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">4.2.1.</span> <span class="toc-text"> Jacobi 迭代法（自编）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gauss-seidel-%E8%BF%AD%E4%BB%A3%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">4.2.2.</span> <span class="toc-text"> Gauss-Seidel 迭代法（自编）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E6%9D%BE%E5%BC%9Bsor-%E8%BF%AD%E4%BB%A3%E8%87%AA%E7%BC%96"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 超松弛(SOR) 迭代（自编）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text"> 非线性方程（组）求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text"> 牛顿法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E5%88%87%E7%BA%BF%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">5.1.1.</span> <span class="toc-text"> 牛顿切线法（自编）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E5%89%B2%E7%BA%BF%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">5.1.2.</span> <span class="toc-text"> 牛顿割线法（自编）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9D%E7%89%9B%E9%A1%BF%E6%B3%95%E6%97%A0"><span class="toc-number">5.2.</span> <span class="toc-text"> 赝牛顿法（无）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">5.3.</span> <span class="toc-text"> 内置方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 无约束优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E6%B3%95%E6%97%A0"><span class="toc-number">6.1.</span> <span class="toc-text"> 梯度法（无）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95%E6%97%A0"><span class="toc-number">6.2.</span> <span class="toc-text"> 牛顿法（无）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9D%E7%89%9B%E9%A1%BF%E6%B3%95%E6%97%A0-2"><span class="toc-number">6.3.</span> <span class="toc-text"> 赝牛顿法（无）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95-2"><span class="toc-number">6.4.</span> <span class="toc-text"> 内置方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text"> 最小二乘法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-number">7.1.</span> <span class="toc-text"> 线性最小二乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-number">7.2.</span> <span class="toc-text"> 非线性最小二乘法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">8.</span> <span class="toc-text"> 线性规划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">9.</span> <span class="toc-text"> 非线性规划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92"><span class="toc-number">10.</span> <span class="toc-text"> 整数规划</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar2.jpg" data-sizes="auto" alt="Guga Frog" class="lazyload">
+  <div class="sidebar-author-name">Guga Frog</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:1412580863@qq.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/QuarkPlanks itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-数学实验代码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-05-02T05:38:36.000Z" itemprop="datePublished">2025-05-02</time>
+    <time style="display: none;" id="post-update-time">2025-05-05</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81/" data-aos="zoom-in">代码</a><a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-aos="zoom-in">学习笔记</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote id="outdate-blockquote" style="display: none;"><p></p></blockquote>
+      
+      
+        <h1 id="插值"><a class="markdownIt-Anchor" href="#插值"></a> 插值</h1>
+<h2 id="lagrange-插值函数自编"><a class="markdownIt-Anchor" href="#lagrange-插值函数自编"></a> Lagrange 插值函数（自编）</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 传入插值点的坐标 x0 y0，返回 Lagrange 插值后的匿名函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F</span> = <span class="title">lagrange</span><span class="params">(x0,y0)</span></span></span><br><span class="line">    syms x</span><br><span class="line">    L = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(x0)</span><br><span class="line">        temp = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:<span class="built_in">length</span>(x0)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">j</span> ~= <span class="built_in">i</span> </span><br><span class="line">                temp = temp .* (x - x0(<span class="built_in">j</span>))./(x0(<span class="built_in">i</span>)-x0(<span class="built_in">j</span>));</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        L = L + y0(<span class="built_in">i</span>).*temp;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    F = @(t) double(subs(L,&#123;x&#125;,&#123;t&#125;));</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="分段线性插值"><a class="markdownIt-Anchor" href="#分段线性插值"></a> 分段线性插值</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">yi = interp1(x, y, xi, <span class="string">&#x27;method&#x27;</span>)</span><br><span class="line"><span class="comment">% x y 为插值点的坐标</span></span><br><span class="line"><span class="comment">% xi 为待进行插值计算的点的横坐标</span></span><br><span class="line"><span class="comment">% yi 为 xi 对应的纵坐标</span></span><br><span class="line"><span class="comment">% &#x27;method&#x27; 指定插值方法，常用的有：</span></span><br><span class="line"><span class="comment">%   &#x27;linear&#x27;（线性插值，默认方法）：通过线性内插估计 y 值。</span></span><br><span class="line"><span class="comment">%   &#x27;spline&#x27;：三次样条插值，提供平滑的曲线拟合。</span></span><br><span class="line"><span class="comment">%   &#x27;cubic&#x27;：立方插值，与 &#x27;spline&#x27; 类似，但在端点处理上略有不同。</span></span><br></pre></td></tr></table></figure>
+<h2 id="三次样条插值"><a class="markdownIt-Anchor" href="#三次样条插值"></a> 三次样条插值</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yi = spline(x, y, xi)</span><br><span class="line"><span class="comment">% 变量含义同 interp1</span></span><br></pre></td></tr></table></figure>
+<h1 id="数值积分"><a class="markdownIt-Anchor" href="#数值积分"></a> 数值积分</h1>
+<h2 id="矩形公式自编"><a class="markdownIt-Anchor" href="#矩形公式自编"></a> 矩形公式（自编）</h2>
+<h2 id="梯形公式自编"><a class="markdownIt-Anchor" href="#梯形公式自编"></a> 梯形公式（自编）</h2>
+<h2 id="simpson-积分"><a class="markdownIt-Anchor" href="#simpson-积分"></a> Simpson 积分</h2>
+<ul>
+<li>用一个分段二次插值函数S代替f(x)，每段用相邻两个小区间端点的三个函数值（这要求小区间数为偶数）计算二次函数系数</li>
+</ul>
+<h3 id="传入函数进行积分内置"><a class="markdownIt-Anchor" href="#传入函数进行积分内置"></a> 传入函数进行积分（内置）</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">I = quad(@f, xmin, xmax)</span><br><span class="line"><span class="comment">% 表示对输入的匿名函数 f 从 xmin 积分到 xmax</span></span><br><span class="line"><span class="comment">% 精度要求低，被积函数平滑性可以较差</span></span><br></pre></td></tr></table></figure>
+<h3 id="输入数据点计算积分自编"><a class="markdownIt-Anchor" href="#输入数据点计算积分自编"></a> 输入数据点计算积分（自编）</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 输入待积分计算的点的坐标 x0 y0，若点的数量为偶数，则自动舍弃最后一个</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">In</span> = <span class="title">simp</span><span class="params">(x0,y0)</span></span></span><br><span class="line">    syms x1 x2 x3 y1 y2 y3 a b c <span class="built_in">real</span>;</span><br><span class="line">    M = [x1^<span class="number">2</span> , x1 , <span class="number">1</span> ; x2^<span class="number">2</span> , x2 , <span class="number">1</span> ; x3^<span class="number">2</span> , x3 , <span class="number">1</span>];</span><br><span class="line">    V = [a,b,c]&#x27;;</span><br><span class="line">    S = [y1,y2,y3]&#x27;;</span><br><span class="line">    <span class="comment">% 有 M*V = S</span></span><br><span class="line">    R = M\S ;<span class="comment">% 解出 a b c</span></span><br><span class="line">    Area = simplify(R(<span class="number">1</span>)/<span class="number">3</span>*(x3^<span class="number">3</span> - x1^<span class="number">3</span>) + R(<span class="number">2</span>)/<span class="number">2</span>*(x3^<span class="number">2</span>-x1^<span class="number">2</span>) + R(<span class="number">3</span>)*(x3 - x1));</span><br><span class="line">    <span class="comment">% 非等距数据点 simpson 积分面积</span></span><br><span class="line">    In = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">2</span>:(<span class="built_in">length</span>(x0)<span class="number">-2</span>)</span><br><span class="line">        In = In + subs(Area,&#123;x1,x2,x3,y1,y2,y3&#125;,&#123;x0(<span class="built_in">i</span>),x0(<span class="built_in">i</span>+<span class="number">1</span>),x0(<span class="built_in">i</span>+<span class="number">2</span>),y0(<span class="built_in">i</span>),y0(<span class="built_in">i</span>+<span class="number">1</span>),y0(<span class="built_in">i</span>+<span class="number">2</span>)&#125;);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    In = double(simplify(In));</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="其他方法课上没讲"><a class="markdownIt-Anchor" href="#其他方法课上没讲"></a> 其他方法（课上没讲）</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Lobatto 公式，精度要求高，被积函数曲线要比较平滑</span></span><br><span class="line">I1 = quadl(@f, xmin, xmax)</span><br><span class="line"></span><br><span class="line"><span class="comment">% Gauss-Kronrod 积分，可以用于高精度和震荡数值的积分，支持无穷区间，且能处理端点包含奇点的情况</span></span><br><span class="line"><span class="comment">% 支持不连续函数和复数域线性路径的围道积分 </span></span><br><span class="line">I2 = quadgk(@f, xmin, xmax)</span><br><span class="line"></span><br><span class="line"><span class="comment">% 使用全局自适应积分</span></span><br><span class="line">I3 = integral(@f, xmin, xmax)</span><br><span class="line"></span><br><span class="line"><span class="comment">% I2 I3 的精度更高，更好用</span></span><br></pre></td></tr></table></figure>
+<h1 id="微分方程组求解"><a class="markdownIt-Anchor" href="#微分方程组求解"></a> 微分方程（组）求解</h1>
+<h2 id="euler-方法自编"><a class="markdownIt-Anchor" href="#euler-方法自编"></a> Euler 方法（自编）</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello</span><br></pre></td></tr></table></figure>
+<h2 id="runge-kutta-方法"><a class="markdownIt-Anchor" href="#runge-kutta-方法"></a> Runge-Kutta 方法</h2>
+<p>以 $y&#39;&#39; - (1-y^2)y&#39; + y&#x3D;0$ 的求解为例，其中$y(0)&#x3D;2,y&#39;(0)&#x3D;0$，先化为微分方程组：</p>
+<p>$$\begin{align*}
+       \begin{split} 
+       \left
+       \{
+       \begin{array}{ll}
+           y&#39; &#x3D; u \\
+           u&#39; &#x3D; (1-y^2)u-y
+       \end{array}
+       \right.
+       \end{split}
+\end{align*}$$</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 常用的有有 ode45（四级五阶） ode23（二级三阶）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 先定义一个微分方程（组）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dy</span> = <span class="title">f</span><span class="params">(t,y)</span></span></span><br><span class="line">    dy = [<span class="number">0</span>;<span class="number">0</span>];</span><br><span class="line">    dy(<span class="number">1</span>) = y(<span class="number">2</span>);</span><br><span class="line">    dy(<span class="number">2</span>) = (<span class="number">1</span>-y(<span class="number">1</span>)^<span class="number">2</span>)*y(<span class="number">2</span>) - y(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 然后采用 Runge-Kutta 方法求解</span></span><br><span class="line">x0 = [<span class="number">2</span>;<span class="number">0</span>] <span class="comment">% 函数初值</span></span><br><span class="line">[t,x] = ode45(@f, ts, x0, options)</span><br><span class="line"><span class="comment">% 微分方程（组） f 以匿名函数的形式传入</span></span><br><span class="line"><span class="comment">% ts 为待计算的点坐标</span></span><br><span class="line"><span class="comment">% x0 为函数初值</span></span><br><span class="line"><span class="comment">% options 可以设置精度，迭代次数等</span></span><br></pre></td></tr></table></figure>
+<h1 id="线性方程组求解"><a class="markdownIt-Anchor" href="#线性方程组求解"></a> 线性方程组求解</h1>
+<h2 id="直接求解"><a class="markdownIt-Anchor" href="#直接求解"></a> 直接求解</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 对于 Ax = b</span></span><br><span class="line">x = A\b <span class="comment">% 注意使用左除</span></span><br></pre></td></tr></table></figure>
+<h2 id="迭代法求数值解"><a class="markdownIt-Anchor" href="#迭代法求数值解"></a> 迭代法求数值解</h2>
+<h3 id="jacobi-迭代法自编"><a class="markdownIt-Anchor" href="#jacobi-迭代法自编"></a> Jacobi 迭代法（自编）</h3>
+<ul>
+<li>$Dx^{(k+1)} &#x3D; Lx^{(k)} + Ux^{(k)} + b$</li>
+<li>若 D 可逆（对角元素均非0），则进一步有：</li>
+<li>$x^{(k+1)} &#x3D; D^{-1}(L+U)x^{(k)} + D^{-1}b$</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[sol,iter]</span> = <span class="title">jaco</span><span class="params">(A,x0,b,MAXITER,error,display)</span></span></span><br><span class="line">    U = <span class="built_in">triu</span>(A,<span class="number">1</span>);</span><br><span class="line">    L = <span class="built_in">tril</span>(A,<span class="number">-1</span>);</span><br><span class="line">    D = <span class="built_in">diag</span>(<span class="built_in">diag</span>(A));</span><br><span class="line">    x = x0;</span><br><span class="line">    iters_j = <span class="number">0</span>;</span><br><span class="line">    err = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(err &gt; error &amp;&amp; iters_j &lt; MAXITER)</span><br><span class="line">        temp = x;</span><br><span class="line">        x = D\(-U-L)*x + D\b;</span><br><span class="line">        err = <span class="built_in">max</span>(<span class="built_in">abs</span>(x - temp));</span><br><span class="line">        iters_j = iters_j + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> err &lt;= error</span><br><span class="line">        <span class="keyword">if</span> display</span><br><span class="line">            fprintf(<span class="string">&quot;iters:&quot;</span>)</span><br><span class="line">            <span class="built_in">disp</span>(iters_j)</span><br><span class="line">            fprintf(<span class="string">&quot;err:&quot;</span>)</span><br><span class="line">            <span class="built_in">disp</span>(err)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        sol = x;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">if</span> display</span><br><span class="line">            fprintf(<span class="string">&quot;divergent&quot;</span>)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        sol = NaN;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    iter = iters_j;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="gauss-seidel-迭代法自编"><a class="markdownIt-Anchor" href="#gauss-seidel-迭代法自编"></a> Gauss-Seidel 迭代法（自编）</h3>
+<ul>
+<li>$Dx^{(k+1)} &#x3D; Lx^{(k+1)} + Ux^{(k)} + b$</li>
+<li>若 D 非奇异（对角元素均非0）且 （D-L）可逆，则进一步有：</li>
+<li>$x^{(k+1)} &#x3D; (D-L)^{-1}Ux^{(k)} + (D-L)^{-1}b$</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[sol,iter]</span> = <span class="title">gs</span><span class="params">(A,x0,b,MAXITER,error,display)</span></span></span><br><span class="line">    U = <span class="built_in">triu</span>(A,<span class="number">1</span>);</span><br><span class="line">    L = <span class="built_in">tril</span>(A,<span class="number">-1</span>);</span><br><span class="line">    D = <span class="built_in">diag</span>(<span class="built_in">diag</span>(A));</span><br><span class="line">    x = x0;</span><br><span class="line">    iters_gs = <span class="number">0</span>;</span><br><span class="line">    err = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(err &gt; error &amp;&amp; iters_gs &lt; MAXITER)</span><br><span class="line">        temp = x;</span><br><span class="line">        x = (D+L)\(-U)*x + (D+L)\b;</span><br><span class="line">        err = sum(<span class="built_in">abs</span>(x - temp));</span><br><span class="line">        iters_gs = iters_gs + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> err &lt;= error</span><br><span class="line">        <span class="keyword">if</span> display</span><br><span class="line">            fprintf(<span class="string">&quot;iters:&quot;</span>)</span><br><span class="line">            <span class="built_in">disp</span>(iters_gs)</span><br><span class="line">            fprintf(<span class="string">&quot;err:&quot;</span>)</span><br><span class="line">            <span class="built_in">disp</span>(err)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        sol = x;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">if</span> display</span><br><span class="line">            fprintf(<span class="string">&quot;divergent&quot;</span>)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        sol = NaN;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    iter = iters_gs;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="超松弛sor-迭代自编"><a class="markdownIt-Anchor" href="#超松弛sor-迭代自编"></a> 超松弛(SOR) 迭代（自编）</h3>
+<ul>
+<li>令 $\widetilde{x}^{(k+1)} &#x3D; D^{-1}(Lx^{(k+1)}+Ux^{(k)})+D^{-1}b$</li>
+<li>迭代公式：$x^{(k+1)} &#x3D; \omega \widetilde{x}^{(k+1)} + (1-\omega)x^{(k)}$</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[sol,iter]</span> = <span class="title">sor</span><span class="params">(A,b,x0,w,MAXITER,error,display)</span></span></span><br><span class="line">    U = <span class="built_in">triu</span>(A,<span class="number">1</span>);</span><br><span class="line">    L = <span class="built_in">tril</span>(A,<span class="number">-1</span>);</span><br><span class="line">    D = <span class="built_in">diag</span>(<span class="built_in">diag</span>(A));</span><br><span class="line">    x = x0;</span><br><span class="line">    iters_gs = <span class="number">0</span>;</span><br><span class="line">    err = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(err &gt; error &amp;&amp; iters_gs &lt; MAXITER)</span><br><span class="line">        temp = x;</span><br><span class="line">        x = w.*((D+L)\(-U)*x + (D+L)\b) + (<span class="number">1</span>-w).*x;</span><br><span class="line">        err = sum(<span class="built_in">abs</span>(x - temp));</span><br><span class="line">        iters_gs = iters_gs + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> err &lt;= error</span><br><span class="line">        <span class="keyword">if</span> display</span><br><span class="line">            fprintf(<span class="string">&quot;iters:&quot;</span>)</span><br><span class="line">            <span class="built_in">disp</span>(iters_gs)</span><br><span class="line">            fprintf(<span class="string">&quot;err:&quot;</span>)</span><br><span class="line">            <span class="built_in">disp</span>(err)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        sol = x;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">if</span> display</span><br><span class="line">            fprintf(<span class="string">&quot;divergent&quot;</span>)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        sol = NaN;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    iter = iters_gs;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h1 id="非线性方程组求解"><a class="markdownIt-Anchor" href="#非线性方程组求解"></a> 非线性方程（组）求解</h1>
+<h2 id="牛顿法"><a class="markdownIt-Anchor" href="#牛顿法"></a> 牛顿法</h2>
+<h3 id="牛顿切线法自编"><a class="markdownIt-Anchor" href="#牛顿切线法自编"></a> 牛顿切线法（自编）</h3>
+<ul>
+<li>迭代公式 $x_{k+1} &#x3D; x_{k} - \frac {f(x_k)}{f&#39;(x_k)}$</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[x,iters]</span> = <span class="title">newtown1</span><span class="params">(f,x0,eta,tol)</span></span></span><br><span class="line">    n = <span class="number">0</span>;</span><br><span class="line">    x = x0;</span><br><span class="line">    err = <span class="number">1e6</span>;</span><br><span class="line">    syms m;</span><br><span class="line">    df = @(t) double(subs(diff(f(m),m),m,t));</span><br><span class="line">    <span class="keyword">while</span> err &gt;= eta &amp;&amp; n &lt; tol</span><br><span class="line">        temp = x;</span><br><span class="line">        x = double(x - f(x)/df(x));</span><br><span class="line">        n = n+<span class="number">1</span>;</span><br><span class="line">        err = <span class="built_in">abs</span>(temp-x);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> n &gt;= tol &amp;&amp; err &gt;= eta</span><br><span class="line">        fprintf(<span class="string">&#x27;Can not get a solution&#x27;</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    iters = n;</span><br><span class="line">    x = double(x);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="牛顿割线法自编"><a class="markdownIt-Anchor" href="#牛顿割线法自编"></a> 牛顿割线法（自编）</h3>
+<ul>
+<li>迭代公式：$x_{k+1} &#x3D; x_k - \frac {f(x_k)(x_k-x_{k-1})}{f(x_{k})-f(x_{k-1})}$</li>
+</ul>
+<h2 id="赝牛顿法无"><a class="markdownIt-Anchor" href="#赝牛顿法无"></a> 赝牛顿法（无）</h2>
+<h2 id="内置方法"><a class="markdownIt-Anchor" href="#内置方法"></a> 内置方法</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[x,fv,ef,out] = fzero(@f, x0, opt) <span class="comment">% 单变量方程 f(x) = 0 求根</span></span><br><span class="line">[x,fv,ef,out，jac] = fsolve(@f, x0, opt) <span class="comment">% 多变量方程组 F(X) = 0 求根</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% @f 为以匿名函数形式传入的方程（组）</span></span><br><span class="line"><span class="comment">% x0 为迭代初值（迭代开始的位置）</span></span><br><span class="line"><span class="comment">% opt 为选项，可以设置 &#x27;Display&#x27; &#x27;TolX&#x27; &#x27;TolFun&#x27; 等参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% x 为解的位置【！】</span></span><br><span class="line"><span class="comment">% fv 为对应函数值【！】</span></span><br><span class="line"><span class="comment">% ef 接受错误原因</span></span><br><span class="line"><span class="comment">% out 为一个包含 iters 等信息的结构体【！】</span></span><br><span class="line"><span class="comment">% jac 为输出点 x 对应的 Jacobi 矩阵</span></span><br></pre></td></tr></table></figure>
+<h1 id="无约束优化"><a class="markdownIt-Anchor" href="#无约束优化"></a> 无约束优化</h1>
+<h2 id="梯度法无"><a class="markdownIt-Anchor" href="#梯度法无"></a> 梯度法（无）</h2>
+<h2 id="牛顿法无"><a class="markdownIt-Anchor" href="#牛顿法无"></a> 牛顿法（无）</h2>
+<h2 id="赝牛顿法无-2"><a class="markdownIt-Anchor" href="#赝牛顿法无-2"></a> 赝牛顿法（无）</h2>
+<h2 id="内置方法-2"><a class="markdownIt-Anchor" href="#内置方法-2"></a> 内置方法</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[x,fv] = fminunc(@f, x0)</span><br><span class="line"><span class="comment">% @f 为待求最小值（即待优化）的函数，以匿名函数形式传入</span></span><br><span class="line"><span class="comment">% x0 为起始位置</span></span><br><span class="line"><span class="comment">% x 为（局部）极小值位置</span></span><br><span class="line"><span class="comment">% fv 为相应的极小值</span></span><br></pre></td></tr></table></figure>
+<h1 id="最小二乘法"><a class="markdownIt-Anchor" href="#最小二乘法"></a> 最小二乘法</h1>
+<h2 id="线性最小二乘法"><a class="markdownIt-Anchor" href="#线性最小二乘法"></a> 线性最小二乘法</h2>
+<ul>
+<li>可直接求解</li>
+<li>选定一组基函数 $\{r_1(x),...,r_m(x)\}$ <strong>要求 m &lt; n ，n为数据点个数</strong></li>
+<li>设置待拟合函数 $f(x) &#x3D; a_1r_1(x) + ... + a_m r_m(x)$</li>
+<li>定义最小二乘误差 $J(a_1,...,a_m) &#x3D; \sum_{i&#x3D;1}^n[f(x_i) - y_i]^2$</li>
+<li>求解一组 $\{a_k\}$ 满足 $\frac {\partial J}{\partial a_k} &#x3D; 0, k &#x3D; 1,2,...,m$
+<ul>
+<li>已经证明，上述方程组的解 $\pmb{a} &#x3D; [a_1,...,a_m]^T$ 满足: $(R^TR)\pmb{a}&#x3D;R^T\pmb{y}$</li>
+<li>其中 $R &#x3D; \begin{bmatrix} r_1(x_1) &amp; ... &amp; r_m(x_1) \\ ... &amp; &amp; ... \\ r_1(x_n) &amp; ... &amp; r_m(x_n) \end{bmatrix}$，$\pmb{y} &#x3D; [y_1,...,y_n]^T$</li>
+</ul>
+</li>
+<li>也有内置函数</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 创建一个线性模型函数，例如 y = ax + b</span></span><br><span class="line">fun = @(b,x)(b(<span class="number">1</span>)*x + b(<span class="number">2</span>));</span><br><span class="line"><span class="comment">% 初始参数估计</span></span><br><span class="line">b0 = [<span class="number">0</span> <span class="number">0</span>];</span><br><span class="line"><span class="comment">% 使用 lsqlin 函数进行最小二乘拟合</span></span><br><span class="line">b = lsqlin(x, y, fun, b0);</span><br></pre></td></tr></table></figure>
+<h2 id="非线性最小二乘法"><a class="markdownIt-Anchor" href="#非线性最小二乘法"></a> 非线性最小二乘法</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 随意取一个 f 为例</span></span><br><span class="line">f = @(a,k,l) a(<span class="number">1</span>).*k.^a(<span class="number">2</span>).*l.^a(<span class="number">3</span>);</span><br><span class="line">loss = @(a) (F2(a,K,L) - Q).^<span class="number">2</span>;</span><br><span class="line"><span class="comment">% a 为待求的参数，K,L是自变量的两个维度的值，Q为实际的因变量的值，对于最小二乘法，损失函数采用平方和，注意这里传入的 loss 必须为一个与数据点维数一致的向量，不能进行 sum 加和再传入</span></span><br><span class="line"></span><br><span class="line">[params,resnorm,~,~,output] = lsqnonlin(@loss, x0, lb, ub, options)</span><br><span class="line"><span class="comment">% params 为最优参数</span></span><br><span class="line"><span class="comment">% resnorm 为残差</span></span><br><span class="line"><span class="comment">% output 为一个包含迭代次数 iters 等的结构体</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% lb ub 为求解变量 a 的下界和上界</span></span><br><span class="line"><span class="comment">% @loss 为传入的【损失函数】向量</span></span><br><span class="line"><span class="comment">% x0 为 a 的初值</span></span><br><span class="line"><span class="comment">% options 可以指定算法等：</span></span><br><span class="line"><span class="comment">% Gauss-Newton 算法</span></span><br><span class="line">options_GN = optimoptions(<span class="string">&#x27;lsqnonlin&#x27;</span>,<span class="string">&#x27;Algorithm&#x27;</span>,<span class="string">&#x27;trust-region-reflective&#x27;</span>,<span class="string">&#x27;Display&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br><span class="line"><span class="comment">% Levenbery-Marquardt 算法</span></span><br><span class="line">options_LM = optimoptions(<span class="string">&#x27;lsqnonlin&#x27;</span>,<span class="string">&#x27;Algorithm&#x27;</span>,<span class="string">&#x27;levenberg-marquardt&#x27;</span>,<span class="string">&#x27;Display&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="线性规划"><a class="markdownIt-Anchor" href="#线性规划"></a> 线性规划</h1>
+<ul>
+<li>目标：
+<ul>
+<li>$min \ c^Tx$</li>
+</ul>
+</li>
+<li>约束
+<ul>
+<li>$A_1x \leq b_1$</li>
+<li>$A_2x &#x3D; b_2$</li>
+<li>$x \geq lb$</li>
+<li>$x \leq ub$</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[x,fval,~,output,lambda] = linprog(c,A1,b1,A2,b2,lb,ub,x0,opt)</span><br><span class="line"><span class="comment">% x 为最优点处 x 的值</span></span><br><span class="line"><span class="comment">% fval 为相应函数值</span></span><br><span class="line"><span class="comment">% output 为含迭代信息等的结构体</span></span><br><span class="line"><span class="comment">%  lagrange 乘子的含义：相应约束条件右边增加一个单位后，使优化目标函数增加的量</span></span><br><span class="line"><span class="comment">% 也是一个结构体，ineqlin,eqlin,lower,upper 四项分别对应上面四个约束的 lagrange 乘子</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% x0 一般无用，缺省即可</span></span><br><span class="line"><span class="comment">% opt 可以用于指定算法等</span></span><br></pre></td></tr></table></figure>
+<h1 id="非线性规划"><a class="markdownIt-Anchor" href="#非线性规划"></a> 非线性规划</h1>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[x,fval,~,output,lambda，grad,hessian] = fmincon(@f,x0,A1,b1,A2,b2,lb,ub,@nonlcon,opt)</span><br><span class="line"><span class="comment">% 含义大致与线性规划一样</span></span><br><span class="line"><span class="comment">% grad 为最优点处的梯度</span></span><br><span class="line"><span class="comment">% hessian 为最优点处的 Hessian 阵</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% @f 以匿名函数形式传入，为待优化（求最小值）的函数</span></span><br><span class="line"><span class="comment">% @nonlcon 以匿名函数形式传入，包含非线性的等式和不等式约束,例如：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[c,ceq]</span> = <span class="title">nonlcon</span><span class="params">(x)</span></span></span><br><span class="line">    c = [<span class="number">0</span>,<span class="number">0</span>];</span><br><span class="line">    c(<span class="number">1</span>) = (<span class="number">3</span>*x(<span class="number">1</span>) + x(<span class="number">2</span>) + <span class="number">2</span>*x(<span class="number">3</span>))/(x(<span class="number">1</span>)+x(<span class="number">2</span>)+x(<span class="number">3</span>))<span class="number">-2.5</span>;</span><br><span class="line">    c(<span class="number">2</span>) = (<span class="number">3</span>*x(<span class="number">4</span>) + x(<span class="number">5</span>) + <span class="number">2</span>*x(<span class="number">6</span>))/(x(<span class="number">4</span>)+x(<span class="number">5</span>)+x(<span class="number">6</span>))<span class="number">-1.5</span>;</span><br><span class="line">    ceq = x(<span class="number">1</span>)*x(<span class="number">5</span>) - x(<span class="number">4</span>)*x(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 分别对应约束 c ≤ 0 和 ceq = 0</span></span><br><span class="line"><span class="comment">% opt 中可以通过 &#x27;Algorithm&#x27; 指定算法</span></span><br><span class="line"><span class="comment">%   &#x27;interior-point&#x27; 内点算法[默认]</span></span><br><span class="line"><span class="comment">%   &#x27;sqp&#x27; 逐步二次规划法</span></span><br><span class="line"><span class="comment">%   &#x27;active-set&#x27; 有效集方法</span></span><br><span class="line"><span class="comment">% * 只有第一个是大规模算法</span></span><br></pre></td></tr></table></figure>
+<h1 id="整数规划"><a class="markdownIt-Anchor" href="#整数规划"></a> 整数规划</h1>
+<ul>
+<li>matlab 本身只有线性整数规划函数</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[x,fval]=intlinprog(c,intcon,A,b,Aeq,beq,lb,ub)</span><br><span class="line"><span class="comment">% 大致与线性规划类似</span></span><br><span class="line"><span class="comment">% c 为优化目标的线性约束矩阵</span></span><br><span class="line"><span class="comment">% intcon 指定自变量 x 哪几个位置为整数，如:</span></span><br><span class="line">intcon = [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"><span class="comment">% 则说明 x(1) x(2) 为整数</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>但可以从外部下载非线性整数规划函数</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[errmsg,fval,x] = BNB20_new(fun,x0,xstatus,lb,ub,A,b,Aeq,beq,@constrict)</span><br><span class="line"><span class="comment">% 大致用法与非线性规划函数 fmincon 类似</span></span><br><span class="line"><span class="comment">% </span></span><br><span class="line"><span class="comment">% xstatus 为一个 logistic 类型的向量，true 表示相应位置的 x 为整数，false 表示不是整数，如：</span></span><br><span class="line">xstatus = [<span class="built_in">true</span>;<span class="built_in">true</span>;<span class="built_in">false</span>]</span><br><span class="line"><span class="comment">% 表示 x(1) x(2) 为整数，x(3) 为实数</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+        <div class="share-wrapper">
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F02%2F%25E6%2595%25B0%25E5%25AD%25A6%25E5%25AE%259E%25E9%25AA%258C%25E4%25BB%25A3%25E7%25A0%2581%2F" target="_blank" rel="noopener noreferrer" title="数学实验代码">
+      <div class="share-icon icon icon-facebook">
+        
+      </div>
+    </a>
+  
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F02%2F%25E6%2595%25B0%25E5%25AD%25A6%25E5%25AE%259E%25E9%25AA%258C%25E4%25BB%25A3%25E7%25A0%2581%2F&amp;text=%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81&amp;via=https%3A%2F%2FQuarkPlanks.github.io" target="_blank" rel="noopener noreferrer" title="数学实验代码">
+      <div class="share-icon icon icon-twitter">
+        
+      </div>
+    </a>
+  
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fquarkplanks.github.io%2F2025%2F05%2F02%2F%25E6%2595%25B0%25E5%25AD%25A6%25E5%25AE%259E%25E9%25AA%258C%25E4%25BB%25A3%25E7%25A0%2581%2F&amp;appkey=&amp;title=%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="数学实验代码">
+      <div class="share-icon icon icon-weibo">
+        
+      </div>
+    </a>
+  
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81&amp;desc=%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81&amp;source=https%3A%2F%2FQuarkPlanks.github.io" target="_blank" rel="noopener noreferrer" title="数学实验代码">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="数学实验代码">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hexo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/MATLAB/" rel="tag">MATLAB</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/" rel="tag">数学实验</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/cover1.jpg" data-sizes="auto" alt="BNB20_new函数文件" class="lazyload">
+          
+        
+        <a href="/2025/05/03/BNB20-new%E5%87%BD%E6%95%B0%E6%96%87%E4%BB%B6/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            BNB20_new函数文件
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/cover3.jpg" data-sizes="auto" alt="机器学习笔记" class="lazyload">
+        
+      
+      <a href="/2025/05/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          机器学习笔记
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+        
+      
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="giscus">
+              <span>giscus</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment giscus-comment" data-aos="fade-up"
+          id="giscus-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Guga Frog
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        24.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        01:56
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%92%E5%80%BC"><span class="toc-number">1.</span> <span class="toc-text"> 插值</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#lagrange-%E6%8F%92%E5%80%BC%E5%87%BD%E6%95%B0%E8%87%AA%E7%BC%96"><span class="toc-number">1.1.</span> <span class="toc-text"> Lagrange 插值函数（自编）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC"><span class="toc-number">1.2.</span> <span class="toc-text"> 分段线性插值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%A0%B7%E6%9D%A1%E6%8F%92%E5%80%BC"><span class="toc-number">1.3.</span> <span class="toc-text"> 三次样条插值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text"> 数值积分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E5%BD%A2%E5%85%AC%E5%BC%8F%E8%87%AA%E7%BC%96"><span class="toc-number">2.1.</span> <span class="toc-text"> 矩形公式（自编）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%85%AC%E5%BC%8F%E8%87%AA%E7%BC%96"><span class="toc-number">2.2.</span> <span class="toc-text"> 梯形公式（自编）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#simpson-%E7%A7%AF%E5%88%86"><span class="toc-number">2.3.</span> <span class="toc-text"> Simpson 积分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E5%85%A5%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E7%A7%AF%E5%88%86%E5%86%85%E7%BD%AE"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 传入函数进行积分（内置）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E7%82%B9%E8%AE%A1%E7%AE%97%E7%A7%AF%E5%88%86%E8%87%AA%E7%BC%96"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 输入数据点计算积分（自编）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E8%AF%BE%E4%B8%8A%E6%B2%A1%E8%AE%B2"><span class="toc-number">2.4.</span> <span class="toc-text"> 其他方法（课上没讲）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text"> 微分方程（组）求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#euler-%E6%96%B9%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">3.1.</span> <span class="toc-text"> Euler 方法（自编）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#runge-kutta-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text"> Runge-Kutta 方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text"> 线性方程组求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%B1%82%E8%A7%A3"><span class="toc-number">4.1.</span> <span class="toc-text"> 直接求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95%E6%B1%82%E6%95%B0%E5%80%BC%E8%A7%A3"><span class="toc-number">4.2.</span> <span class="toc-text"> 迭代法求数值解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">4.2.1.</span> <span class="toc-text"> Jacobi 迭代法（自编）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gauss-seidel-%E8%BF%AD%E4%BB%A3%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">4.2.2.</span> <span class="toc-text"> Gauss-Seidel 迭代法（自编）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E6%9D%BE%E5%BC%9Bsor-%E8%BF%AD%E4%BB%A3%E8%87%AA%E7%BC%96"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 超松弛(SOR) 迭代（自编）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text"> 非线性方程（组）求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text"> 牛顿法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E5%88%87%E7%BA%BF%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">5.1.1.</span> <span class="toc-text"> 牛顿切线法（自编）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E5%89%B2%E7%BA%BF%E6%B3%95%E8%87%AA%E7%BC%96"><span class="toc-number">5.1.2.</span> <span class="toc-text"> 牛顿割线法（自编）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9D%E7%89%9B%E9%A1%BF%E6%B3%95%E6%97%A0"><span class="toc-number">5.2.</span> <span class="toc-text"> 赝牛顿法（无）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">5.3.</span> <span class="toc-text"> 内置方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 无约束优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E6%B3%95%E6%97%A0"><span class="toc-number">6.1.</span> <span class="toc-text"> 梯度法（无）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95%E6%97%A0"><span class="toc-number">6.2.</span> <span class="toc-text"> 牛顿法（无）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9D%E7%89%9B%E9%A1%BF%E6%B3%95%E6%97%A0-2"><span class="toc-number">6.3.</span> <span class="toc-text"> 赝牛顿法（无）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95-2"><span class="toc-number">6.4.</span> <span class="toc-text"> 内置方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text"> 最小二乘法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-number">7.1.</span> <span class="toc-text"> 线性最小二乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-number">7.2.</span> <span class="toc-text"> 非线性最小二乘法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">8.</span> <span class="toc-text"> 线性规划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">9.</span> <span class="toc-text"> 非线性规划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92"><span class="toc-number">10.</span> <span class="toc-text"> 整数规划</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar2.jpg" data-sizes="auto" alt="Guga Frog" class="lazyload">
+  <div class="sidebar-author-name">Guga Frog</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:1412580863@qq.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/QuarkPlanks itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[800,1400],"shapeOptions":{"radius":[8,16],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[800,1400],"shapeOptions":{"radius":0,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Guga Frog",
+          title: "数学实验代码",
+          url: "https://quarkplanks.github.io/2025/05/02/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81/",
+          excerpt: "",
+          description: "",
+          stripContent: " 插值  Lagrange 插值函数（自编） 123456789101112131415% 传入插值点的坐标 x0 y0，返回 Lagrange 插值后的匿名函数function F = lagrange(x0,y0)    syms x    L = 0;    for i = 1:length(x0)        temp = 1;        for j = 1:length(x0)            if j ~= i                 temp = temp .*",
+          date: "Fri May 02 2025 13:38:36 GMT+0800",
+          updated: "Mon May 05 2025 03:26:27 GMT+0800",
+          cover: "/images/banner3.png",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+          
+<script src="https://npm.webcache.cn/html-to-image@1.11.11/dist/html-to-image.js" integrity="sha384-UbfRVKN3&#x2F;elS1r7JcK2FhmPP+KlJ4CvYwbyYD7tH+uTkbT9bNJr9eJeQ0FoFbAgz" crossorigin="anonymous" defer data-pjax></script>
+
+          
+<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+          var serverURLs = undefined;
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "jbAZ6gbEdxxes87jTW7R0Akh-MdYXbMMI",
+              appKey: "SyZiClEmH88WtGG8nV5oqGNd",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: document.documentElement.lang || 'en',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname,
+              serverURLs
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: false,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: '',
+          lang: document.documentElement.lang || 'en',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.16/dist/twikoo.all.min.js',
+          'sha384-lDHsr5aZmkMS0eKnsUu6e9RWP+dRmn7sgjRAKGOAoXfMyzbUK6Qi86zZK7R+KvRV'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.tcomment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            })
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId,
+            distractionFreeMode: false,
+            language: document.documentElement.lang || 'en',
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'QuarkPlanks/comment');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOOj7vZA');
+        giscusScript.setAttribute('data-category', 'Announcements'); 
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOOj7vZM4CpvIa');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', document.documentElement.lang || 'en');
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.8.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+<script data-pjax>
+  var updateTime = _$('#post-update-time')?.innerHTML;
+
+  if (updateTime) {
+    const update = new Date(updateTime);
+    const now = new Date();
+    const diff = now - update;
+    const days = diff / 86400000;
+    const { daysAgo, message: template } = window.REIMU_CONFIG.outdate;
+    if (days >= daysAgo) {
+      let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+      if (typeof template === 'string') {
+        message = template.replace(/{time}/, updateTime);
+      } else if (typeof template === 'object') {
+        const lang = document.documentElement.lang;
+        const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+        if (messageKey && template[messageKey]) {
+          message = template[messageKey].replace(/{time}/, updateTime);
+        }
+      }
+      const blockquote = _$('#outdate-blockquote');
+      if (blockquote) {
+        blockquote.querySelector('p').innerText = message;
+        blockquote.style.display = 'block';
+      }
+    }
+  }
+</script>
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6&#x2F;1Nxveei" crossorigin="anonymous" defer data-pjax></script>
+
+    <script data-pjax>
+      window.MathJax = {"tex":{"tags":"ams","useLabelIds":true,"inlineMath":[["$","$"],["\\\\(","\\\\)"]],"displayMath":[["$$","$$"],["\\\\[","\\\\]"]],"processEscapes":true,"processEnvironments":true,"autoload":{"color":[],"colorv2":["color"]},"packages":{"[+]":["noerrors"]}},"options":{"skipHtmlTags":["script","noscript","style","textarea","pre","code"],"ignoreHtmlClass":"tex2jax_ignore","processHtmlClass":"tex2jax_process"},"loader":{"load":["input/asciimath","[tex]/noerrors"]}};
+    </script>
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
